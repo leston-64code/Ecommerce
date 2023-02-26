@@ -67,3 +67,29 @@ exports.getUser=catchAsyncErrors(async(req,res,next)=>{
         return next(new ErrorHandler("User not found",400))
     }
 })
+
+exports.deleteUser=catchAsyncErrors(async(req,res,next)=>{
+    const userid=req.params.id
+    const user=await User.findByIdAndDelete(userid)
+    if(user){
+        return res.status(200).json({
+            success:true,
+            deleteduser:user
+        })
+    }else{
+        return next(new ErrorHandler("User not found",400))
+    }
+})
+
+exports.updateUser=catchAsyncErrors(async(req,res,next)=>{
+    const userid=req.user._id.toString()
+    const user=await User.findByIdAndUpdate(userid,req.body,{new:true})
+    if(user){
+        return res.status(200).json({
+            success:true,
+            user
+        })
+    }else{
+        return next(new ErrorHandler("User not found",400))
+    }
+})
