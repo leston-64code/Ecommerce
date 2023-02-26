@@ -93,3 +93,31 @@ exports.updateUser=catchAsyncErrors(async(req,res,next)=>{
         return next(new ErrorHandler("User not found",400))
     }
 })
+
+exports.blockUser=catchAsyncErrors(async(req,res,next)=>{
+    const {id}=req.params
+    const blockUser=await User.findByIdAndUpdate(id,{isBlocked:true},{new:true})
+    if(blockUser){
+        return res.status(200).json({
+            success:true,
+            msg:"User blocked successfully",
+            blockUser
+        })
+    }else{
+        return next(new ErrorHandler("User not found",400))
+    }
+})
+
+exports.unblockUser=catchAsyncErrors(async(req,res,next)=>{
+    const {id}=req.params
+    const unblockUser=await User.findByIdAndUpdate(id,{isBlocked:false},{new:true})
+    if(unblockUser){
+        return res.status(200).json({
+            success:true,
+            msg:"User unblocked successfully",
+            unblockUser
+        })
+    }else{
+        return next(new ErrorHandler("User not found",400))
+    }
+})
