@@ -9,7 +9,7 @@ router.route("/login").post(loginUser)
 router.route("/getallusers").get(authMiddleware,isAdmin,getAllUsers)
 router.route("/getuser/:id").get(authMiddleware,isAdmin,getUser)
 router.route("/deleteuser/:id").delete(authMiddleware,isAdmin,deleteUser)
-router.route("/updateuser/:id").put(authMiddleware,updateUser)
+router.route("/updateuser").put(authMiddleware,updateUser)
 router.route("/blockuser/:id").put(authMiddleware,isAdmin,blockUser)
 router.route("/unblockuser/:id").put(authMiddleware,isAdmin,unblockUser)
 

@@ -2,6 +2,7 @@ const catchAsyncErrors = require("../middlewares/catchAsyncErrors")
 const User=require("../models/userModel")
 const ErrorHandler = require("../utils/ErrorHandler")
 const generateToken = require("../utils/jwtToken")
+const validateMondoDbId = require("../utils/validateMongoId")
 
 exports.createUser=catchAsyncErrors(async(req,res,next)=>{
     const email=await req.body.email
@@ -70,6 +71,7 @@ exports.getUser=catchAsyncErrors(async(req,res,next)=>{
 
 exports.deleteUser=catchAsyncErrors(async(req,res,next)=>{
     const userid=req.params.id
+    validateMondoDbId(userid)
     const user=await User.findByIdAndDelete(userid)
     if(user){
         return res.status(200).json({
@@ -82,7 +84,9 @@ exports.deleteUser=catchAsyncErrors(async(req,res,next)=>{
 })
 
 exports.updateUser=catchAsyncErrors(async(req,res,next)=>{
-    const userid=req.user._id.toString()
+    // const userid=req.user._id.toString()
+    const userid=req.user._id
+    validateMondoDbId(userid)
     const user=await User.findByIdAndUpdate(userid,req.body,{new:true})
     if(user){
         return res.status(200).json({
@@ -96,6 +100,7 @@ exports.updateUser=catchAsyncErrors(async(req,res,next)=>{
 
 exports.blockUser=catchAsyncErrors(async(req,res,next)=>{
     const {id}=req.params
+    validateMondoDbId(id)
     const blockUser=await User.findByIdAndUpdate(id,{isBlocked:true},{new:true})
     if(blockUser){
         return res.status(200).json({
@@ -110,6 +115,7 @@ exports.blockUser=catchAsyncErrors(async(req,res,next)=>{
 
 exports.unblockUser=catchAsyncErrors(async(req,res,next)=>{
     const {id}=req.params
+    validateMondoDbId(id)
     const unblockUser=await User.findByIdAndUpdate(id,{isBlocked:false},{new:true})
     if(unblockUser){
         return res.status(200).json({
