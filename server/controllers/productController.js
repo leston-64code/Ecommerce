@@ -52,20 +52,35 @@ exports.getAllProducts=catchAsyncErrors(async(req,res,next)=>{
     // console.log(queryStr)
     // console.log(JSON.parse(queryStr))
 
-    let products=await Product.find(JSON.parse(queryStr))
-    const productsCount=products.length+1
+
 
     // **********************        SORTING      *************************
-    // Sorting not working
-    // look for time before 3:28:28
+    // Sorting is working now we need to call that on the request that we send to mongodb
+    let sortBy
     if(req.query.sort){
-        const sortBy=req.query.sort.split(",").join(" ")
+        sortBy=req.query.sort.split(",").join(" ")
         // console.log(sortBy)
-        // products=products.sort(sortBy)
-        // console.log(products)
     }else{
         // products=products.sort("-createdAt")
     }
+
+
+
+    //***********************  LIMITING THE FIELDS    ********************
+    let fields
+    if(req.query.fields){
+        // console.log(req.query.fields)
+        fields=req.query.fields.split(",").join(" ")
+        // console.log(fields)
+    }else{
+        fields="-__v"
+    }
+
+
+
+
+    let products=await Product.find(JSON.parse(queryStr)).select(fields).sort(sortBy)
+    const productsCount=products.length+1
 
     if(products){
         return res.status(200).json({
