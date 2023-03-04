@@ -2,6 +2,7 @@ const express=require("express")
 const connectDB=require("./config/db")
 const errorMiddleware = require("./middlewares/errorMiddleware")
 const cookieParser=require("cookie-parser")
+const morgan=require("morgan")
 
 const app=express()
 require("dotenv").config()
@@ -9,6 +10,7 @@ require("dotenv").config()
 connectDB()
 
 // Middlewares
+app.use(morgan("dev"));
 app.use(express.json())
 app.use(cookieParser())
 

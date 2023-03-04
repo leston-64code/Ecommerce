@@ -1,8 +1,12 @@
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors")
 const Product=require("../models/productModel")
 const ErrorHandler = require("../utils/ErrorHandler")
+const slugify=require("slugify")
 
 exports.createProduct=catchAsyncErrors(async(req,res,next)=>{
+    if(req.body.title){
+        req.body.slug=slugify(req.body.title)
+    }
     const newProduct=await Product.create(req.body)
     if(newProduct){
         return res.status(200).json({
@@ -39,4 +43,21 @@ exports.getAllProducts=catchAsyncErrors(async(req,res,next)=>{
     }else{
         return next(new ErrorHandler("Could not find products",400))
     }
+})
+
+exports.updateProduct=catchAsyncErrors(async(req,res,next)=>{
+    const {id}=req.params
+    if(req.body.title){
+        req.body.slug=slugify(req.body.title)
+    }
+    const updateProduct=await Product.findOneAndUpdate({id},req.body,{new:true})
+    if(updateProduct){
+        return res.status(200).json({
+            success:true,
+            updateProduct
+        })
+    }else{
+        return next(new ErrorHandler("Could not be updated",400))
+    }
+    
 })

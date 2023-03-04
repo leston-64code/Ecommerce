@@ -4,8 +4,9 @@ const mongoose=require("mongoose")
 let productSchema=new mongoose.Schema({
     title:{
         type:String,
-        required:true,
-        trim:true
+        required:[true,"title requeired"],
+        unique:true,
+        trim:true,
     },
     slug:{
         type:String,
@@ -22,12 +23,13 @@ let productSchema=new mongoose.Schema({
         required:true
     },
     category:{
-        type:mongoose.SchemaTypes.ObjectId,
-        ref:"Category"
+
+        type:String,
+        required:true
     },
     brand:{
         type:String,
-        enum:["Apple","Samsung","Lenovo"]
+        required:true
     },
     quantity:{
         type:Number,
@@ -38,7 +40,7 @@ let productSchema=new mongoose.Schema({
     },
     color:{
         type:String,
-        enum:["Black","Brown","Red"]
+        required:true
     },
     sold:{
         type:Number,
