@@ -61,3 +61,18 @@ exports.updateProduct=catchAsyncErrors(async(req,res,next)=>{
     }
     
 })
+
+exports.deleteProduct=catchAsyncErrors(async(req,res,next)=>{
+    const {id}=req.params
+    console.log(id)
+    const deletedProduct=await Product.findByIdAndDelete({_id:id})
+    if(deletedProduct){
+        return res.status(200).json({
+            success:true,
+            deletedProduct
+        })
+    }else{
+        return next(new ErrorHandler("Could not be deleted",400))
+    }
+    
+})
