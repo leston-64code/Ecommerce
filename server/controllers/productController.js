@@ -77,10 +77,16 @@ exports.getAllProducts=catchAsyncErrors(async(req,res,next)=>{
     }
 
 
+// *************        PAGINATION *******************
+    const page=req.query.page
+    const limit=req.query.limit
+    const skip=(page-1)*limit
+    // console.log(page,limit,skip)
 
 
-    let products=await Product.find(JSON.parse(queryStr)).select(fields).sort(sortBy)
-    const productsCount=products.length+1
+
+    let products=await Product.find(JSON.parse(queryStr)).select(fields).sort(sortBy).skip(skip).limit(limit)
+    const productsCount=products.length
 
     if(products){
         return res.status(200).json({
