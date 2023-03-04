@@ -32,6 +32,7 @@ exports.getProduct=catchAsyncErrors(async(req,res,next)=>{
 })
 
 exports.getAllProducts=catchAsyncErrors(async(req,res,next)=>{
+    // *************************            FILTERING              ***************************
 
     // The fist section what it does is it will remove the 4 fields from the req.query objects duplicate only that much work is done in first para
     const queryObj={...req.query}
@@ -41,7 +42,7 @@ exports.getAllProducts=catchAsyncErrors(async(req,res,next)=>{
     })
     // console.log(queryObj,req.query)
 
-    
+
     // ***************************************************************
     // Here in this para we convert the queryOjb into a string so that we can replace the gte lt lte gt with a dollar sign because mongodb requries dollar sign before these type of queries 
     // and later while sending the req to get all products we convert the json string back to json object
@@ -51,10 +52,21 @@ exports.getAllProducts=catchAsyncErrors(async(req,res,next)=>{
     // console.log(queryStr)
     // console.log(JSON.parse(queryStr))
 
-
-
-    const products=await Product.find(JSON.parse(queryStr))
+    let products=await Product.find(JSON.parse(queryStr))
     const productsCount=products.length+1
+
+    // **********************        SORTING      *************************
+    // Sorting not working
+    // look for time before 3:28:28
+    if(req.query.sort){
+        const sortBy=req.query.sort.split(",").join(" ")
+        // console.log(sortBy)
+        // products=products.sort(sortBy)
+        // console.log(products)
+    }else{
+        // products=products.sort("-createdAt")
+    }
+
     if(products){
         return res.status(200).json({
             success:true,
