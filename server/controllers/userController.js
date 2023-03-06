@@ -115,6 +115,25 @@ exports.logoutUser=catchAsyncErrors(async(req,res,next)=>{
     }
 })
 
+
+exports.updatePassword=catchAsyncErrors(async (req,res,next)=>{
+    const {_id}=req.user
+    const password=req.body.password
+    //  You need to validate id here i have not done that here becasue my validate function needs further reserach before implementing
+    const user=await User.findOne(_id)
+    if(password){
+        user.password=password
+        const updatedUser=await user.save()
+        return res.status(200).json({
+            success:true,
+            updatedUser
+        })
+    }else{
+        return next(new ErrorHandler("Could not update password",400))
+
+    }
+})
+
 exports.getAllUsers=catchAsyncErrors(async (req,res,next)=>{
     const users=await User.find()
     const userCount=await User.countDocuments()
