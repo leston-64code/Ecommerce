@@ -31,7 +31,7 @@ exports.updateBlog=catchAsyncErrors(async(req,res,next)=>{
 
 exports.getBlog=catchAsyncErrors(async(req,res,next)=>{
     const {id}=req.params
-    const getBlog=await Blog.findById(id)
+    const getBlog=await Blog.findById(id).populate("likes","firstname email").populate("dislikes","firstname email")
     await Blog.findByIdAndUpdate(id,{$inc:{numOfViews:1}},{
         new:true
     })
