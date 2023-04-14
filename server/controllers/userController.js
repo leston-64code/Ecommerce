@@ -5,6 +5,7 @@ const generateToken = require("../utils/jwtToken")
 const validateMondoDbId = require("../utils/validateMongoId")
 const generateRefreshToken=require("../utils/refreshToken")
 const jwt=require("jsonwebtoken")
+const { sendEmail } = require("./emailController")
 
 exports.createUser=catchAsyncErrors(async(req,res,next)=>{
     const email=await req.body.email
@@ -112,6 +113,30 @@ exports.logoutUser=catchAsyncErrors(async(req,res,next)=>{
 
             return res.sendStatus(204) //forbidden
         }
+    }
+})
+
+exports.forgotPasswordToken=catchAsyncErrors(async(req,res,next)=>{
+    const {email}=req.body;
+    const user=await User.findOne({email})
+    if(!user){
+        return next(new ErrorHandler("Invalid email addresss",400))
+    }else{
+        const token=await user.createPasswordResetToken()
+        // Why we are saving here because in the createPasswordResetTokne fun functon we entered new data into the user doc ie expiretime and reset token so we need to save that
+        await user.save()
+        const resetURL=`Hi, Please follow this link to reset your password . This link is valid till 10 minutes from now.<a href="http://localhost:5000/api/user/reset-password/${token}">Click Here</a>`
+
+        const data={
+            to:email,
+            text:"Hey user,",
+            subject:"Forgot Password Link",
+            html:resetURL
+        }
+
+        sendEmail(data)
+        return res.json(token)
+
     }
 })
 
