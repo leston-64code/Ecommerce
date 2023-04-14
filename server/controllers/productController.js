@@ -2,6 +2,7 @@ const catchAsyncErrors = require("../middlewares/catchAsyncErrors")
 const Product=require("../models/productModel")
 const ErrorHandler = require("../utils/ErrorHandler")
 const slugify=require("slugify")
+const User=require("../models/userModel")
 
 exports.createProduct=catchAsyncErrors(async(req,res,next)=>{
     if(req.body.title){
@@ -129,4 +130,40 @@ exports.deleteProduct=catchAsyncErrors(async(req,res,next)=>{
         return next(new ErrorHandler("Could not be deleted",400))
     }
     
+})
+
+exports.addToWishlist=catchAsyncErrors(async(req,res,next)=>{
+    const userID=req.user._id
+    const {productID}=req.body
+
+    const user=await User.findById(userID)
+    const alreadyAdded=user.wishList.find((id)=>{
+        return id.toString()===productID.toString()
+    })
+    
+    if(alreadyAdded){
+        // if already added then we need to remove
+
+        const upUser=await User.findByIdAndUpdate(userID,{
+            $pull:{wishList:productID}
+        },{
+            new:true
+        })
+
+        if(upUser){
+            return res.status(200).json({success:true,upUser})
+        }
+
+    }else{
+        // else we need to remove
+        const upUser=await User.findByIdAndUpdate(userID,{
+            $push:{wishList:productID}
+        },{
+            new:true
+        })
+
+        if(upUser){
+            return res.status(200).json({success:true,upUser})
+        }
+    }
 })
