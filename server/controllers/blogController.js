@@ -106,3 +106,41 @@ exports.likeBlog=catchAsyncErrors(async(req,res,next)=>{
 
 
 })
+
+exports.disLikeBlog=catchAsyncErrors(async(req,res,next)=>{
+    const {blogID}=req.body
+    const blog=await Blog.findById(blogID)
+    const loginUserID=req?.user?._id
+
+    const isDisLiked= blog?.isDisLiked
+
+    const alreadyLiked=blog?.likes?.forEach((ele,index)=>{
+        return ele._id.toString()===loginUserID.toString()
+    })
+
+    if(alreadyLiked){
+        const blog=await Blog.findByIdAndUpdate(blogID,{
+            $pull:{likes:loginUserID},
+            isLiked:false
+        },{
+            new:true
+        })
+        if(blog){
+            res.status(200).json({success:true,blog})
+        }
+    }
+
+    if(isDisLiked){
+        const blog=await Blog.findByIdAndUpdate(blogID,{$pull:{dislikes:loginUserID},isDisLiked:false},{new:true})
+        if(blog){
+            res.status(200).json({success:true,blog})
+        }
+    }else{
+        const blog=await Blog.findByIdAndUpdate(blogID,{$push:{dislikes:loginUserID},isDisLiked:true},{new:true})
+        if(blog){
+            res.status(200).json({success:true,blog})
+        }
+    }
+
+
+})
