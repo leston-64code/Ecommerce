@@ -18,6 +18,7 @@ app.use("/api/user",require("./routes/authRoutes"))
 app.use("/api/product",require("./routes/productRoutes"))
 app.use("/api/blog",require("./routes/blogRoutes"))
 app.use("/api/category",require("./routes/proCategoryRoutes"))
+app.use("/api/category",require("./routes/blogCategoryRoutes"))
 
 
 app.use(errorMiddleware)
