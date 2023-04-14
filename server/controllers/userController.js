@@ -6,6 +6,7 @@ const validateMondoDbId = require("../utils/validateMongoId")
 const generateRefreshToken=require("../utils/refreshToken")
 const jwt=require("jsonwebtoken")
 const { sendEmail } = require("./emailController")
+const crypto=require("crypto")
 
 exports.createUser=catchAsyncErrors(async(req,res,next)=>{
     const email=await req.body.email
@@ -140,6 +141,25 @@ exports.forgotPasswordToken=catchAsyncErrors(async(req,res,next)=>{
     }
 })
 
+exports.resetPassword=catchAsyncErrors(async(req,res,next)=>{
+    const {password}=req.body
+    const token=req.params.token
+    // console.log(token)
+    const hashedToken=crypto.createHash("sha256").update(token).digest("hex")
+    // console.log(hashedToken)
+    const user=await User.findOne({passwordResetToken:hashedToken,passwordResetExpires:{$gt:Date.now()}})
+    if(!user){
+        return next(new ErrorHandler("Token expired . Please try again later"))
+    }
+    user.password=password
+    user.passwordResetToken=undefined
+    user.passwordResetExpires=undefined
+    await user.save()
+    return res.json({
+        success:true,
+        user
+    })
+})
 
 exports.updatePassword=catchAsyncErrors(async (req,res,next)=>{
     const {_id}=req.user
