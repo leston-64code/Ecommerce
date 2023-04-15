@@ -170,7 +170,7 @@ exports.addToWishlist=catchAsyncErrors(async(req,res,next)=>{
 
 exports.rating=catchAsyncErrors(async(req,res,next)=>{
     const userID=req.user._id
-    const {star,productID}=req.body
+    const {star,productID,comment}=req.body
 
     const product=await Product.findById(productID)
     let alreadyRated=product.ratings.find((ele)=>{
@@ -182,7 +182,7 @@ exports.rating=catchAsyncErrors(async(req,res,next)=>{
         const updateRating=await Product.updateOne({
             ratings:{$elemMatch:alreadyRated}
         },{
-            $set:{"ratings.$.star":star}
+            $set:{"ratings.$.star":star,"ratings.$.comment":comment}
         },{new:true})
 
         // Below my one is not working
@@ -199,6 +199,7 @@ exports.rating=catchAsyncErrors(async(req,res,next)=>{
             $push:{
                 ratings:{
                     star:star,
+                    comment,
                     postedBy:userID
                 }
             }

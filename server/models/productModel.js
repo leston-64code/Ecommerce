@@ -50,6 +50,9 @@ let productSchema=new mongoose.Schema({
     ratings:[
         {
             star:Number,
+            comment:{
+                type:String
+            },
             postedBy:{
                 type:mongoose.SchemaTypes.ObjectId,
                 ref:"User"
