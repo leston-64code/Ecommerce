@@ -190,9 +190,9 @@ exports.rating=catchAsyncErrors(async(req,res,next)=>{
         //     $set:{"ratings.$.star":star}
         // },{new:true})
 
-        if(updateRating){
-            return res.status(200).json({success:true,updateRating})
-        }
+        // if(updateRating){
+        //     return res.status(200).json({success:true,updateRating})
+        // }
 
     }else{
         const rateProduct=await Product.findByIdAndUpdate(productID,{
@@ -204,10 +204,34 @@ exports.rating=catchAsyncErrors(async(req,res,next)=>{
             }
         },{new:true})
 
-        if(rateProduct){
-            return res.status(200).json({success:true,rateProduct})
-        }
+        // if(rateProduct){
+        //     return res.status(200).json({success:true,rateProduct})
+        // }
 
+    }
+
+    const getAllRating=await Product.findById(productID)
+
+    let totalRating=getAllRating.ratings.length
+    // Storing all the stars in an array
+    let ratingArray=getAllRating.ratings.map((ele,index)=>{
+        return ele.star
+    })
+    // Adding all the stars
+    let totalSum=ratingArray.reduce((prev,current)=>{
+        return prev+current
+    })
+ 
+    // Calculating the average by dividing the sum with total number of ratings
+    let actualRating=Math.round(totalSum/totalRating)
+
+    // Updating the doucment
+    let updatedProduct=await Product.findByIdAndUpdate(productID,{
+        totalRatings:actualRating
+    },{new:true})
+
+    if(updatedProduct!=null){
+        return res.status(200).json({success:true,updatedProduct})
     }
 
 })
