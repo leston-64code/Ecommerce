@@ -167,3 +167,47 @@ exports.addToWishlist=catchAsyncErrors(async(req,res,next)=>{
         }
     }
 })
+
+exports.rating=catchAsyncErrors(async(req,res,next)=>{
+    const userID=req.user._id
+    const {star,productID}=req.body
+
+    const product=await Product.findById(productID)
+    let alreadyRated=product.ratings.find((ele)=>{
+        return ele.postedBy.toString()===userID.toString()
+    })
+    console.log(alreadyRated)
+    if(alreadyRated){
+
+        const updateRating=await Product.updateOne({
+            ratings:{$elemMatch:alreadyRated}
+        },{
+            $set:{"ratings.$.star":star}
+        },{new:true})
+
+        // Below my one is not working
+        // const updateRating=await Product.updateOne({ratings:{$eq:{alreadyRated}}},{
+        //     $set:{"ratings.$.star":star}
+        // },{new:true})
+
+        if(updateRating){
+            return res.status(200).json({success:true,updateRating})
+        }
+
+    }else{
+        const rateProduct=await Product.findByIdAndUpdate(productID,{
+            $push:{
+                ratings:{
+                    star:star,
+                    postedBy:userID
+                }
+            }
+        },{new:true})
+
+        if(rateProduct){
+            return res.status(200).json({success:true,rateProduct})
+        }
+
+    }
+
+})
