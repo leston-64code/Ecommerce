@@ -36,5 +36,17 @@ const uploadPhotos=multer({
     limits:{fieldSize:2000000}
 })
 
+const productImgResize=async(req,res,next)=>{
+    if(!req.files){
+        return next()
+    }else{
+        await Promise.all(req.files.map(async(file)=>{
+            await sharp(file.path).resize(300,300).toFormat("jpeg").jpeg({
+                quality:90
+            }).toFile(`public/images/products/${file.filename}`)
+        }))
+        next()
+    }
+}
 
 module.exports=uploadPhotos

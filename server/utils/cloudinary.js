@@ -23,12 +23,6 @@ cloudinary.config({
   }
 
 
-  const productImgResize=async(req,res,next)=>{
-    if(!req.files){
-        return next()
-    }
-    await Promise.all()
-  }
 
 
   module.exports=cloudinarUploadImg
