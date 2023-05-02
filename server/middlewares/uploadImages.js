@@ -20,7 +20,7 @@ const userStorage=multer.diskStorage({
 
 const userFilter=(req,file,callback)=>{
 
-    if(file.mimetype.startWith("image")){
+    if(file.mimetype.startsWith("image")){
         callback(null,true)
     }else{
         callback({
@@ -49,4 +49,17 @@ const productImgResize=async(req,res,next)=>{
     }
 }
 
-module.exports=uploadPhotos
+const blogImgResize=async(req,res,next)=>{
+    if(!req.files){
+        return next()
+    }else{
+        await Promise.all(req.files.map(async(file)=>{
+            await sharp(file.path).resize(300,300).toFormat("jpeg").jpeg({
+                quality:90
+            }).toFile(`public/images/blogs/${file.filename}`)
+        }))
+        next()
+    }
+}
+
+module.exports={uploadPhotos,productImgResize,blogImgResize}

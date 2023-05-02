@@ -236,3 +236,7 @@ exports.rating=catchAsyncErrors(async(req,res,next)=>{
     }
 
 })
+
+exports.uploadImages=catchAsyncErrors(async(req,res,next)=>{
+    console.log(req.files)
+})
