@@ -5,8 +5,6 @@ const path=require("path")
 const userStorage=multer.diskStorage({
 
     destination:function(req,file,callback){
-        console.log(req)
-        console.log(file)
         callback(null,path.join(__dirname,"../public/images"))
     },
 
@@ -36,6 +34,7 @@ const uploadPhotos=multer({
     limits:{fieldSize:2000000}
 })
 
+
 const productImgResize=async(req,res,next)=>{
     if(!req.files){
         return next()
@@ -43,7 +42,7 @@ const productImgResize=async(req,res,next)=>{
         await Promise.all(req.files.map(async(file)=>{
             await sharp(file.path).resize(300,300).toFormat("jpeg").jpeg({
                 quality:90
-            }).toFile(`public/images/products/${file.filename}`)
+            }).toFile(`./public/images/products/${file.filename}`)
         }))
         next()
     }
