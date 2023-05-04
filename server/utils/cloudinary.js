@@ -7,21 +7,20 @@ cloudinary.config({
   });
 
 
-  const cloudinarUploadImg=async(fileToUpload)=>{
-    return new Promise((resolve)=>{
-        cloudinary.uploader.upload(fileToUpload,(result)=>{
-            resolve:{
-                {
-                    url:result.secure_url
-                }
-                {
-                    resource_type:"auto"
-                }
-            }
-        })
-    })
-  }
-
+//   const cloudinarUploadImg=async(fileToUpload)=>{
+//     return new Promise((resolve)=>{
+//         cloudinary.uploader.upload(fileToUpload,(result)=>{
+//             resolve:{
+//                 {
+//                     url:result.secure_url
+//                 }
+//                 {
+//                     resource_type:"auto"
+//                 }
+//             }
+//         })
+//     })
+//   }
 
 
 

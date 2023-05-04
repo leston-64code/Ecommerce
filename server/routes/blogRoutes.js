@@ -1,6 +1,7 @@
 const express=require("express")
-const { createBlog, updateBlog, getBlog, getAllBlogs, deleteBlog, likeBlog, disLikeBlog } = require("../controllers/blogController")
+const { createBlog, updateBlog, getBlog, getAllBlogs, deleteBlog, likeBlog, disLikeBlog, uploadBlogImages } = require("../controllers/blogController")
 const { authMiddleware, isAdmin } = require("../middlewares/authMiddleware")
+const { uploadPhotos, blogImgResize } = require("../middlewares/uploadImages")
 
 const router=express.Router()
 
@@ -11,5 +12,6 @@ router.route("/getallblogs").get(getAllBlogs)
 router.route("/deleteblog/:id").delete(authMiddleware,isAdmin,deleteBlog)
 router.route("/likeblog").put(authMiddleware,likeBlog)
 router.route("/dislikeblog").put(authMiddleware,disLikeBlog)
+router.route("/uploadimages/:id").put(authMiddleware,isAdmin,uploadPhotos.array("images",2),blogImgResize,uploadBlogImages)
 
 module.exports=router

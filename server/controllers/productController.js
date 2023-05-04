@@ -254,24 +254,30 @@ exports.uploadImages=catchAsyncErrors(async(req,res,next)=>{
     const product=await Product.findById(id)
     let imgUrlData=[]
     
-    for(let i=0;i<req.files.length;i++){
-        let ele=req.files[i]
-        let name=ele.filename
-        let imagepath=path.join(req.files[0].destination,"products",name)
-        
-        let cloudRes=await cloudinary.uploader.upload(imagepath,{resource_type:"image"})
-        imgUrlData.push({
-            public_id:cloudRes.public_id,
-            url:cloudRes.secure_url
-        })
+    try {
 
-        fs.unlinkSync(ele.path)
-        fs.unlinkSync(imagepath)
-    }
+        for(let i=0;i<req.files.length;i++){
+            let ele=req.files[i]
+            let name=ele.filename
+            let imagepath=path.join(req.files[0].destination,"products",name)
+            
+            let cloudRes=await cloudinary.uploader.upload(imagepath,{resource_type:"image"})
+            
+            imgUrlData.push({
+                public_id:cloudRes.public_id,
+                url:cloudRes.secure_url
+            })
     
-    product.images=imgUrlData
-    await product.save()
-
+            fs.unlinkSync(ele.path)
+            fs.unlinkSync(imagepath)
+        }
+        
+        product.images=imgUrlData
+        await product.save()
+    
+    } catch (error) {
+        return next(error)
+    }
     return res.status(200).json({
         success:true,
         msg:"Images added successfully"

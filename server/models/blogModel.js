@@ -38,11 +38,16 @@ let blogSchema = new mongoose.Schema(
                 ref: "User",
             },
         ],
-        image: {
-            type: String,
-            default:
-                "https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        },
+        images:[
+            {
+                public_id:{
+                    type:String
+                },
+                url:{
+                    type:String
+                }
+            }
+        ],
         author: {
             type: String,
             default: "admin",
