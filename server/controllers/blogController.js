@@ -65,18 +65,62 @@ exports.getAllBlogs=catchAsyncErrors(async(req,res,next)=>{
 
 exports.deleteBlog=catchAsyncErrors(async (req,res,next)=>{
     const {id}=req.params
-    const deletedBlog=await Blog.findByIdAndDelete(id)
+    const blog=await Blog.findById(id)
 
-    if(deletedBlog!=null){
+    for(let i=0;i<blog.images.length;i++){
+        let ele=blog.images[i]
+        await cloudinary.uploader.destroy(ele.public_id,{resource_type:"image"}).then((res)=>{
+            console.log(res)
+        }).catch((error)=>{
+            return next(error)
+        })
+    }
 
+    const deletedblog=await blog.remove()
+    
+    if(deletedblog){
         return res.status(200).json({
             success:true,
-            deletedBlog
+            deletedblog
         })
-
     }else{
-        return next(new  ErrorHandler("Blog could not be deleted",400))
+        return next(new ErrorHandler("Could not be deleted",400))
     }
+    
+})
+
+exports.deleteBlogImage=catchAsyncErrors(async(req,res,next)=>{
+    const {public_id}=req.query
+    const blogID=req.params.id
+    const blog=await Blog.findById(blogID)
+    const newImgs=[]
+    for(let i=0;i<blog.images.length;i++){
+        let ele=blog.images[i]
+        if(ele.public_id!=public_id){
+            newImgs.push(ele)
+        }else{
+            await cloudinary.uploader.destroy(public_id,{resource_type:"image"}).then((res)=>{
+                console.log(res)
+            }).catch((error)=>{
+                return next(error)
+            })
+        }
+    }
+
+  try {
+
+    blog.images=newImgs
+    await blog.save()
+
+  } catch (error) {
+    return next(error)
+  }
+
+  return res.status(200).json({
+    success:true,
+    msg:"Image deleted successfully"
+  })
+
 })
 
 exports.likeBlog=catchAsyncErrors(async(req,res,next)=>{
