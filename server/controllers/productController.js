@@ -153,6 +153,40 @@ exports.deleteProduct=catchAsyncErrors(async(req,res,next)=>{
     
 })
 
+exports.deleteProductImage=catchAsyncErrors(async(req,res,next)=>{
+    const {public_id}=req.query
+    const productID=req.params.id
+    const product=await Product.findById(productID)
+    const newImgs=[]
+    for(let i=0;i<product.images.length;i++){
+        let ele=product.images[i]
+        if(ele.public_id!=public_id){
+            newImgs.push(ele)
+        }else{
+            await cloudinary.uploader.destroy(public_id,{resource_type:"image"}).then((res)=>{
+                console.log(res)
+            }).catch((error)=>{
+                return next(error)
+            })
+        }
+    }
+
+  try {
+
+    product.images=newImgs
+    await product.save()
+
+  } catch (error) {
+    return next(error)
+  }
+
+  return res.status(200).json({
+    success:true,
+    msg:"Image deleted successfully"
+  })
+
+})
+
 exports.addToWishlist=catchAsyncErrors(async(req,res,next)=>{
     const userID=req.user._id
     const {productID}=req.body
