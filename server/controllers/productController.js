@@ -3,6 +3,16 @@ const Product=require("../models/productModel")
 const ErrorHandler = require("../utils/ErrorHandler")
 const slugify=require("slugify")
 const User=require("../models/userModel")
+const cloudinary=require("cloudinary").v2
+const path=require("path")
+const fs=require("fs")
+
+cloudinary.config({
+    cloud_name: "dn9cofvdv",
+    api_key: "912278242495112",
+    api_secret: "v1TTxBjJa3A6gVAZiJMazvrYT7I"
+  })
+
 
 exports.createProduct=catchAsyncErrors(async(req,res,next)=>{
     if(req.body.title){
@@ -238,5 +248,32 @@ exports.rating=catchAsyncErrors(async(req,res,next)=>{
 })
 
 exports.uploadImages=catchAsyncErrors(async(req,res,next)=>{
-    console.log(req.files)
+    // console.log(req.files)
+
+    const id=req.params.id
+    const product=await Product.findById(id)
+    let imgUrlData=[]
+    
+    for(let i=0;i<req.files.length;i++){
+        let ele=req.files[i]
+        let name=ele.filename
+        let imagepath=path.join(req.files[0].destination,"products",name)
+        
+        let cloudRes=await cloudinary.uploader.upload(imagepath,{resource_type:"image"})
+        imgUrlData.push({
+            public_id:cloudRes.public_id,
+            url:cloudRes.secure_url
+        })
+
+        fs.unlinkSync(ele.path)
+        fs.unlinkSync(imagepath)
+    }
+    
+    product.images=imgUrlData
+    await product.save()
+
+    return res.status(200).json({
+        success:true,
+        msg:"Images added successfully"
+    })
 })

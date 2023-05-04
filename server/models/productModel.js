@@ -35,9 +35,16 @@ let productSchema=new mongoose.Schema({
         type:Number,
         required:true
     },
-    images:{
-        type:Array
-    },
+    images:[
+        {
+            public_id:{
+                type:String
+            },
+            url:{
+                type:String
+            }
+        }
+    ],
     color:{
         type:String,
         required:true
