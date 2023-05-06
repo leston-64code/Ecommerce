@@ -22,6 +22,7 @@ app.use("/api/category",require("./routes/blogCategoryRoutes"))
 app.use("/api/brand",require("./routes/brandRoutes"))
 app.use("/api/coupon",require("./routes/couponRoutes"))
 app.use("/api/user/address",require("./routes/addressRoutes"))
+app.use("/api/cart",require("./routes/cartRoutes"))
 
 app.use(errorMiddleware)
 

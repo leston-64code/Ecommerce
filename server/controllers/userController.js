@@ -223,7 +223,7 @@ exports.getAllUsers=catchAsyncErrors(async (req,res,next)=>{
 
 exports.getUser=catchAsyncErrors(async(req,res,next)=>{
     const userid=req.params.id
-    const user=await User.findById(userid).populate("address")
+    const user=await User.findById(userid).populate("address cart cart.products._id")
     if(user){
         return res.status(200).json({
             success:true,
