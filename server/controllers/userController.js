@@ -8,6 +8,7 @@ const jwt=require("jsonwebtoken")
 const { sendEmail } = require("./emailController")
 const crypto=require("crypto")
 
+
 exports.createUser=catchAsyncErrors(async(req,res,next)=>{
     const email=await req.body.email
         const findUser=await User.findOne({email})
@@ -292,7 +293,6 @@ exports.unblockUser=catchAsyncErrors(async(req,res,next)=>{
         return next(new ErrorHandler("User not found",400))
     }
 })
-
 
 exports.getWishlist=catchAsyncErrors(async(req,res,next)=>{
     const id=req.user._id

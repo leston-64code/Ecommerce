@@ -4,6 +4,7 @@ const Product=require("../models/productModel")
 const User=require("../models/userModel")
 const CartProduct=require("../models/cartProModel")
 const ErrorHandler = require("../utils/ErrorHandler")
+const Coupon=require("../models/couponModel")
 
 exports.addToCart=catchAsyncErrors(async(req,res,next)=>{
     const id=req.params.id
@@ -19,10 +20,9 @@ exports.addToCart=catchAsyncErrors(async(req,res,next)=>{
         })
         
         let cartTotal=product.price
-        let totalAfterDiscount=product.price
         let orderBy=req.user._id
 
-        const newcart=await Cart.create({cartTotal,totalAfterDiscount,orderBy,products:[cartPro]})
+        const newcart=await Cart.create({cartTotal,orderBy,products:[cartPro]})
         user.cart=newcart
 
         await user.save()
@@ -100,7 +100,6 @@ exports.removeFromCart=catchAsyncErrors(async(req,res,next)=>{
 
         cart.products=cartProducts
         cart.cartTotal=cart.cartTotal-cartPro.price
-        cart.totalAfterDiscount=cart.totalAfterDiscount-cartPro.price
         await cart.save()
 
         return res.status(200).json({
@@ -130,7 +129,6 @@ exports.updateQuantity=catchAsyncErrors(async(req,res,next)=>{
         }
         // console.log(newTotalCartPrice)
         cart.cartTotal=newTotalCartPrice
-        cart.totalAfterDiscount=newTotalCartPrice
         await cart.save()
         return res.status(200).json({
             success:true,
@@ -138,5 +136,46 @@ exports.updateQuantity=catchAsyncErrors(async(req,res,next)=>{
         })
     }else{
         return next(new ErrorHandler("Something went wrong",400))
+    }
+})
+
+exports.applyCoupon=catchAsyncErrors(async(req,res,next)=>{
+    
+    const {coupon}=req.body
+    const validCoupon=await Coupon.findOne({name:coupon})
+
+    if(validCoupon){
+
+        for(let i=0;i<validCoupon.applied_users.length;i++){
+            let ele=validCoupon.applied_users[i]
+            if(ele.toString()===req.user._id.toString()){
+                return next(new ErrorHandler("Coupon already redeemed",400))
+            }
+        }
+
+        const cart=await Cart.findById(req.user.cart._id)
+        if(cart){
+            
+            if(validCoupon.remaining_redeems<=0){
+                return next(new ErrorHandler("Sorry coupon limit reached",400))
+            }
+
+            cart.totalAfterDiscount=cart.cartTotal-(cart.cartTotal*(validCoupon.discount)/100).toFixed(2)
+            await cart.save()
+
+            validCoupon.applied_users.push(req.user._id)
+            validCoupon.remaining_redeems=validCoupon.remaining_redeems-1
+            await validCoupon.save()
+
+            return res.status(200).json({
+                success:true,
+                msg:"Coupon applied successfully"
+            })
+
+        }else{
+            return next(new ErrorHandler("Cart not found",400))
+        }
+    }else{
+        return next(new ErrorHandler("Invlaid coupon"))
     }
 })

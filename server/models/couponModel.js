@@ -12,6 +12,16 @@ const couponSchema=new mongoose.Schema({
         type:Date,
         required:true
     },
+    applied_users:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"User"
+        }
+    ],
+    remaining_redeems:{
+        type:Number,
+        required:true
+    },
     discount:{
         type:Number,
         required:true
