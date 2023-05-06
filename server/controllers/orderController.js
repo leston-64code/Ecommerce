@@ -64,3 +64,46 @@ exports.createOrder=catchAsyncErrors(async(req,res,next)=>{
     })
 
 })
+
+exports.getOrder=catchAsyncErrors(async(req,res,next)=>{
+    const order=await Order.find({orderBy:req.user._id})
+    if(order){
+        return res.status(200).json({
+            success:true,
+            order
+        })
+    }else{
+        return next(new ErrorHandler("Order not found",400))
+    }
+})
+
+exports.getAllOrders=catchAsyncErrors(async(req,res,next)=>{
+    const orders=await Order.find()
+    let count=orders.length
+    console.log(count)
+    if(orders){
+        return res.status(200).json({
+            success:true,
+            count,
+            orders
+        })
+    }else{
+        return next(new ErrorHandler("Orders not found",400))
+    }
+})
+
+exports.updateOrderStatus=catchAsyncErrors(async(req,res,next)=>{
+    const id=req.params.id
+    const status=req.body.status
+
+    const order=await Order.findByIdAndUpdate(id,{orderStatus:status,paymentIntent:{status}},{new:true})
+
+    if(order){
+        return res.status(200).json({
+            success:true,
+            order
+        })
+    }else{
+        return next(new ErrorHandler("Orders not found",400))
+    }
+})
