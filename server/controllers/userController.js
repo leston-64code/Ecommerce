@@ -28,6 +28,34 @@ exports.createUser=catchAsyncErrors(async(req,res,next)=>{
         }
 })
 
+exports.adminLogin=catchAsyncErrors(async (req,res,next)=>{
+    const {email,password}=req.body
+    const findUser=await User.findOne({email}).select("+password")
+    if(findUser.role==="admin"){
+        const isMatched= await findUser.isPasswordMatched(password)
+
+        if(isMatched){
+            
+            const refreshToken=await generateRefreshToken(findUser._id)
+            const updateUser=await User.findByIdAndUpdate(findUser._id,{refreshToken},{new:true})
+
+            res.cookie("refreshToken",refreshToken,{
+                httpOnly:true,
+                maxAge:72*60*60*1000
+            })
+        
+            return res.status(200).json({
+                success:true,
+                token:generateToken(findUser._id)
+            })
+        }else{
+            return next(new ErrorHandler("Please enter valid credentials",400))
+        }
+    }else{
+        return next(new ErrorHandler("User not found or not an admin",404))
+    }
+})
+
 exports.loginUser=catchAsyncErrors(async (req,res,next)=>{
     const {email,password}=req.body
     const findUser=await User.findOne({email}).select("+password")
@@ -259,6 +287,22 @@ exports.unblockUser=catchAsyncErrors(async(req,res,next)=>{
             success:true,
             msg:"User unblocked successfully",
             unblockUser
+        })
+    }else{
+        return next(new ErrorHandler("User not found",400))
+    }
+})
+
+
+exports.getWishlist=catchAsyncErrors(async(req,res,next)=>{
+    const id=req.user._id
+    const user=await User.findById(id).populate("wishList")
+    if(user){
+        const wishList=user.wishList.length
+        return res.status(200).json({
+            success:true,
+            count:wishList,
+            user
         })
     }else{
         return next(new ErrorHandler("User not found",400))

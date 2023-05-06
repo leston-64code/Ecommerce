@@ -206,7 +206,7 @@ exports.addToWishlist=catchAsyncErrors(async(req,res,next)=>{
         })
 
         if(upUser){
-            return res.status(200).json({success:true,upUser})
+            return res.status(200).json({success:true,msg:"Removed from wishlist"})
         }
 
     }else{
@@ -218,7 +218,7 @@ exports.addToWishlist=catchAsyncErrors(async(req,res,next)=>{
         })
 
         if(upUser){
-            return res.status(200).json({success:true,upUser})
+            return res.status(200).json({success:true,msg:"Added to wishlist"})
         }
     }
 })
