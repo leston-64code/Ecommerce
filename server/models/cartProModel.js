@@ -19,6 +19,10 @@ var cartProSchema = new mongoose.Schema({
     price:{
         type:Number,
         required:true
+    },
+    totalPrice:{
+        type:Number,
+        required:true
     }
 });
 

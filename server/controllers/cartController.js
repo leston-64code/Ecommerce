@@ -15,6 +15,7 @@ exports.addToCart=catchAsyncErrors(async(req,res,next)=>{
         const cartPro=await CartProduct.create({
             product:product._id,
             price:product.price,
+            totalPrice:product.price
         })
         
         let cartTotal=product.price
@@ -35,8 +36,9 @@ exports.addToCart=catchAsyncErrors(async(req,res,next)=>{
         const cartPro=await CartProduct.create({
             product:product._id,
             price:product.price,
+            totalPrice:product.price
         })
-        let totalPrice=0;
+        let totalCartPrice=0;
 
         const cart=await Cart.findById(user.cart._id).populate("products")
         if(cart){
@@ -45,12 +47,12 @@ exports.addToCart=catchAsyncErrors(async(req,res,next)=>{
 
             for(let i=0;i<cart.products.length;i++){
                 let ele=cart.products[i]
-                totalPrice=totalPrice+ele.price
+                totalCartPrice=totalCartPrice+ele.totalPrice
             }
             
-            cart.cartTotal=totalPrice
+            cart.cartTotal=totalCartPrice
 
-            cart.totalAfterDiscount=totalPrice
+            cart.totalAfterDiscount=totalCartPrice
 
             await cart.save()
                 return res.status(200).json({
@@ -66,9 +68,75 @@ exports.addToCart=catchAsyncErrors(async(req,res,next)=>{
 })
 
 exports.getUserCart=catchAsyncErrors(async(req,res,next)=>{
-
+    let cart=await Cart.findById(req.user.cart._id).populate("products")
+    if(cart){ 
+        let count=cart.products.length
+        return res.status(200).json({
+            success:true,
+            count,
+            cartItems:cart
+        })
+    }else{
+        return next(new ErrorHandler("Cart not found",400))
+    }
 })
 
 exports.removeFromCart=catchAsyncErrors(async(req,res,next)=>{
+    const cartProID=req.params.id
+    let cart=await Cart.findById(req.user.cart)
+    let cartPro=await CartProduct.findById(cartProID)
 
+    if(cart && cartPro){
+
+        let cartProducts=[]
+        for(let i=0;i<cart.products.length;i++){
+            let ele=cart.products[i]
+            if(ele._id.toString()!=cartProID.toString()){
+                cartProducts.push(ele)
+            }else{
+                await CartProduct.findByIdAndDelete(cartProID)
+            }
+        }
+
+        cart.products=cartProducts
+        cart.cartTotal=cart.cartTotal-cartPro.price
+        cart.totalAfterDiscount=cart.totalAfterDiscount-cartPro.price
+        await cart.save()
+
+        return res.status(200).json({
+            success:true,
+            msg:"Removed from cart"
+        })
+
+    }else{
+        return next(new ErrorHandler("Cart product not found",400))
+    }
+})
+
+exports.updateQuantity=catchAsyncErrors(async(req,res,next)=>{
+    const id=req.params.id
+    let {count}=req.body
+    const product=await CartProduct.findById(id)
+    if(product){
+        product.count=count
+        product.totalPrice=product.price*count;
+        await product.save()
+
+        let cart=await Cart.findById(req.user.cart).populate("products")
+        let newTotalCartPrice=0;
+        for(let i=0;i<cart.products.length;i++){
+            let ele=cart.products[i]
+            newTotalCartPrice=newTotalCartPrice+ele.totalPrice
+        }
+        // console.log(newTotalCartPrice)
+        cart.cartTotal=newTotalCartPrice
+        cart.totalAfterDiscount=newTotalCartPrice
+        await cart.save()
+        return res.status(200).json({
+            success:true,
+            msg:"Quantity updated"
+        })
+    }else{
+        return next(new ErrorHandler("Something went wrong",400))
+    }
 })
