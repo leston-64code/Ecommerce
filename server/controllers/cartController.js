@@ -161,6 +161,7 @@ exports.applyCoupon=catchAsyncErrors(async(req,res,next)=>{
             }
 
             cart.totalAfterDiscount=cart.cartTotal-(cart.cartTotal*(validCoupon.discount)/100).toFixed(2)
+            cart.isCouponApplied=true
             await cart.save()
 
             validCoupon.applied_users.push(req.user._id)

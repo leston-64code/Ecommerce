@@ -17,6 +17,10 @@ var cartSchema = new mongoose.Schema({
         required:true,
         default:0
     },
+    isCouponApplied:{
+        type:Boolean,
+        default:false
+    },
     orderBy:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User"

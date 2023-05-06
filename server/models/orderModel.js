@@ -15,9 +15,16 @@ const orderSchema=new mongoose.Schema({
                 type:String,
                 required:true
             },
+            price:{
+                type:Number,
+                required:true
+            },
+            totalPrice:{
+                type:Number
+            }
         }
     ],
-    payementIntent:{},
+    paymentIntent:{},
     orderStatus:{
         type:String,
         default:"Not Processed",
