@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import Header from './Header'
+import {closeSideBar} from "../../utils/helperFunctions"
 
 const MainLayout = () => {
     const navigate=useNavigate()
 
-    function closeSideBar(){
-        const navLeftMenu=document.getElementById("mobileLeftNavMenu")
-        navLeftMenu.classList.toggle("hidden");
-    }
 
   return (
     <>
@@ -23,7 +20,7 @@ const MainLayout = () => {
         <div class="md:w-[261px]">
 
 
-            <ul id="mobileLeftNavMenu" class="absolute left-0 md:top-14 md:block lg:block w-[60%] md:w-[16%] text-md md:text-[16px] border-[1px] border-gray-200 rounded-b-lg shadow-lg hidden font-bold md:font-medium h-full bg-white">
+            <ul id="mobileLeftNavMenu" class="absolute z-50 left-0 md:top-14 md:block lg:block w-[60%] md:w-[16%] text-md md:text-[16px] border-[1px] border-gray-200 rounded-b-lg shadow-lg hidden font-bold md:font-medium h-full bg-white">
 
                 <li class="border-b-[1px] border-b-gray py-2 md:py-3 active:bg-gray-200 cursor-pointer hover:md:bg-gray-200" onClick={()=>{
                         navigate("/admin")
@@ -35,7 +32,7 @@ const MainLayout = () => {
 
                 <li id="accordion-parent" class="border-b-[1px] border-b-gray py-2 md:py-3 pb-1 cursor-pointer hover:md:bg-gray-200">
             
-                    <button class="accordion-btn  w-full text-start" onClick={()=>{
+                    <button class="accordion-btn w-full text-start" onClick={()=>{
                         const accordionBtn = document.querySelector(".accordion-btn");
                         const accordionParent=document.getElementById("accordion-parent")
                         const accordionContent = accordionBtn.nextElementSibling;
@@ -52,7 +49,10 @@ const MainLayout = () => {
                             <i className="fa-solid fa-cart-arrow-down ml-10 mr-4"></i>
                             Add Product
                         </li>
-                        <li class=" border-t-[1px] border-b-gray py-2 md:py-3">
+                        <li class=" border-t-[1px] border-b-gray py-2 md:py-3" onClick={()=>{
+                            navigate("/admin/productlist")
+                            closeSideBar()
+                        }}>
                             <i className="fa-solid fa-cart-shopping ml-10 mr-4"></i>
                             Product List
                         </li>
@@ -95,9 +95,12 @@ const MainLayout = () => {
                         accordionParent.classList.add("pb-0")
                     }}><i className="fa-solid fa-square-rss text-lg mx-4"></i>Blog</button>
 
-                    <ul class="accordion-content hidden  bg-white mt-2">
+                    <ul class="accordion-content hidden bg-white mt-2">
 
-                        <li class=" border-t-[1px] border-b-gray py-2 md:py-3">
+                        <li class=" border-t-[1px] border-b-gray py-2 md:py-3 bg-white" onClick={()=>{
+                            navigate("/admin/createblog")
+                            closeSideBar()
+                        }}>
                             <i className="fa-solid fa-cart-arrow-down ml-10 mr-4"></i>
                             Add Blog
                         </li>
