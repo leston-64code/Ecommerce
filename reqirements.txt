@@ -1,0 +1,5 @@
+dark mode
+ability to change the side bar visibility
+findout location using ip
+caching
+which devices the site was accessed
