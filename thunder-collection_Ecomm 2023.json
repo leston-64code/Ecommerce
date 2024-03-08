@@ -1,0 +1,1391 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Ecomm 2023",
+    "dateExported": "2024-02-27T15:57:39.036Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Auth",
+            "containerId": "",
+            "created": "2023-02-26T04:51:16.662Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "d21a9abc-31ad-4c93-a7b6-f5a59c99d385",
+            "name": "Product",
+            "containerId": "",
+            "created": "2023-02-28T13:41:50.631Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "fed41271-6782-4e24-8878-f90f57c35807",
+            "name": "Blog ",
+            "containerId": "",
+            "created": "2023-04-14T04:57:44.833Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "b1540756-fca1-4fe5-94ee-d0cfd7607a7e",
+            "name": "Product Category",
+            "containerId": "",
+            "created": "2023-04-14T07:12:10.335Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "b2848511-c367-4046-ac32-e25e54de82b0",
+            "name": "Blog Category",
+            "containerId": "",
+            "created": "2023-04-14T08:41:41.405Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "d8aeb90f-d387-418f-8260-6edbf9a55554",
+            "name": "Brand",
+            "containerId": "",
+            "created": "2023-04-14T09:11:19.817Z",
+            "sortNum": 60000
+        },
+        {
+            "_id": "43ff97fc-768f-4c63-a94f-91a732044c7e",
+            "name": "Coupon",
+            "containerId": "",
+            "created": "2023-04-15T04:12:38.537Z",
+            "sortNum": 70000
+        },
+        {
+            "_id": "d011b02a-0b4a-4b4f-b6c6-7597d108ce39",
+            "name": "Address",
+            "containerId": "",
+            "created": "2023-05-06T04:10:58.941Z",
+            "sortNum": 80000
+        },
+        {
+            "_id": "eb6715ce-87d3-4296-8b3b-790edea035af",
+            "name": "Cart",
+            "containerId": "",
+            "created": "2023-05-06T07:07:12.869Z",
+            "sortNum": 90000
+        },
+        {
+            "_id": "2e8f2031-eb0f-4620-9f6f-bf0ed35567ff",
+            "name": "Orders",
+            "containerId": "",
+            "created": "2023-05-06T11:38:09.025Z",
+            "sortNum": 100000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "5ad86244-e592-4a7d-a018-142cb7d921d3",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Register",
+            "url": "http://localhost:5000/api/user/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-02-26T04:51:24.974Z",
+            "modified": "2023-05-06T07:04:14.527Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstname\":\"Leston\",\n  \"lastname\":\"Salis\",\n  \"email\":\"lestonaaron321@gmail.com\",\n  \"password\":\"987\",\n  \"mobile\":\"8762702388\",\n  \"role\":\"admin\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "02bef4c1-2e2a-449a-add3-37c4e87c8b46",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "eb6715ce-87d3-4296-8b3b-790edea035af",
+            "name": "Add to cart",
+            "url": "http://localhost:5000/api/cart/addtocart/6455efcfccd6738c33ca0838",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-05-06T06:07:36.383Z",
+            "modified": "2023-05-06T11:45:12.963Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTVmZjZlZTEwZDE1YWU4Mzg5ZjBmNiIsImlhdCI6MTY4MzM1NzU1NCwiZXhwIjoxNjgzNDQzOTU0fQ.3gDdVdeD1lgGfnIO_nVpxZcJzTK7P1AYDS6ZGqducOA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "eaa80fbd-ca28-450e-962e-6e5897a029ec",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "2e8f2031-eb0f-4620-9f6f-bf0ed35567ff",
+            "name": "Create Orders",
+            "url": "http://localhost:5000/api/orders/createorder",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-05-06T11:37:58.988Z",
+            "modified": "2023-05-06T11:50:07.901Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"COD\":\"COD\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTVmZjZlZTEwZDE1YWU4Mzg5ZjBmNiIsImlhdCI6MTY4MzM1NzU1NCwiZXhwIjoxNjgzNDQzOTU0fQ.3gDdVdeD1lgGfnIO_nVpxZcJzTK7P1AYDS6ZGqducOA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "9397b995-84d0-460a-8c05-4a046d6cf9f7",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Login",
+            "url": "http://localhost:5000/api/user/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-02-26T10:41:17.702Z",
+            "modified": "2023-05-06T07:03:32.796Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"lestonaaron321@gmail.com\",\n  \"password\":\"987\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "2c266107-5fd0-4c88-ab70-726703804a00",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Get All Users",
+            "url": "http://localhost:5000/api/user/getallusers",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-02-26T11:13:42.500Z",
+            "modified": "2023-04-14T02:28:35.966Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQzOTIzMCwiZXhwIjoxNjgxNTI1NjMwfQ.E4iuM1QbmRORyt1-HBQVkQJdYsEW4QbFYUbKui9M_iU"
+            },
+            "tests": []
+        },
+        {
+            "_id": "5d001432-19ef-449b-bbae-7b03faf05b99",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Get Single User",
+            "url": "http://localhost:5000/api/user/getuser/6455ff6ee10d15ae8389f0f6",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-02-26T11:18:49.241Z",
+            "modified": "2023-05-06T07:23:27.669Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MzM0NjQ2MiwiZXhwIjoxNjgzNDMyODYyfQ.B2waNoWu7o5ifHEggQCItBW9ghZf4V9snP2b1ErZka0"
+            },
+            "tests": []
+        },
+        {
+            "_id": "13742eeb-1363-43fe-bfc4-c441202a10ce",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Delete User",
+            "url": "http://localhost:5000/api/user/deleteuser/63fb3dd98734b0844edbbc2c",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2023-02-26T11:30:07.841Z",
+            "modified": "2023-02-26T15:21:49.228Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5bf0b249-8797-4903-89c4-a0b75f2b962b",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Update User",
+            "url": "http://localhost:5000/api/user/updateuser",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2023-02-26T15:16:40.105Z",
+            "modified": "2023-02-26T17:38:50.578Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstname\":\"aaron supermanx\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmI4NDdmNTUwZGM0NTRkOGVmYWM0MyIsImlhdCI6MTY3NzQzMTA3MywiZXhwIjoxNjc3NjkwMjczfQ.7btMHdNY75GwrKMpJgozFdc1s71lDgs4HO_1Xl0NxE8"
+            },
+            "tests": []
+        },
+        {
+            "_id": "fe24d9af-71b7-4933-88d9-eec2b235555b",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Block User",
+            "url": "http://localhost:5000/api/user/blockuser/63fb847f550dc454d8efac43",
+            "method": "PUT",
+            "sortNum": 90000,
+            "created": "2023-02-26T17:20:57.815Z",
+            "modified": "2023-02-26T17:46:51.646Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmI4NDFkNTUwZGM0NTRkOGVmYWMzZCIsImlhdCI6MTY3NzQzMjEwNCwiZXhwIjoxNjc3NjkxMzA0fQ.U_Jzos-jIUm9Y8yqVoJg613yjcYH1YUnX-EPSkZjRbI"
+            },
+            "tests": []
+        },
+        {
+            "_id": "2efb4f46-e06e-43a7-a70e-66f8639a73c6",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Unblock User",
+            "url": "http://localhost:5000/api/user/unblockuser/63fb847f550dc454d8efac43",
+            "method": "PUT",
+            "sortNum": 110000,
+            "created": "2023-02-26T17:23:58.444Z",
+            "modified": "2023-02-26T17:24:42.698Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmI4NDFkNTUwZGM0NTRkOGVmYWMzZCIsImlhdCI6MTY3NzQzMjEwNCwiZXhwIjoxNjc3NjkxMzA0fQ.U_Jzos-jIUm9Y8yqVoJg613yjcYH1YUnX-EPSkZjRbI"
+            },
+            "tests": []
+        },
+        {
+            "_id": "f6d50bce-90d0-476b-a8d2-80006d61ef28",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Handle Refresh Token",
+            "url": "http://localhost:5000/api/user/refresh",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2023-02-27T14:15:57.365Z",
+            "modified": "2023-02-27T14:16:42.703Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9c753e41-1029-40a1-b82a-0f5151be8275",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Logout User",
+            "url": "http://localhost:5000/api/user/logout",
+            "method": "GET",
+            "sortNum": 130000,
+            "created": "2023-02-27T16:29:00.261Z",
+            "modified": "2023-02-27T16:29:17.449Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e8e25303-aad7-4ff6-be9c-6c560a38afbd",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d21a9abc-31ad-4c93-a7b6-f5a59c99d385",
+            "name": "Create Product",
+            "url": "http://localhost:5000/api/product/createproduct",
+            "method": "POST",
+            "sortNum": 140000,
+            "created": "2023-02-28T13:41:57.896Z",
+            "modified": "2023-05-06T07:05:01.926Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"Diary Milk\",\n  \"category\":\"watch\",\n  \"color\":\"red\",\n  \"description\":\"Hey this is casio watch\",\n  \"price\":1500,\n  \"brand\":\"Timex\",\n  \"quantity\":23\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTVmYmVlYjZkY2EwZWM5MWJjYWNlYyIsImlhdCI6MTY4MzM1NjY1OCwiZXhwIjoxNjgzNDQzMDU4fQ.fUQHf2uZea762tqpyEoybfg9f4YKtUDTJquPr98-sKw"
+            },
+            "tests": []
+        },
+        {
+            "_id": "8b3f313c-ca50-4490-ad80-ed8ba193f6e9",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d21a9abc-31ad-4c93-a7b6-f5a59c99d385",
+            "name": "Get a product",
+            "url": "http://localhost:5000/api/product/getaproduct/6455b94c96f5e123e460a687",
+            "method": "GET",
+            "sortNum": 150000,
+            "created": "2023-02-28T13:51:23.344Z",
+            "modified": "2023-05-06T07:07:41.006Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5eb9c367-46d3-43f7-8b84-03151e3cdd2d",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d21a9abc-31ad-4c93-a7b6-f5a59c99d385",
+            "name": "Get all products",
+            "url": "http://localhost:5000/api/product/getallproducts?quantity[lt]=100&fields=title,price,category,brand&page=1",
+            "method": "GET",
+            "sortNum": 160000,
+            "created": "2023-02-28T13:54:35.321Z",
+            "modified": "2023-05-06T07:05:48.585Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "quantity[lt]",
+                    "value": "100",
+                    "isPath": false
+                },
+                {
+                    "name": "sort",
+                    "value": "-category,brand",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "fields",
+                    "value": "title,price,category,brand",
+                    "isPath": false
+                },
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "2",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "068815c9-1c60-4a4b-99c8-6c0337213bfd",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d21a9abc-31ad-4c93-a7b6-f5a59c99d385",
+            "name": "Update Product",
+            "url": "http://localhost:5000/api/product/updateproduct/6402ada172b7d9b0f55d267b",
+            "method": "PUT",
+            "sortNum": 170000,
+            "created": "2023-03-04T02:10:53.383Z",
+            "modified": "2023-03-04T02:36:14.693Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"Acer Laptop\",\n  \"description\":\"This is the latest acer laptop\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmI4NDdmNTUwZGM0NTRkOGVmYWM0MyIsImlhdCI6MTY3Nzg5NzM1NiwiZXhwIjoxNjc3OTgzNzU2fQ.eKaO6PNmp5HvLM6n6rCe5enrui966kneSv5yvw3ZWwA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "c9e22aa0-ae4d-41c2-9ced-f2242129f515",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d21a9abc-31ad-4c93-a7b6-f5a59c99d385",
+            "name": "Delete Product",
+            "url": "http://localhost:5000/api/product/deleteproduct/6453afb271709f659ef5a6eb",
+            "method": "DELETE",
+            "sortNum": 180000,
+            "created": "2023-03-04T02:27:07.661Z",
+            "modified": "2023-05-04T13:27:36.918Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MzE5NzkyMiwiZXhwIjoxNjgzMjg0MzIyfQ.IQ5WTs6RW1fzp_uGfN1tcZfBJt039DP4EGdNVEr3TEs"
+            },
+            "tests": []
+        },
+        {
+            "_id": "f7c058e8-56de-4617-b2e7-195fef43559b",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Update Password",
+            "url": "http://localhost:5000/api/user/password",
+            "method": "PUT",
+            "sortNum": 200000,
+            "created": "2023-03-06T01:28:06.762Z",
+            "modified": "2023-04-14T02:29:48.639Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"password\":\"987\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQzOTIzMCwiZXhwIjoxNjgxNTI1NjMwfQ.E4iuM1QbmRORyt1-HBQVkQJdYsEW4QbFYUbKui9M_iU"
+            },
+            "tests": []
+        },
+        {
+            "_id": "c95545d5-d33e-404c-8683-1b86f44de313",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Forgot Password",
+            "url": "http://localhost:5000/api/user/forgotpasswordtoken",
+            "method": "POST",
+            "sortNum": 210000,
+            "created": "2023-04-14T03:00:18.907Z",
+            "modified": "2023-04-14T03:38:20.257Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"lestonaaron321@gmail.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "5e3596d1-d928-4a4f-a89e-54087975722b",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Reset Password",
+            "url": "http://localhost:5000/api/user/reset-password/8cf1285cd2bf1bcd9a5bcf383fc629d0ece6ca81a73bb114d62d6a14258a4b95",
+            "method": "POST",
+            "sortNum": 220000,
+            "created": "2023-04-14T03:52:13.944Z",
+            "modified": "2023-04-14T03:52:29.676Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"password\":\"123456\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a95e925f-e334-4a6c-bccf-831b79c97728",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "fed41271-6782-4e24-8878-f90f57c35807",
+            "name": "Create Blog",
+            "url": "http://localhost:5000/api/blog/createblog",
+            "method": "POST",
+            "sortNum": 230000,
+            "created": "2023-04-14T04:57:56.125Z",
+            "modified": "2023-05-04T12:34:49.178Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"Travel blog\",\n  \"category\":\"travel\",\n  \"description\":\"This is my new  travel blog please come and join\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MzE5NzkyMiwiZXhwIjoxNjgzMjg0MzIyfQ.IQ5WTs6RW1fzp_uGfN1tcZfBJt039DP4EGdNVEr3TEs"
+            },
+            "tests": []
+        },
+        {
+            "_id": "81c4d834-75ed-48d0-b241-881bdaee9c66",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "fed41271-6782-4e24-8878-f90f57c35807",
+            "name": "Update Blog",
+            "url": "http://localhost:5000/api/blog/updateblog/6438dedc45d3adc9460c4e56",
+            "method": "PUT",
+            "sortNum": 240000,
+            "created": "2023-04-14T05:11:25.605Z",
+            "modified": "2023-04-14T05:37:32.405Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"This is updated title\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQ0ODYzOSwiZXhwIjoxNjgxNTM1MDM5fQ.2UBGTyxFqOUKYF-gSDw4zvlqGC1vuX3jwsMq4rr9opM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "e0916be1-320f-4d61-8c75-f805df40eca1",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "fed41271-6782-4e24-8878-f90f57c35807",
+            "name": "Get a Blog",
+            "url": "http://localhost:5000/api/blog/getblog/6453a681a5a4738e6145823c",
+            "method": "GET",
+            "sortNum": 250000,
+            "created": "2023-04-14T05:20:32.070Z",
+            "modified": "2023-05-04T13:45:04.973Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "4ae4f4e2-001e-4ca2-98cf-7d4faded7fa6",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "fed41271-6782-4e24-8878-f90f57c35807",
+            "name": "Get all blogs",
+            "url": "http://localhost:5000/api/blog/getallblogs",
+            "method": "GET",
+            "sortNum": 260000,
+            "created": "2023-04-14T05:27:34.980Z",
+            "modified": "2023-04-14T05:27:51.687Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5e3e74fc-a814-49c0-9c8c-740d6c3b272e",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "fed41271-6782-4e24-8878-f90f57c35807",
+            "name": "Delete Blog",
+            "url": "http://localhost:5000/api/blog/deleteblog/6453b40364cf3d649dbe1b2c",
+            "method": "DELETE",
+            "sortNum": 270000,
+            "created": "2023-04-14T05:31:22.981Z",
+            "modified": "2023-05-04T13:34:49.190Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MzE5NzkyMiwiZXhwIjoxNjgzMjg0MzIyfQ.IQ5WTs6RW1fzp_uGfN1tcZfBJt039DP4EGdNVEr3TEs"
+            },
+            "tests": []
+        },
+        {
+            "_id": "31120da5-3676-43ca-98f8-d3c1900b9a4b",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "fed41271-6782-4e24-8878-f90f57c35807",
+            "name": "Delete Blog Img",
+            "url": "http://localhost:5000/api/blog/deleteimg/6453a681a5a4738e6145823c?public_id=rrcueb3vwesv4bjcme0t",
+            "method": "DELETE",
+            "sortNum": 275000,
+            "created": "2023-05-04T13:38:53.266Z",
+            "modified": "2023-05-04T13:40:12.051Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "public_id",
+                    "value": "rrcueb3vwesv4bjcme0t",
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MzE5NzkyMiwiZXhwIjoxNjgzMjg0MzIyfQ.IQ5WTs6RW1fzp_uGfN1tcZfBJt039DP4EGdNVEr3TEs"
+            },
+            "tests": []
+        },
+        {
+            "_id": "333ba8ac-256b-4a1d-b9e4-e736a636b2ac",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "fed41271-6782-4e24-8878-f90f57c35807",
+            "name": "Like blog",
+            "url": "http://localhost:5000/api/blog/likeblog",
+            "method": "PUT",
+            "sortNum": 280000,
+            "created": "2023-04-14T06:28:39.245Z",
+            "modified": "2023-04-14T06:50:00.024Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"blogID\":\"6438f7668e7bafaa7de502df\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQ0ODYzOSwiZXhwIjoxNjgxNTM1MDM5fQ.2UBGTyxFqOUKYF-gSDw4zvlqGC1vuX3jwsMq4rr9opM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "2bcb1c9c-def7-4b46-9780-65f8c44a2fd1",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "fed41271-6782-4e24-8878-f90f57c35807",
+            "name": "Dislike Blog",
+            "url": "http://localhost:5000/api/blog/dislikeblog",
+            "method": "PUT",
+            "sortNum": 290000,
+            "created": "2023-04-14T06:46:39.830Z",
+            "modified": "2023-04-14T06:49:48.626Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"blogID\":\"6438f7668e7bafaa7de502df\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQ0ODYzOSwiZXhwIjoxNjgxNTM1MDM5fQ.2UBGTyxFqOUKYF-gSDw4zvlqGC1vuX3jwsMq4rr9opM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "d888d718-2fd3-45a7-bfd7-5e37003262dd",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d21a9abc-31ad-4c93-a7b6-f5a59c99d385",
+            "name": "Delete Image",
+            "url": "http://localhost:5000/api/product/deleteimg/6453afb271709f659ef5a6eb?public_id=kkflozj0yz9of89genfk",
+            "method": "DELETE",
+            "sortNum": 295000,
+            "created": "2023-05-04T13:24:06.950Z",
+            "modified": "2023-05-04T13:26:28.244Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "public_id",
+                    "value": "kkflozj0yz9of89genfk",
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MzE5NzkyMiwiZXhwIjoxNjgzMjg0MzIyfQ.IQ5WTs6RW1fzp_uGfN1tcZfBJt039DP4EGdNVEr3TEs"
+            },
+            "tests": []
+        },
+        {
+            "_id": "fa542972-a416-40d1-b28c-e3f7050f2fbc",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "b1540756-fca1-4fe5-94ee-d0cfd7607a7e",
+            "name": "New category",
+            "url": "http://localhost:5000/api/category/newcategory",
+            "method": "POST",
+            "sortNum": 300000,
+            "created": "2023-04-14T07:12:22.703Z",
+            "modified": "2023-04-14T07:26:11.104Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"mobiles\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQ0ODYzOSwiZXhwIjoxNjgxNTM1MDM5fQ.2UBGTyxFqOUKYF-gSDw4zvlqGC1vuX3jwsMq4rr9opM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "1528da56-9d88-405c-bf18-48935d3d5bb9",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "b1540756-fca1-4fe5-94ee-d0cfd7607a7e",
+            "name": "Update  category",
+            "url": "http://localhost:5000/api/category/upprocategory/64390013268e99963e32059d",
+            "method": "PUT",
+            "sortNum": 310000,
+            "created": "2023-04-14T07:30:47.041Z",
+            "modified": "2023-04-14T07:32:26.183Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"refrigerators\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQ0ODYzOSwiZXhwIjoxNjgxNTM1MDM5fQ.2UBGTyxFqOUKYF-gSDw4zvlqGC1vuX3jwsMq4rr9opM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "be1a5c52-eea4-4c78-9b0e-ce544c453944",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "b1540756-fca1-4fe5-94ee-d0cfd7607a7e",
+            "name": "Delete Category",
+            "url": "http://localhost:5000/api/category/delprocategory/64390013268e99963e32059d",
+            "method": "DELETE",
+            "sortNum": 320000,
+            "created": "2023-04-14T07:35:38.660Z",
+            "modified": "2023-04-14T07:36:01.881Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQ0ODYzOSwiZXhwIjoxNjgxNTM1MDM5fQ.2UBGTyxFqOUKYF-gSDw4zvlqGC1vuX3jwsMq4rr9opM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "f0a4927a-d4d8-4749-b0d8-da2dff018ed2",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "b1540756-fca1-4fe5-94ee-d0cfd7607a7e",
+            "name": "Get One Category",
+            "url": "http://localhost:5000/api/category/getaprocategory/64390380ef33d68ad7e9deeb",
+            "method": "GET",
+            "sortNum": 330000,
+            "created": "2023-04-14T07:40:12.828Z",
+            "modified": "2023-04-14T07:41:01.083Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQ0ODYzOSwiZXhwIjoxNjgxNTM1MDM5fQ.2UBGTyxFqOUKYF-gSDw4zvlqGC1vuX3jwsMq4rr9opM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "6405e673-a4c7-4b65-a2c6-6a3705d697a1",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "b1540756-fca1-4fe5-94ee-d0cfd7607a7e",
+            "name": "Get All categories",
+            "url": "http://localhost:5000/api/category/getallprocategories",
+            "method": "GET",
+            "sortNum": 340000,
+            "created": "2023-04-14T07:44:05.067Z",
+            "modified": "2023-04-14T07:44:45.856Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQ0ODYzOSwiZXhwIjoxNjgxNTM1MDM5fQ.2UBGTyxFqOUKYF-gSDw4zvlqGC1vuX3jwsMq4rr9opM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "13d267cc-1a49-44ea-960c-3ce8e858982a",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "b2848511-c367-4046-ac32-e25e54de82b0",
+            "name": "Create category",
+            "url": "http://localhost:5000/api/category/newblogcategory",
+            "method": "POST",
+            "sortNum": 360000,
+            "created": "2023-04-14T08:42:07.564Z",
+            "modified": "2023-04-14T08:44:35.843Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"Pens\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQ0ODYzOSwiZXhwIjoxNjgxNTM1MDM5fQ.2UBGTyxFqOUKYF-gSDw4zvlqGC1vuX3jwsMq4rr9opM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "3476bd5e-6b1b-4dc0-aced-49b5416cda0c",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d8aeb90f-d387-418f-8260-6edbf9a55554",
+            "name": "Create brand",
+            "url": "http://localhost:5000/api/brand/createbrand",
+            "method": "POST",
+            "sortNum": 360000,
+            "created": "2023-04-14T09:11:19.817Z",
+            "modified": "2023-04-14T09:14:06.155Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"Paragon\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQ0ODYzOSwiZXhwIjoxNjgxNTM1MDM5fQ.2UBGTyxFqOUKYF-gSDw4zvlqGC1vuX3jwsMq4rr9opM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "9320e774-3d31-449b-b23e-4d5e3586bd4c",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "b2848511-c367-4046-ac32-e25e54de82b0",
+            "name": "Update Category",
+            "url": "http://localhost:5000/api/category/upblogcategory/64391273a1f91dd90a4f57cd",
+            "method": "PUT",
+            "sortNum": 370000,
+            "created": "2023-04-14T08:44:07.092Z",
+            "modified": "2023-04-14T08:45:16.306Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"Kitchen\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQ0ODYzOSwiZXhwIjoxNjgxNTM1MDM5fQ.2UBGTyxFqOUKYF-gSDw4zvlqGC1vuX3jwsMq4rr9opM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "9b8f78e8-7752-4396-9374-5d0b93857f07",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d8aeb90f-d387-418f-8260-6edbf9a55554",
+            "name": "Update brand",
+            "url": "http://localhost:5000/api/brand/updatebrand/6439194f803edf447ff85c76",
+            "method": "PUT",
+            "sortNum": 370000,
+            "created": "2023-04-14T09:11:19.818Z",
+            "modified": "2023-04-14T09:14:38.071Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"Clicks\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQ0ODYzOSwiZXhwIjoxNjgxNTM1MDM5fQ.2UBGTyxFqOUKYF-gSDw4zvlqGC1vuX3jwsMq4rr9opM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "0d6c9bca-fc1b-421d-8592-5c41f75de753",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "b2848511-c367-4046-ac32-e25e54de82b0",
+            "name": "Delete Category",
+            "url": "http://localhost:5000/api/category/delblogcategory/64391273a1f91dd90a4f57cd",
+            "method": "DELETE",
+            "sortNum": 380000,
+            "created": "2023-04-14T08:45:28.251Z",
+            "modified": "2023-04-14T08:46:01.616Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQ0ODYzOSwiZXhwIjoxNjgxNTM1MDM5fQ.2UBGTyxFqOUKYF-gSDw4zvlqGC1vuX3jwsMq4rr9opM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "1d6ac97c-1622-4f84-a54a-86262e23342f",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d8aeb90f-d387-418f-8260-6edbf9a55554",
+            "name": "Delete Brand",
+            "url": "http://localhost:5000/api/brand/deletebrand/6439194f803edf447ff85c76",
+            "method": "DELETE",
+            "sortNum": 380000,
+            "created": "2023-04-14T09:11:19.819Z",
+            "modified": "2023-04-14T09:14:47.335Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhiOWUyYTJlOWRiNTFkNjg1YzYwYyIsImlhdCI6MTY4MTQ0ODYzOSwiZXhwIjoxNjgxNTM1MDM5fQ.2UBGTyxFqOUKYF-gSDw4zvlqGC1vuX3jwsMq4rr9opM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "6b95be56-707e-4f0f-b22c-6805409eb974",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "b2848511-c367-4046-ac32-e25e54de82b0",
+            "name": "Get all categories",
+            "url": "http://localhost:5000/api/category/getallblogcategories",
+            "method": "GET",
+            "sortNum": 390000,
+            "created": "2023-04-14T08:46:26.779Z",
+            "modified": "2023-04-14T08:46:48.563Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "b1f26ff9-c1ae-47ac-8bff-33beb873ff83",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d8aeb90f-d387-418f-8260-6edbf9a55554",
+            "name": "Get all brands",
+            "url": "http://localhost:5000/api/brand/getallbrands",
+            "method": "GET",
+            "sortNum": 390000,
+            "created": "2023-04-14T09:11:19.820Z",
+            "modified": "2023-04-14T09:13:30.690Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "744cc0da-73b5-4bbe-aa1f-a93628959035",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "b2848511-c367-4046-ac32-e25e54de82b0",
+            "name": "Get one category",
+            "url": "http://localhost:5000/api/category/getablogcategory/643912d5a1f91dd90a4f57dd",
+            "method": "GET",
+            "sortNum": 400000,
+            "created": "2023-04-14T08:47:01.666Z",
+            "modified": "2023-04-14T08:47:48.579Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "1a8dc847-0ce2-4b3c-8fca-e7e3e1b6b02b",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d8aeb90f-d387-418f-8260-6edbf9a55554",
+            "name": "Get one brand",
+            "url": "http://localhost:5000/api/brand/getabrand/64391957803edf447ff85c7e",
+            "method": "GET",
+            "sortNum": 400000,
+            "created": "2023-04-14T09:11:19.821Z",
+            "modified": "2023-04-14T09:15:11.197Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "1518b85d-5e47-423e-87bf-f0eb04df85d5",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d21a9abc-31ad-4c93-a7b6-f5a59c99d385",
+            "name": "Add to wishlist",
+            "url": "http://localhost:5000/api/product/addtowishlist",
+            "method": "PUT",
+            "sortNum": 410000,
+            "created": "2023-04-14T09:32:52.236Z",
+            "modified": "2023-05-06T02:20:59.750Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"productID\":\"6455b94c96f5e123e460a687\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MzMzOTIzOCwiZXhwIjoxNjgzNDI1NjM4fQ.2kNXOZ-ULHj4siny65dseP6f5VGVLTyieM4EOWPyBpI"
+            },
+            "tests": []
+        },
+        {
+            "_id": "99b596d5-110e-4373-b0ce-f28a7e16233c",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d21a9abc-31ad-4c93-a7b6-f5a59c99d385",
+            "name": "Rate Product",
+            "url": "http://localhost:5000/api/product/rating",
+            "method": "PUT",
+            "sortNum": 420000,
+            "created": "2023-04-14T11:54:14.894Z",
+            "modified": "2023-04-15T04:03:57.411Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"star\":5,\n  \"productID\":\"643a1e9113a04f4a76b87efe\",\n  \"comment\":\"This is my new comment ok how  are yuo\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MTUzMDY0NiwiZXhwIjoxNjgxNjE3MDQ2fQ.lL34Tn12MDfwC0vz89bzBcPdTU1T8fsTH2xdvLMAncg"
+            },
+            "tests": []
+        },
+        {
+            "_id": "b495d90b-bd4f-40bd-940f-e1433f3fd083",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "43ff97fc-768f-4c63-a94f-91a732044c7e",
+            "name": "Create coupon",
+            "url": "http://localhost:5000/api/coupon/createcoupon",
+            "method": "POST",
+            "sortNum": 430000,
+            "created": "2023-04-15T04:12:44.873Z",
+            "modified": "2023-05-06T10:19:07.423Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"chirtmas\",\n  \"discount\":5,\n  \"expiry\":\"1681617046\",\n  \"remaining_redeems\":3\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTVmZjZlZTEwZDE1YWU4Mzg5ZjBmNiIsImlhdCI6MTY4MzM1NzU1NCwiZXhwIjoxNjgzNDQzOTU0fQ.3gDdVdeD1lgGfnIO_nVpxZcJzTK7P1AYDS6ZGqducOA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "995df176-aade-479a-b6d6-601420afabfe",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "43ff97fc-768f-4c63-a94f-91a732044c7e",
+            "name": "Get all coupons",
+            "url": "http://localhost:5000/api/coupon/getallcoupons",
+            "method": "GET",
+            "sortNum": 440000,
+            "created": "2023-04-15T04:21:32.425Z",
+            "modified": "2023-05-06T10:20:20.062Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTVmZjZlZTEwZDE1YWU4Mzg5ZjBmNiIsImlhdCI6MTY4MzM1NzU1NCwiZXhwIjoxNjgzNDQzOTU0fQ.3gDdVdeD1lgGfnIO_nVpxZcJzTK7P1AYDS6ZGqducOA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "840d6b66-ff1d-4718-bbb8-edf21625391e",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "43ff97fc-768f-4c63-a94f-91a732044c7e",
+            "name": "Update Coupon",
+            "url": "http://localhost:5000/api/coupon/updatecoupon/643a256f774b9cdbae2fb17a",
+            "method": "PUT",
+            "sortNum": 450000,
+            "created": "2023-04-15T04:27:16.232Z",
+            "modified": "2023-04-15T04:28:14.781Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"discount\":\"30\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MTUzMDY0NiwiZXhwIjoxNjgxNjE3MDQ2fQ.lL34Tn12MDfwC0vz89bzBcPdTU1T8fsTH2xdvLMAncg"
+            },
+            "tests": []
+        },
+        {
+            "_id": "0a8afffc-6d07-400d-8fc1-41ace3f7d339",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "43ff97fc-768f-4c63-a94f-91a732044c7e",
+            "name": "Delete Coupon",
+            "url": "http://localhost:5000/api/coupon/deletecoupon/6456299ea85479c899fc5a73",
+            "method": "DELETE",
+            "sortNum": 460000,
+            "created": "2023-04-15T04:30:09.896Z",
+            "modified": "2023-05-06T10:19:49.780Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTVmZjZlZTEwZDE1YWU4Mzg5ZjBmNiIsImlhdCI6MTY4MzM1NzU1NCwiZXhwIjoxNjgzNDQzOTU0fQ.3gDdVdeD1lgGfnIO_nVpxZcJzTK7P1AYDS6ZGqducOA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "f56761f8-ca00-4ba2-ba79-fae38a6c7b68",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d21a9abc-31ad-4c93-a7b6-f5a59c99d385",
+            "name": "Img upload",
+            "url": "http://localhost:5000/api/product/upload/6453afb271709f659ef5a6eb",
+            "method": "PUT",
+            "sortNum": 470000,
+            "created": "2023-05-02T16:23:04.449Z",
+            "modified": "2023-05-04T13:15:19.235Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [],
+                "files": [
+                    {
+                        "name": "images",
+                        "value": "c:\\Users\\lesto\\OneDrive\\Pictures\\Camera Roll\\WIN_20211219_00_08_44_Pro.jpg"
+                    },
+                    {
+                        "name": "images",
+                        "value": "c:\\Users\\lesto\\OneDrive\\Pictures\\Camera Roll\\WIN_20211219_21_30_40_Pro.jpg"
+                    },
+                    {
+                        "name": "images",
+                        "value": "c:\\Users\\lesto\\OneDrive\\Pictures\\Camera Roll\\WIN_20220526_20_34_07_Pro.jpg"
+                    },
+                    {
+                        "name": "images",
+                        "value": "c:\\Users\\lesto\\OneDrive\\Pictures\\Camera Roll\\WIN_20230327_21_59_07_Pro.jpg"
+                    }
+                ]
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MzE5NzkyMiwiZXhwIjoxNjgzMjg0MzIyfQ.IQ5WTs6RW1fzp_uGfN1tcZfBJt039DP4EGdNVEr3TEs"
+            },
+            "tests": []
+        },
+        {
+            "_id": "d4e84e4c-5457-4970-babd-6be227d854e4",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "fed41271-6782-4e24-8878-f90f57c35807",
+            "name": "Upload Imgaes",
+            "url": "http://localhost:5000/api/blog/uploadimages/6453b40364cf3d649dbe1b2c",
+            "method": "PUT",
+            "sortNum": 480000,
+            "created": "2023-05-04T12:30:38.754Z",
+            "modified": "2023-05-04T13:33:54.284Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [],
+                "files": [
+                    {
+                        "name": "images",
+                        "value": "c:\\Users\\lesto\\OneDrive\\Pictures\\Saved Pictures\\Capturejk.PNG"
+                    },
+                    {
+                        "name": "images",
+                        "value": "c:\\Users\\lesto\\OneDrive\\Pictures\\Saved Pictures\\Capture2.PNG"
+                    }
+                ]
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MzE5NzkyMiwiZXhwIjoxNjgzMjg0MzIyfQ.IQ5WTs6RW1fzp_uGfN1tcZfBJt039DP4EGdNVEr3TEs"
+            },
+            "tests": []
+        },
+        {
+            "_id": "f08fb081-a5e1-4f42-89c0-36748e48b2dc",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Admin Login",
+            "url": "http://localhost:5000/api/user/adminlogin",
+            "method": "POST",
+            "sortNum": 490000,
+            "created": "2023-05-06T01:57:31.044Z",
+            "modified": "2023-05-06T01:58:47.630Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"lestoncks548@gmail.com\",\n  \"password\":\"987\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "635e13fc-28ac-4afc-b9d1-a33fc8389000",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "01beda06-358a-427a-8581-f2dc08ab5080",
+            "name": "Get Wish List",
+            "url": "http://localhost:5000/api/user/getwishlist",
+            "method": "GET",
+            "sortNum": 500000,
+            "created": "2023-05-06T02:07:51.809Z",
+            "modified": "2023-05-06T02:21:23.404Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MzMzOTIzOCwiZXhwIjoxNjgzNDI1NjM4fQ.2kNXOZ-ULHj4siny65dseP6f5VGVLTyieM4EOWPyBpI"
+            },
+            "tests": []
+        },
+        {
+            "_id": "cdf88075-d0fe-4d8c-b36e-22eac4691797",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d011b02a-0b4a-4b4f-b6c6-7597d108ce39",
+            "name": "Create Address",
+            "url": "http://localhost:5000/api/user/address/newaddress",
+            "method": "POST",
+            "sortNum": 510000,
+            "created": "2023-05-06T04:11:07.137Z",
+            "modified": "2023-05-06T04:17:02.943Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"Leston\",\n  \"phone\":\"8762702356\",\n  \"pincode\":576117,\n  \"streetaddress\":\"Parella house , Attur North Post,Karkala\",\n  \"district\":\"Udupi\",\n  \"state\":\"Karnataka\",\n  \"address_type\":\"home\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MzM0NjQ2MiwiZXhwIjoxNjgzNDMyODYyfQ.B2waNoWu7o5ifHEggQCItBW9ghZf4V9snP2b1ErZka0"
+            },
+            "tests": []
+        },
+        {
+            "_id": "1ca9b30c-ac02-4180-9124-e4fcddaa76ef",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d011b02a-0b4a-4b4f-b6c6-7597d108ce39",
+            "name": "Delete Address",
+            "url": "http://localhost:5000/api/user/address/deleteaddress/6455d7f2b2c88b5c397f9941",
+            "method": "DELETE",
+            "sortNum": 520000,
+            "created": "2023-05-06T04:19:59.176Z",
+            "modified": "2023-05-06T04:31:13.483Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MzM0NjQ2MiwiZXhwIjoxNjgzNDMyODYyfQ.B2waNoWu7o5ifHEggQCItBW9ghZf4V9snP2b1ErZka0"
+            },
+            "tests": []
+        },
+        {
+            "_id": "b43fb781-1715-4a38-a374-bdaa27d10e1f",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "d011b02a-0b4a-4b4f-b6c6-7597d108ce39",
+            "name": "Update Address",
+            "url": "http://localhost:5000/api/user/address/updateaddress/6455d9280c3c249a1ff9e3ba",
+            "method": "PUT",
+            "sortNum": 530000,
+            "created": "2023-05-06T04:36:10.304Z",
+            "modified": "2023-05-06T04:37:26.412Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"Sigma male\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhjMzNjMGM3MTExZWFlMTEwNzU2NCIsImlhdCI6MTY4MzM0NjQ2MiwiZXhwIjoxNjgzNDMyODYyfQ.B2waNoWu7o5ifHEggQCItBW9ghZf4V9snP2b1ErZka0"
+            },
+            "tests": []
+        },
+        {
+            "_id": "64b1f869-6f0e-4e78-9e91-24b7716c152e",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "eb6715ce-87d3-4296-8b3b-790edea035af",
+            "name": "Remove From cart",
+            "url": "http://localhost:5000/api/cart/removecart/64563de0b71d97d8b36b2948",
+            "method": "DELETE",
+            "sortNum": 550000,
+            "created": "2023-05-06T08:21:50.394Z",
+            "modified": "2023-05-06T11:46:13.967Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTVmZjZlZTEwZDE1YWU4Mzg5ZjBmNiIsImlhdCI6MTY4MzM1NzU1NCwiZXhwIjoxNjgzNDQzOTU0fQ.3gDdVdeD1lgGfnIO_nVpxZcJzTK7P1AYDS6ZGqducOA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "7c496c64-4351-4eef-b692-0b508d775d6e",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "eb6715ce-87d3-4296-8b3b-790edea035af",
+            "name": "Get cart",
+            "url": "http://localhost:5000/api/cart/getcart",
+            "method": "GET",
+            "sortNum": 560000,
+            "created": "2023-05-06T08:34:45.676Z",
+            "modified": "2023-05-06T08:35:20.162Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTVmZjZlZTEwZDE1YWU4Mzg5ZjBmNiIsImlhdCI6MTY4MzM1NzU1NCwiZXhwIjoxNjgzNDQzOTU0fQ.3gDdVdeD1lgGfnIO_nVpxZcJzTK7P1AYDS6ZGqducOA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "5cc2318a-e7f5-40e8-a8e4-d4b6f4e36dbb",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "eb6715ce-87d3-4296-8b3b-790edea035af",
+            "name": "Update Quantity",
+            "url": "http://localhost:5000/api/cart/updatecart/64563dc8b71d97d8b36b293a",
+            "method": "PUT",
+            "sortNum": 570000,
+            "created": "2023-05-06T08:52:36.632Z",
+            "modified": "2023-05-06T11:46:47.929Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"count\":4\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTVmZjZlZTEwZDE1YWU4Mzg5ZjBmNiIsImlhdCI6MTY4MzM1NzU1NCwiZXhwIjoxNjgzNDQzOTU0fQ.3gDdVdeD1lgGfnIO_nVpxZcJzTK7P1AYDS6ZGqducOA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "83af1724-a5e2-4d40-9864-46abaa500d42",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "43ff97fc-768f-4c63-a94f-91a732044c7e",
+            "name": "Apply Coupon",
+            "url": "http://localhost:5000/api/coupon/redeemcoupon",
+            "method": "POST",
+            "sortNum": 580000,
+            "created": "2023-05-06T10:22:05.731Z",
+            "modified": "2023-05-06T10:25:17.574Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"coupon\":\"CHIRTMAS\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTVmZjZlZTEwZDE1YWU4Mzg5ZjBmNiIsImlhdCI6MTY4MzM1NzU1NCwiZXhwIjoxNjgzNDQzOTU0fQ.3gDdVdeD1lgGfnIO_nVpxZcJzTK7P1AYDS6ZGqducOA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "ea13d9cc-7b2a-4bbe-a7e6-aef2663e7023",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "2e8f2031-eb0f-4620-9f6f-bf0ed35567ff",
+            "name": "Get all Orders",
+            "url": "http://localhost:5000/api/orders/getallorders",
+            "method": "GET",
+            "sortNum": 600000,
+            "created": "2023-05-06T12:00:53.744Z",
+            "modified": "2023-05-06T12:01:59.246Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTVmZjZlZTEwZDE1YWU4Mzg5ZjBmNiIsImlhdCI6MTY4MzM1NzU1NCwiZXhwIjoxNjgzNDQzOTU0fQ.3gDdVdeD1lgGfnIO_nVpxZcJzTK7P1AYDS6ZGqducOA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "b8b971b5-07cc-4583-a938-555fc254971f",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "2e8f2031-eb0f-4620-9f6f-bf0ed35567ff",
+            "name": "Get order",
+            "url": "http://localhost:5000/api/orders/getorder",
+            "method": "GET",
+            "sortNum": 610000,
+            "created": "2023-05-06T12:03:16.608Z",
+            "modified": "2023-05-06T12:03:34.669Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTVmZjZlZTEwZDE1YWU4Mzg5ZjBmNiIsImlhdCI6MTY4MzM1NzU1NCwiZXhwIjoxNjgzNDQzOTU0fQ.3gDdVdeD1lgGfnIO_nVpxZcJzTK7P1AYDS6ZGqducOA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "6511d21d-c2ac-4fa0-a3cd-7845e9b2bf14",
+            "colId": "8f0e5201-b07f-4ee1-a2d3-262b1524adb9",
+            "containerId": "2e8f2031-eb0f-4620-9f6f-bf0ed35567ff",
+            "name": "Update Order Status",
+            "url": "http://localhost:5000/api/orders/uporderstatus/64563fc5c663db919939d0e2",
+            "method": "PUT",
+            "sortNum": 610000,
+            "created": "2023-05-06T12:08:55.267Z",
+            "modified": "2023-05-06T12:11:36.050Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"status\":\"Processing\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTVmZjZlZTEwZDE1YWU4Mzg5ZjBmNiIsImlhdCI6MTY4MzM1NzU1NCwiZXhwIjoxNjgzNDQzOTU0fQ.3gDdVdeD1lgGfnIO_nVpxZcJzTK7P1AYDS6ZGqducOA"
+            },
+            "tests": []
+        }
+    ]
+}
