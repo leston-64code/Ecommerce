@@ -3,6 +3,7 @@ const connectDB=require("./config/db")
 const errorMiddleware = require("./middlewares/errorMiddleware")
 const cookieParser=require("cookie-parser")
 const morgan=require("morgan")
+const helmet = require("helmet")
 
 const app=express()
 require("dotenv").config()
@@ -12,6 +13,7 @@ connectDB()
 // Middlewares
 app.use(morgan("dev"));
 app.use(express.json())
+app.use(helmet())
 app.use(cookieParser())
 
 app.use("/api/user",require("./routes/authRoutes"))

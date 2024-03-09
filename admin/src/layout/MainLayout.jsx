@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Outlet, useNavigate } from "react-router-dom"
 import { GoSidebarCollapse } from "react-icons/go";
-import { MdAdminPanelSettings } from "react-icons/md";
 import { data } from './sidebar/data';
 import Sidebar from './sidebar/Sidebar';
 

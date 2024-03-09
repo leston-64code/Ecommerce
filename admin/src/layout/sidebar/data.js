@@ -15,6 +15,7 @@ import { TbCopyrightFilled } from "react-icons/tb";
 import { PiCopyright } from "react-icons/pi";
 import { ImBlog } from "react-icons/im";
 import { LuFileStack } from "react-icons/lu";
+import { BiSolidOffer } from "react-icons/bi";
 
 export const sidebarData=[
     {
@@ -41,6 +42,11 @@ export const sidebarData=[
         id:5,
         name:"Customers",
         icon:<FaUsers />
+    },
+    {
+        id:6,
+        name:"Coupons",
+        icon:<BiSolidOffer />
     },
     {
         id:6,

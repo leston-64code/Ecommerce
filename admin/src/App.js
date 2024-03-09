@@ -15,12 +15,16 @@ import ProductList from './pages/product/ProductList'
 import BrandList from './pages/product/BrandList'
 import CategoryList from './pages/product/CategoryList'
 import ColorList from './pages/product/ColorList'
+import Login from './auth/Login'
 
 const App = () => {
   return (
     <>
       <Router>
         <Routes>
+
+        <Route path="/" element={<Login />} />
+
           <Route path='/admin' element={<MainLayout />} >
             <Route index element={<Dashboard />} />
 
