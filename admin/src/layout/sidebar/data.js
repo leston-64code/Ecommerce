@@ -59,49 +59,49 @@ export const productSection=[
         id:1,
         name:"Add Product",
         icon:<FaCartArrowDown/>,
-        link:"/addproduct"
+        url:"/admin/addproduct"
     },
     {
         id:2,
         name:"Product List",
         icon:<FaCartShopping/>,
-        link:"/products"
+        url:"/admin/products"
     },
     {
         id:3,
         name:"Add Category",
         icon:<FaShapes />,
-        link:"/addproductcat"
+        url:"/admin/addcategory"
     },
     {
         id:4,
         name:"Category List",
         icon:<FaCubesStacked />,
-        link:"/productcategories"
+        url:"/admin/categories"
     },
     {
         id:5,
         name:"Add Brand",
         icon:<TbCopyrightFilled />,
-        link:"/addbrand"
+        url:"/admin/addbrand"
     },
     {
         id:6,
         name:"Brand List",
         icon:<PiCopyright />,
-        link:"/brands"
+        url:"/admin/brands"
     },
     {
         id:7,
         name:"Add Color",
         icon:<FaDroplet />,
-        link:"/addcolor"
+        url:"/admin/addcolor"
     },
     {
         id:8,
         name:"Color List",
         icon:<IoColorPalette />,
-        link:"/colors"
+        url:"/admin/colors"
     },
 ]
 
@@ -110,25 +110,25 @@ export const blogSection=[
         id:1,
         name:"Add Blog",
         icon:<ImBlog />,
-        link:"/addblog"
+        url:"/admin/addblog"
     },
     {
         id:2,
         name:"Blog List",
         icon:<LuFileStack />,
-        link:"/blogs"
+        url:"/admin/bloglist"
     },
     {
         id:3,
         name:"Add Blog Category",
         icon:<FaShapes />,
-        link:"/addblogcat"
+        url:"/admin/addblogcategory"
     },
     {
         id:4,
         name:"Blog Category List",
         icon:<FaCubesStacked />,
-        link:"/blogcats"
+        url:"/admin/blogcatlist"
     },
 ]
 
@@ -137,7 +137,7 @@ export const orderSection=[
         id:1,
         name:"Dashboard",
         icon:"hello",
-        link:"/orders"
+        url:"/orders"
     }
 ]
 
@@ -145,39 +145,46 @@ export const data=[
     {
         id:1,
         name:"Dashboard",
-        icon:<MdOutlineQueryStats />
+        icon:<MdOutlineQueryStats />,
+        url:"/admin"
     },
     {
         id:2,
         name:"Catalogue",
         icon:<PiHandbagSimpleFill />,
+        // url:"/admin/dashboard",
         subOptions:[...productSection]
     },
     {
         id:3,
         name:"Blog",
         icon:<GrBlog />,
+        url:"/admin/blog",
         subOptions:[...blogSection]
     },
     {
         id:4,
         name:"Orders",
         icon:<FaReceipt />,
+        url:"/admin/order",
         subOptions:[...orderSection]
     },
     {
         id:5,
         name:"Customers",
-        icon:<FaUsers />
+        icon:<FaUsers />,
+        // url:"/admin/dashboard"
     },
     {
         id:6,
         name:"Enquires",
-        icon:<FaIdCard />
+        icon:<FaIdCard />,
+        // url:"/admin/dashboard"
     },
     {
         id:7,
         name:"Mail",
-        icon:<BiLogoTelegram />
+        icon:<BiLogoTelegram />,
+        // url:"/admin/dashboard"
     },
 ]

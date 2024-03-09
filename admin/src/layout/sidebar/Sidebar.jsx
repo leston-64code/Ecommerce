@@ -12,6 +12,9 @@ const Sidebar = () => {
     const handleItemClick = (index, url) => {
         if (data[index]?.subOptions) {
             setExpandedIndex(expandedIndex === index ? null : index);
+            if(url){
+                navigate(url);
+            }
         } else {
             navigate(url);
         }
@@ -22,8 +25,8 @@ const Sidebar = () => {
             <div className='w-[17%] h-full bg-[#253245] text-white flex flex-col overflow-auto'>
                 {
                     data?.map((ele, index) => {
-                        return <>
-                            <div key={index} className='py-4 pl-5 border-b-[1px] border-gray-600 flex flex-row justify-left items-center hover:cursor-pointer hover:bg-white hover:text-black' onClick={() => {
+                        return <React.Fragment key={index}>
+                            <div className='py-4 pl-5 border-b-[1px] border-gray-600 flex flex-row justify-left items-center hover:cursor-pointer hover:bg-white hover:text-black' onClick={() => {
                                 handleItemClick(index, ele.url)
                             }}>
                                 {ele.icon}
@@ -40,7 +43,7 @@ const Sidebar = () => {
                                         <p className='ml-5'>{subele.name}</p>
                                     </div>
                                 ))}
-                        </>
+                        </React.Fragment>
                     })
                 }
             </div>
