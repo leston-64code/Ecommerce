@@ -49,12 +49,12 @@ export const sidebarData=[
         icon:<BiSolidOffer />
     },
     {
-        id:6,
+        id:7,
         name:"Enquires",
         icon:<FaIdCard />
     },
     {
-        id:7,
+        id:8,
         name:"Mail",
         icon:<BiLogoTelegram />
     },
@@ -64,49 +64,49 @@ export const productSection=[
     {
         id:1,
         name:"Add Product",
-        icon:<FaCartArrowDown/>,
+        icon:<FaCartArrowDown  className="sidebar-icons"/>,
         url:"/admin/addproduct"
     },
     {
         id:2,
         name:"Product List",
-        icon:<FaCartShopping/>,
+        icon:<FaCartShopping  className="sidebar-icons"/>,
         url:"/admin/products"
     },
     {
         id:3,
         name:"Add Category",
-        icon:<FaShapes />,
+        icon:<FaShapes   className="sidebar-icons"/>,
         url:"/admin/addcategory"
     },
     {
         id:4,
         name:"Category List",
-        icon:<FaCubesStacked />,
+        icon:<FaCubesStacked   className="sidebar-icons"/>,
         url:"/admin/categories"
     },
     {
         id:5,
         name:"Add Brand",
-        icon:<TbCopyrightFilled />,
+        icon:<TbCopyrightFilled   className="sidebar-icons"/>,
         url:"/admin/addbrand"
     },
     {
         id:6,
         name:"Brand List",
-        icon:<PiCopyright />,
+        icon:<PiCopyright   className="sidebar-icons"/>,
         url:"/admin/brands"
     },
     {
         id:7,
         name:"Add Color",
-        icon:<FaDroplet />,
+        icon:<FaDroplet   className="sidebar-icons"/>,
         url:"/admin/addcolor"
     },
     {
         id:8,
         name:"Color List",
-        icon:<IoColorPalette />,
+        icon:<IoColorPalette   className="sidebar-icons"/>,
         url:"/admin/colors"
     },
 ]
@@ -115,25 +115,25 @@ export const blogSection=[
     {
         id:1,
         name:"Add Blog",
-        icon:<ImBlog />,
+        icon:<ImBlog   className="sidebar-icons"/>,
         url:"/admin/addblog"
     },
     {
         id:2,
         name:"Blog List",
-        icon:<LuFileStack />,
+        icon:<LuFileStack   className="sidebar-icons"/>,
         url:"/admin/bloglist"
     },
     {
         id:3,
         name:"Add Blog Category",
-        icon:<FaShapes />,
+        icon:<FaShapes   className="sidebar-icons"/>,
         url:"/admin/addblogcategory"
     },
     {
         id:4,
         name:"Blog Category List",
-        icon:<FaCubesStacked />,
+        icon:<FaCubesStacked   className="sidebar-icons"/>,
         url:"/admin/blogcatlist"
     },
 ]
@@ -151,46 +151,51 @@ export const data=[
     {
         id:1,
         name:"Dashboard",
-        icon:<MdOutlineQueryStats />,
+        icon:<MdOutlineQueryStats   className="sidebar-icons"/>,
         url:"/admin"
     },
     {
         id:2,
         name:"Catalogue",
-        icon:<PiHandbagSimpleFill />,
+        icon:<PiHandbagSimpleFill   className="sidebar-icons"/>,
         // url:"/admin/dashboard",
         subOptions:[...productSection]
     },
     {
         id:3,
         name:"Blog",
-        icon:<GrBlog />,
+        icon:<GrBlog   className="sidebar-icons"/>,
         url:"/admin/blog",
         subOptions:[...blogSection]
     },
     {
         id:4,
         name:"Orders",
-        icon:<FaReceipt />,
+        icon:<FaReceipt  className="sidebar-icons" />,
         url:"/admin/order",
         subOptions:[...orderSection]
     },
     {
         id:5,
-        name:"Customers",
-        icon:<FaUsers />,
-        // url:"/admin/dashboard"
+        name:"Coupons",
+        icon:<BiSolidOffer  className="sidebar-icons" />
     },
     {
         id:6,
-        name:"Enquires",
-        icon:<FaIdCard />,
+        name:"Customers",
+        icon:<FaUsers  className="sidebar-icons" />,
         // url:"/admin/dashboard"
     },
     {
         id:7,
+        name:"Enquires",
+        icon:<FaIdCard  className="sidebar-icons" />,
+        // url:"/admin/dashboard"
+    },
+    {
+        id:8,
         name:"Mail",
-        icon:<BiLogoTelegram />,
+        icon:<BiLogoTelegram className="sidebar-icons"/>,
         // url:"/admin/dashboard"
     },
 ]

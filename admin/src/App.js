@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import MainLayout from './layout/MainLayout'
 import Dashboard from './pages/Dashboard'
@@ -18,6 +18,7 @@ import ColorList from './pages/product/ColorList'
 import Login from './auth/Login'
 
 const App = () => {
+ 
   return (
     <>
       <Router>

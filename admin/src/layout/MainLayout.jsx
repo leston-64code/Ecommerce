@@ -35,7 +35,7 @@ const MainLayout = () => {
           slideSideBar===true ? null 
           : <Sidebar />
         }
-        <div className='flex-1 h-full '>
+        <div className='flex-1 h-full bg-mainBg'>
           <GoSidebarCollapse className=' ml-8 mt-2 text-xl hover:cursor-pointer hover:shadow-md text-black absolute' title={slideSideBar?"Show Sidebar":"Collapse Sidebar"} onClick={() => {
             setSlideSideBar(!slideSideBar)
           }} />

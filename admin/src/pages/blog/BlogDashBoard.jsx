@@ -3,7 +3,9 @@ import React from 'react'
 const BlogDashBoard = () => {
   return (
     <>
-      <p>this is blogdashboard</p>
+      <div className='w-full h-full px-8 pt-8'>
+        <p className='uppercase font-semibold text-xl'>Blog Dashboard</p>
+      </div>
     </>
   )
 }

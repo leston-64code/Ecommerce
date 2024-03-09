@@ -1,3 +1,57 @@
 @tailwind base;
 @tailwind components;
+
+.sidebar-icons {
+    @apply text-lg
+}
+
 @tailwind utilities;
+/* 
+:root{
+    --sideBgColor:37,50,69,1;
+    --sideSubBgColor:55 74 103;
+    --mainBg:255, 255, 255;
+} */
+
+
+.light {
+    --sideBgColor: 37, 50, 69, 1;
+    --sideSubBgColor: 55, 74, 103;
+    --mainBg: 255, 255, 255;
+    --sideTextColor: 255, 255, 255;
+    --sideHoverTextColor: 0, 0, 0
+}
+
+.dark {
+    --sideBgColor: 154, 136, 114;
+    /* --sideBgColor:57 ,38 ,24; */
+    /* --sideSubBgColor:55,74,103; */
+    --sideSubBgColor: 169, 151, 129;
+    --mainBg: 0, 0, 0;
+    --sideTextColor: 0, 0, 0;
+    --sideHoverTextColor: 0, 0, 0
+}
+
+@media(prefers-color-scheme:dark) {
+
+    :root {
+        --sideBgColor: 154, 136, 114;
+        /* --sideBgColor:57 ,38 ,24; */
+        /* --sideSubBgColor:55,74,103; */
+        --sideSubBgColor: 169, 151, 129;
+        --mainBg: 0, 0, 0;
+        --sideTextColor: 0, 0, 0;
+        --sideHoverTextColor: 0, 0, 0
+    }
+}
+
+@media(prefers-color-scheme:light) {
+
+    :root {
+        --sideBgColor: 37, 50, 69, 1;
+        --sideSubBgColor: 55, 74, 103;
+        --mainBg: 255, 255, 255;
+        --sideTextColor: 255, 255, 255;
+        --sideHoverTextColor: 0, 0, 0
+    }
+}
