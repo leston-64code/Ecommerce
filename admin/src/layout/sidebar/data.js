@@ -16,6 +16,8 @@ import { PiCopyright } from "react-icons/pi";
 import { ImBlog } from "react-icons/im";
 import { LuFileStack } from "react-icons/lu";
 import { BiSolidOffer } from "react-icons/bi";
+import { BsKanban } from "react-icons/bs";
+import { PiUsersThreeFill } from "react-icons/pi";
 
 export const sidebarData=[
     {
@@ -147,6 +149,15 @@ export const orderSection=[
     }
 ]
 
+export const customerSection=[
+    {
+        id:1,
+        name:"Customer List",
+        icon:<PiUsersThreeFill/>,
+        url:"/customers"
+    }
+]
+
 export const data=[
     {
         id:1,
@@ -178,13 +189,15 @@ export const data=[
     {
         id:5,
         name:"Coupons",
-        icon:<BiSolidOffer  className="sidebar-icons" />
+        icon:<BiSolidOffer  className="sidebar-icons" />,
+        url:"/admin/coupons",
     },
     {
         id:6,
         name:"Customers",
         icon:<FaUsers  className="sidebar-icons" />,
-        // url:"/admin/dashboard"
+        url:"/admin/customerdashboard",
+        subOptions:[...customerSection]
     },
     {
         id:7,
@@ -196,6 +209,12 @@ export const data=[
         id:8,
         name:"Mail",
         icon:<BiLogoTelegram className="sidebar-icons"/>,
+        // url:"/admin/dashboard"
+    },
+    {
+        id:9,
+        name:"Kanban",
+        icon:<BsKanban className="sidebar-icons"/>,
         // url:"/admin/dashboard"
     },
 ]

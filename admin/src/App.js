@@ -16,6 +16,9 @@ import BrandList from './pages/product/BrandList'
 import CategoryList from './pages/product/CategoryList'
 import ColorList from './pages/product/ColorList'
 import Login from './auth/Login'
+import Coupons from './pages/coupons/Coupons'
+import CustomerDashboard from './pages/customer/CustomerDashboard'
+import Customers from './pages/customer/Customers'
 
 const App = () => {
  
@@ -43,6 +46,11 @@ const App = () => {
             <Route path='brands' element={<BrandList />} />
             <Route path='categories' element={<CategoryList />} />
             <Route path='colors' element={<ColorList />} />
+
+            <Route path='coupons' element={<Coupons />} />
+
+            <Route path='customerdashboard' element={<CustomerDashboard />} />
+            <Route path='customers' element={<Customers />} />
             
             {/* <Route path="appointment" element={<Appointment />} /> */}
           </Route>
