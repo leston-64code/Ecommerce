@@ -19,6 +19,8 @@ import Login from './auth/Login'
 import Coupons from './pages/coupons/Coupons'
 import CustomerDashboard from './pages/customer/CustomerDashboard'
 import Customers from './pages/customer/Customers'
+import OrdersDashboard from './pages/orders/OrdersDashboard'
+import OrdersList from './pages/orders/OrdersList'
 
 const App = () => {
  
@@ -48,6 +50,9 @@ const App = () => {
             <Route path='colors' element={<ColorList />} />
 
             <Route path='coupons' element={<Coupons />} />
+
+            <Route path='ordersdashboard' element={<OrdersDashboard />} />
+            <Route path='orders' element={<OrdersList />} />
 
             <Route path='customerdashboard' element={<CustomerDashboard />} />
             <Route path='customers' element={<Customers />} />

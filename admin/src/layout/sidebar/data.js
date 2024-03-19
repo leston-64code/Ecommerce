@@ -18,203 +18,162 @@ import { LuFileStack } from "react-icons/lu";
 import { BiSolidOffer } from "react-icons/bi";
 import { BsKanban } from "react-icons/bs";
 import { PiUsersThreeFill } from "react-icons/pi";
+import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
 
-export const sidebarData=[
+
+export const productSection = [
     {
-        id:1,
-        name:"Dashboard",
-        icon:<MdOutlineQueryStats />
+        id: 1,
+        name: "Add Product",
+        icon: <FaCartArrowDown className="sidebar-icons" />,
+        url: "/admin/addproduct"
     },
     {
-        id:2,
-        name:"Catalogue",
-        icon:<PiHandbagSimpleFill />
+        id: 2,
+        name: "Product List",
+        icon: <FaCartShopping className="sidebar-icons" />,
+        url: "/admin/products"
     },
     {
-        id:3,
-        name:"Blog",
-        icon:<GrBlog />
+        id: 3,
+        name: "Add Category",
+        icon: <FaShapes className="sidebar-icons" />,
+        url: "/admin/addcategory"
     },
     {
-        id:4,
-        name:"Orders",
-        icon:<FaReceipt />
+        id: 4,
+        name: "Category List",
+        icon: <FaCubesStacked className="sidebar-icons" />,
+        url: "/admin/categories"
     },
     {
-        id:5,
-        name:"Customers",
-        icon:<FaUsers />
+        id: 5,
+        name: "Add Brand",
+        icon: <TbCopyrightFilled className="sidebar-icons" />,
+        url: "/admin/addbrand"
     },
     {
-        id:6,
-        name:"Coupons",
-        icon:<BiSolidOffer />
+        id: 6,
+        name: "Brand List",
+        icon: <PiCopyright className="sidebar-icons" />,
+        url: "/admin/brands"
     },
     {
-        id:7,
-        name:"Enquires",
-        icon:<FaIdCard />
+        id: 7,
+        name: "Add Color",
+        icon: <FaDroplet className="sidebar-icons" />,
+        url: "/admin/addcolor"
     },
     {
-        id:8,
-        name:"Mail",
-        icon:<BiLogoTelegram />
+        id: 8,
+        name: "Color List",
+        icon: <IoColorPalette className="sidebar-icons" />,
+        url: "/admin/colors"
     },
 ]
 
-export const productSection=[
+export const blogSection = [
     {
-        id:1,
-        name:"Add Product",
-        icon:<FaCartArrowDown  className="sidebar-icons"/>,
-        url:"/admin/addproduct"
+        id: 1,
+        name: "Add Blog",
+        icon: <ImBlog className="sidebar-icons" />,
+        url: "/admin/addblog"
     },
     {
-        id:2,
-        name:"Product List",
-        icon:<FaCartShopping  className="sidebar-icons"/>,
-        url:"/admin/products"
+        id: 2,
+        name: "Blog List",
+        icon: <LuFileStack className="sidebar-icons" />,
+        url: "/admin/bloglist"
     },
     {
-        id:3,
-        name:"Add Category",
-        icon:<FaShapes   className="sidebar-icons"/>,
-        url:"/admin/addcategory"
+        id: 3,
+        name: "Add Blog Category",
+        icon: <FaShapes className="sidebar-icons" />,
+        url: "/admin/addblogcategory"
     },
     {
-        id:4,
-        name:"Category List",
-        icon:<FaCubesStacked   className="sidebar-icons"/>,
-        url:"/admin/categories"
-    },
-    {
-        id:5,
-        name:"Add Brand",
-        icon:<TbCopyrightFilled   className="sidebar-icons"/>,
-        url:"/admin/addbrand"
-    },
-    {
-        id:6,
-        name:"Brand List",
-        icon:<PiCopyright   className="sidebar-icons"/>,
-        url:"/admin/brands"
-    },
-    {
-        id:7,
-        name:"Add Color",
-        icon:<FaDroplet   className="sidebar-icons"/>,
-        url:"/admin/addcolor"
-    },
-    {
-        id:8,
-        name:"Color List",
-        icon:<IoColorPalette   className="sidebar-icons"/>,
-        url:"/admin/colors"
+        id: 4,
+        name: "Blog Category List",
+        icon: <FaCubesStacked className="sidebar-icons" />,
+        url: "/admin/blogcatlist"
     },
 ]
 
-export const blogSection=[
+export const orderSection = [
     {
-        id:1,
-        name:"Add Blog",
-        icon:<ImBlog   className="sidebar-icons"/>,
-        url:"/admin/addblog"
-    },
-    {
-        id:2,
-        name:"Blog List",
-        icon:<LuFileStack   className="sidebar-icons"/>,
-        url:"/admin/bloglist"
-    },
-    {
-        id:3,
-        name:"Add Blog Category",
-        icon:<FaShapes   className="sidebar-icons"/>,
-        url:"/admin/addblogcategory"
-    },
-    {
-        id:4,
-        name:"Blog Category List",
-        icon:<FaCubesStacked   className="sidebar-icons"/>,
-        url:"/admin/blogcatlist"
-    },
-]
-
-export const orderSection=[
-    {
-        id:1,
-        name:"Dashboard",
-        icon:"hello",
-        url:"/orders"
+        id: 1,
+        name: "Order List",
+        icon: <LiaFileInvoiceDollarSolid className="sidebar-icons" />,
+        url: "/admin/orders"
     }
 ]
 
-export const customerSection=[
+export const customerSection = [
     {
-        id:1,
-        name:"Customer List",
-        icon:<PiUsersThreeFill/>,
-        url:"/customers"
+        id: 1,
+        name: "Customer List",
+        icon: <PiUsersThreeFill className="sidebar-icons" />,
+        url: "/admin/customers"
     }
 ]
 
-export const data=[
+export const data = [
     {
-        id:1,
-        name:"Dashboard",
-        icon:<MdOutlineQueryStats   className="sidebar-icons"/>,
-        url:"/admin"
+        id: 1,
+        name: "Dashboard",
+        icon: <MdOutlineQueryStats className="sidebar-icons" />,
+        url: "/admin"
     },
     {
-        id:2,
-        name:"Catalogue",
-        icon:<PiHandbagSimpleFill   className="sidebar-icons"/>,
+        id: 2,
+        name: "Catalogue",
+        icon: <PiHandbagSimpleFill className="sidebar-icons" />,
         // url:"/admin/dashboard",
-        subOptions:[...productSection]
+        subOptions: [...productSection]
     },
     {
-        id:3,
-        name:"Blog",
-        icon:<GrBlog   className="sidebar-icons"/>,
-        url:"/admin/blog",
-        subOptions:[...blogSection]
+        id: 3,
+        name: "Blog",
+        icon: <GrBlog className="sidebar-icons" />,
+        url: "/admin/blog",
+        subOptions: [...blogSection]
     },
     {
-        id:4,
-        name:"Orders",
-        icon:<FaReceipt  className="sidebar-icons" />,
-        url:"/admin/order",
-        subOptions:[...orderSection]
+        id: 4,
+        name: "Orders",
+        icon: <FaReceipt className="sidebar-icons" />,
+        url: "/admin/ordersdashboard",
+        subOptions: [...orderSection]
     },
     {
-        id:5,
-        name:"Coupons",
-        icon:<BiSolidOffer  className="sidebar-icons" />,
-        url:"/admin/coupons",
+        id: 5,
+        name: "Coupons",
+        icon: <BiSolidOffer className="sidebar-icons" />,
+        url: "/admin/coupons",
     },
     {
-        id:6,
-        name:"Customers",
-        icon:<FaUsers  className="sidebar-icons" />,
-        url:"/admin/customerdashboard",
-        subOptions:[...customerSection]
+        id: 6,
+        name: "Customers",
+        icon: <FaUsers className="sidebar-icons" />,
+        url: "/admin/customerdashboard",
+        subOptions: [...customerSection]
     },
     {
-        id:7,
-        name:"Enquires",
-        icon:<FaIdCard  className="sidebar-icons" />,
+        id: 7,
+        name: "Enquires",
+        icon: <FaIdCard className="sidebar-icons" />,
         // url:"/admin/dashboard"
     },
     {
-        id:8,
-        name:"Mail",
-        icon:<BiLogoTelegram className="sidebar-icons"/>,
+        id: 8,
+        name: "Mail",
+        icon: <BiLogoTelegram className="sidebar-icons" />,
         // url:"/admin/dashboard"
     },
     {
-        id:9,
-        name:"Kanban",
-        icon:<BsKanban className="sidebar-icons"/>,
+        id: 9,
+        name: "Kanban",
+        icon: <BsKanban className="sidebar-icons" />,
         // url:"/admin/dashboard"
     },
 ]
