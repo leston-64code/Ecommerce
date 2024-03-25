@@ -2,7 +2,7 @@ const catchAsyncErrors = require("../middlewares/catchAsyncErrors")
 const Cart=require("../models/cartModel")
 const Product=require("../models/productModel")
 const User=require("../models/userModel")
-const CartProduct=require("../models/cartProModel")
+const CartProduct=require("../models/cartProductModel")
 const ErrorHandler = require("../utils/ErrorHandler")
 const Coupon=require("../models/couponModel")
 

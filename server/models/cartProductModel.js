@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-var cartProSchema = new mongoose.Schema({
+var cartProductSchema = new mongoose.Schema({
     product:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Product"
@@ -27,4 +27,4 @@ var cartProSchema = new mongoose.Schema({
 });
 
 //Export the model
-module.exports = mongoose.model('CartProduct',cartProSchema );
+module.exports = mongoose.model('CartProduct',cartProductSchema );

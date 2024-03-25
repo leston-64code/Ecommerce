@@ -1,6 +1,6 @@
-const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
-const Brand=require("../models/brandModel");
-const ErrorHandler = require("../utils/ErrorHandler");
+const catchAsyncErrors = require("../../middlewares/catchAsyncErrors");
+const Brand=require("../../models/brandModel");
+const ErrorHandler = require("../../utils/ErrorHandler");
 
 exports.createBrand=catchAsyncErrors(async(req,res,next)=>{
     const brand=await Brand.create(req.body)

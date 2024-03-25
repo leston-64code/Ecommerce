@@ -1,6 +1,6 @@
 const express=require("express")
-const { authMiddleware, isAdmin } = require("../middlewares/authMiddleware")
-const { createBrand, updateBrand, deleteBrand, getOneBrand, getAllBrands } = require("../controllers/brandController")
+const { authMiddleware, isAdmin } = require("../../middlewares/authMiddleware")
+const { createBrand, updateBrand, deleteBrand, getOneBrand, getAllBrands } = require("../../controllers/product/brandController")
 const router=express.Router()
 
 router.route("/createbrand").post(authMiddleware,isAdmin,createBrand)

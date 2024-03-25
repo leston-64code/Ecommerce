@@ -1,8 +1,8 @@
-const catchAsyncErrors = require("../middlewares/catchAsyncErrors")
-const Product=require("../models/productModel")
-const ErrorHandler = require("../utils/ErrorHandler")
+const catchAsyncErrors = require("../../middlewares/catchAsyncErrors")
+const Product=require("../../models/productModel")
+const ErrorHandler = require("../../utils/ErrorHandler")
 const slugify=require("slugify")
-const User=require("../models/userModel")
+const User=require("../../models/userModel")
 const cloudinary=require("cloudinary").v2
 const path=require("path")
 const fs=require("fs")

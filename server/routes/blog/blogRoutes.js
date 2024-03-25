@@ -1,7 +1,7 @@
 const express=require("express")
 const { createBlog, updateBlog, getBlog, getAllBlogs, deleteBlog, likeBlog, disLikeBlog, uploadBlogImages, deleteBlogImage } = require("../controllers/blogController")
-const { authMiddleware, isAdmin } = require("../middlewares/authMiddleware")
-const { uploadPhotos, blogImgResize } = require("../middlewares/uploadImages")
+const { authMiddleware, isAdmin } = require("../../middlewares/authMiddleware")
+const { uploadPhotos, blogImgResize } = require("../../middlewares/uploadImages")
 
 const router=express.Router()
 

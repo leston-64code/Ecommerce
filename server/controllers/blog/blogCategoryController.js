@@ -1,6 +1,6 @@
-const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
-const blogCategory=require("../models/blogCategoryModel");
-const ErrorHandler = require("../utils/ErrorHandler");
+const catchAsyncErrors = require("../../middlewares/catchAsyncErrors");
+const blogCategory=require("../../models/blogCategoryModel");
+const ErrorHandler = require("../../utils/ErrorHandler");
 
 exports.createCategory=catchAsyncErrors(async(req,res,next)=>{
     const category=await blogCategory.create(req.body)

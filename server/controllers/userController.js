@@ -16,6 +16,7 @@ exports.createUser=catchAsyncErrors(async(req,res,next)=>{
             // Create User
             const newUser=await User.create(req.body)
             if(newUser){
+              req.session.userId = newUser._id;
               return res.status(200).json({
                     success:true,
                     newUser
@@ -44,7 +45,8 @@ exports.adminLogin=catchAsyncErrors(async (req,res,next)=>{
                 httpOnly:true,
                 maxAge:72*60*60*1000
             })
-        
+
+            req.session.userId = findUser._id;
             return res.status(200).json({
                 success:true,
                 token:generateToken(findUser._id)
@@ -72,11 +74,13 @@ exports.loginUser=catchAsyncErrors(async (req,res,next)=>{
                 httpOnly:true,
                 maxAge:72*60*60*1000
             })
-        
+            req.session.userId = findUser._id;
+
             return res.status(200).json({
                 success:true,
                 token:generateToken(findUser._id)
             })
+            
         }else{
             return next(new ErrorHandler("Please enter valid credentials",400))
         }
