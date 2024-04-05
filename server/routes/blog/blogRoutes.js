@@ -1,5 +1,5 @@
 const express=require("express")
-const { createBlog, updateBlog, getBlog, getAllBlogs, deleteBlog, likeBlog, disLikeBlog, uploadBlogImages, deleteBlogImage } = require("../controllers/blogController")
+const { createBlog, updateBlog, getBlog, getAllBlogs, deleteBlog, likeBlog, disLikeBlog, uploadBlogImages, deleteBlogImage } = require("../../controllers/blog/blogController")
 const { authMiddleware, isAdmin } = require("../../middlewares/authMiddleware")
 const { uploadPhotos, blogImgResize } = require("../../middlewares/uploadImages")
 

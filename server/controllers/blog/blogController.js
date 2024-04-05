@@ -1,15 +1,8 @@
 const catchAsyncErrors = require("../../middlewares/catchAsyncErrors")
 const Blog=require("../../models/blogModel")
 const ErrorHandler = require("../../utils/ErrorHandler")
-const cloudinary=require("cloudinary")
 const path=require("path")
 const fs=require("fs")
-
-cloudinary.config({
-    cloud_name: "dn9cofvdv",
-    api_key: "912278242495112",
-    api_secret: "v1TTxBjJa3A6gVAZiJMazvrYT7I"
-  })
 
 
 exports.createBlog=catchAsyncErrors(async(req,res,next)=>{

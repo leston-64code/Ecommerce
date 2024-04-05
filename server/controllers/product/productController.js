@@ -3,15 +3,8 @@ const Product=require("../../models/productModel")
 const ErrorHandler = require("../../utils/ErrorHandler")
 const slugify=require("slugify")
 const User=require("../../models/userModel")
-const cloudinary=require("cloudinary").v2
 const path=require("path")
 const fs=require("fs")
-
-cloudinary.config({
-    cloud_name: "dn9cofvdv",
-    api_key: "912278242495112",
-    api_secret: "v1TTxBjJa3A6gVAZiJMazvrYT7I"
-  })
 
 
 exports.createProduct=catchAsyncErrors(async(req,res,next)=>{

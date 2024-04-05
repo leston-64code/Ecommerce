@@ -1,13 +1,10 @@
-const mongoose=require("mongoose")
+const mongoose = require("mongoose")
 const ErrorHandler = require("./ErrorHandler")
 
-const validateMondoDbId=(id,next)=>{
-    // console.log(id)
-    const isValid=mongoose.Types.ObjectId.isValid(id)
-    // console.log(isValid)
-    if(!isValid){
-        return new ErrorHandler("User id not valid",400)
+const validateMondoDbId = (id, next) => {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return next(new ErrorHandler('Invalid MongoDB ObjectId', 400))
     }
 }
 
-module.exports=validateMondoDbId
+module.exports = validateMondoDbId

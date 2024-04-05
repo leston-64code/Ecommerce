@@ -4,6 +4,8 @@ const errorMiddleware = require("./middlewares/errorMiddleware")
 const cookieParser=require("cookie-parser")
 const morgan=require("morgan")
 const helmet = require("helmet")
+const session = require('express-session');
+const MongoStore = require('connect-mongo')
 
 const app=express()
 require("dotenv").config()
@@ -37,8 +39,8 @@ app.use("/api/product",require("./routes/product/productRoutes"))
 app.use("/api/productcategory",require("./routes/product/proCategoryRoutes"))
 app.use("/api/brand",require("./routes/product/brandRoutes"))
 
-app.use("/api/blog",require("./routes/blogRoutes"))
-app.use("/api/blogcategory",require("./routes/blogCategoryRoutes"))
+app.use("/api/blog",require("./routes/blog/blogRoutes"))
+app.use("/api/blogcategory",require("./routes/blog/blogCategoryRoutes"))
 
 
 app.use("/api/coupon",require("./routes/couponRoutes"))
