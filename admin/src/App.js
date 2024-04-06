@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import MainLayout from './layout/MainLayout'
 import Dashboard from './pages/Dashboard'
@@ -16,21 +16,23 @@ import BrandList from './pages/product/BrandList'
 import CategoryList from './pages/product/CategoryList'
 import ColorList from './pages/product/ColorList'
 import Login from './auth/Login'
-import Coupons from './pages/coupons/Coupons'
 import CustomerDashboard from './pages/customer/CustomerDashboard'
 import Customers from './pages/customer/Customers'
 import OrdersDashboard from './pages/orders/OrdersDashboard'
 import OrdersList from './pages/orders/OrdersList'
-import InvoiceList from './pages/invoice/InvoiceList'
+import Loader from './loader/Loader'
+
+const InvoiceList = lazy(() => import('./pages/invoice/InvoiceList'));
+const Coupons = lazy(() => import('./pages/coupons/Coupons'));
 
 const App = () => {
- 
+
   return (
     <>
       <Router>
         <Routes>
 
-        <Route path="/" element={<Login />} />
+          <Route path="/" element={<Login />} />
 
           <Route path='/admin' element={<MainLayout />} >
             <Route index element={<Dashboard />} />
@@ -50,7 +52,8 @@ const App = () => {
             <Route path='categories' element={<CategoryList />} />
             <Route path='colors' element={<ColorList />} />
 
-            <Route path='coupons' element={<Coupons />} />
+            {/* <Route path='coupons' element={<Coupons />} /> */}
+            <Route path="coupons" element={<Suspense fallback={<div className='w-full h-full flex justify-center items-center'><Loader /></div>}> <Coupons /> </Suspense>} />
 
             <Route path='ordersdashboard' element={<OrdersDashboard />} />
             <Route path='orders' element={<OrdersList />} />
@@ -58,11 +61,12 @@ const App = () => {
             <Route path='customerdashboard' element={<CustomerDashboard />} />
             <Route path='customers' element={<Customers />} />
 
-            <Route path='invoices' element={<InvoiceList />} />
-            
-            {/* <Route path="appointment" element={<Appointment />} /> */}
+            {/* <Route path='invoices' element={<InvoiceList />} /> */}
+            <Route path="invoices" element={<Suspense fallback={<div className='w-full h-full flex justify-center items-center'><Loader /></div>}> <InvoiceList /> </Suspense>} />
+
           </Route>
         </Routes>
+
       </Router>
     </>
   )
