@@ -21,6 +21,7 @@ import CustomerDashboard from './pages/customer/CustomerDashboard'
 import Customers from './pages/customer/Customers'
 import OrdersDashboard from './pages/orders/OrdersDashboard'
 import OrdersList from './pages/orders/OrdersList'
+import InvoiceList from './pages/invoice/InvoiceList'
 
 const App = () => {
  
@@ -56,6 +57,8 @@ const App = () => {
 
             <Route path='customerdashboard' element={<CustomerDashboard />} />
             <Route path='customers' element={<Customers />} />
+
+            <Route path='invoices' element={<InvoiceList />} />
             
             {/* <Route path="appointment" element={<Appointment />} /> */}
           </Route>

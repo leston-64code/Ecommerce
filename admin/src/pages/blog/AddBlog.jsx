@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import katex from "katex";
-import "katex/dist/katex.min.css";
-window.katex = katex;
+// import katex from "katex";
+// import "katex/dist/katex.min.css";
+// window.katex = katex;
 
 const AddBlog = () => {
 

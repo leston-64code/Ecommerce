@@ -19,6 +19,7 @@ import { BiSolidOffer } from "react-icons/bi";
 import { BsKanban } from "react-icons/bs";
 import { PiUsersThreeFill } from "react-icons/pi";
 import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
+import { LiaCashRegisterSolid } from "react-icons/lia";
 
 
 export const productSection = [
@@ -175,5 +176,11 @@ export const data = [
         name: "Kanban",
         icon: <BsKanban className="sidebar-icons" />,
         // url:"/admin/dashboard"
+    },
+    {
+        id: 10,
+        name: "Invoices",
+        icon:<LiaCashRegisterSolid className="sidebar-icons"/>,
+        url:"/admin/invoices"
     },
 ]
