@@ -6,7 +6,7 @@ import BlogDashBoard from './pages/blog/BlogDashBoard'
 import BlogList from './pages/blog/BlogList'
 import BlogCategory from './pages/blog/BlogCategory'
 import AddBlogCategory from './pages/blog/AddBlogCategory'
-import AddBlog from './pages/blog/AddBlog'
+// import AddBlog from './pages/blog/AddBlog'
 import AddProduct from './pages/product/AddProduct'
 import AddBrand from './pages/product/AddBrand'
 import AddCategory from './pages/product/AddCategory'
@@ -24,6 +24,7 @@ import Loader from './loader/Loader'
 
 const InvoiceList = lazy(() => import('./pages/invoice/InvoiceList'));
 const Coupons = lazy(() => import('./pages/coupons/Coupons'));
+const AddBlog = lazy(() => import('./pages/blog/AddBlog'));
 
 const App = () => {
 
@@ -39,7 +40,8 @@ const App = () => {
 
             <Route path='blog' element={<BlogDashBoard />} />
             <Route path='bloglist' element={<BlogList />} />
-            <Route path='addblog' element={<AddBlog />} />
+            {/* <Route path='addblog' element={<AddBlog />} /> */}
+            <Route path="addblog" element={<Suspense fallback={<div className='w-full h-full flex justify-center items-center'><Loader /></div>}> <AddBlog /> </Suspense>} />
             <Route path='addblogcategory' element={<AddBlogCategory />} />
             <Route path='blogcatlist' element={<BlogCategory />} />
 

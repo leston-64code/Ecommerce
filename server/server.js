@@ -47,11 +47,31 @@ app.use("/api/coupon",require("./routes/couponRoutes"))
 app.use("/api/user/address",require("./routes/addressRoutes"))
 app.use("/api/cart",require("./routes/cartRoutes"))
 app.use("/api/orders",require("./routes/orderRoutes"))
+app.use("/api/invoices",require("./routes/invoiceRoutes"))
+
 
 app.use(errorMiddleware)
 
 const PORT=process.env.PORT || 4000
 
-app.listen(PORT,()=>{
+const server=app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}`)
 })
+
+// Gracefully handle unexpected errors
+process.on('uncaughtException', err => {
+  console.error('Uncaught Exception:', err);
+  // Close server and exit
+  server.close(() => {
+      process.exit(1);
+  });
+});
+
+// Gracefully handle promise rejections
+process.on('unhandledRejection', err => {
+  console.error('Unhandled Rejection:', err);
+  // Close server and exit
+  server.close(() => {
+      process.exit(1);
+  });
+});
