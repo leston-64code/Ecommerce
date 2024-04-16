@@ -38,13 +38,13 @@ let blogSchema = new mongoose.Schema(
                 ref: "User",
             },
         ],
-        images:[
+        images: [
             {
-                public_id:{
-                    type:String
+                public_id: {
+                    type: String
                 },
-                url:{
-                    type:String
+                url: {
+                    type: String
                 }
             }
         ],

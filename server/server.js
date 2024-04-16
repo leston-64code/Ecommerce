@@ -47,7 +47,7 @@ app.use("/api/coupon",require("./routes/couponRoutes"))
 app.use("/api/user/address",require("./routes/addressRoutes"))
 app.use("/api/cart",require("./routes/cartRoutes"))
 app.use("/api/orders",require("./routes/orderRoutes"))
-app.use("/api/invoices",require("./routes/invoiceRoutes"))
+app.use("/api/invoices",require("./routes/invoice/invoiceRoutes"))
 
 
 app.use(errorMiddleware)

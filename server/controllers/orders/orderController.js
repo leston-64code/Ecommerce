@@ -1,11 +1,11 @@
-const catchAsyncErrors = require("../middlewares/catchAsyncErrors")
-const Order=require("../models/orderModel")
-const User=require("../models/userModel")
-const Cart=require("../models/cartModel")
-const Product=require("../models/productModel")
-const CartProduct=require("../models/cartProductModel")
+const catchAsyncErrors = require("../../middlewares/catchAsyncErrors")
+const Order=require("../../models/orderModel")
+const User=require("../../models/userModel")
+const Cart=require("../../models/cartModel")
+const Product=require("../../models/productModel")
+const CartProduct=require("../../models/cartProductModel")
 const uniqid = require('uniqid'); 
-const ErrorHandler = require("../utils/ErrorHandler")
+const ErrorHandler = require("../../utils/ErrorHandler")
 
 exports.createOrder=catchAsyncErrors(async(req,res,next)=>{
     const {COD}=req.body

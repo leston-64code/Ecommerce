@@ -1,5 +1,5 @@
 const express=require("express")
-const { createOrder, getOrder, getAllOrders, updateOrderStatus } = require("../controllers/orderController")
+const { createOrder, getOrder, getAllOrders, updateOrderStatus } = require("../controllers/orders/orderController")
 const { authMiddleware, isAdmin } = require("../middlewares/authMiddleware")
 const router=express.Router()
 

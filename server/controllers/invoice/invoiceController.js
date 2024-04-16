@@ -1,6 +1,6 @@
-const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
-const Invoice = require("../models/invoiceModel");
-const ErrorHandler = require("../utils/ErrorHandler");
+const catchAsyncErrors = require("../../middlewares/catchAsyncErrors");
+const Invoice = require("../../models/invoiceModel");
+const ErrorHandler = require("../../utils/ErrorHandler")
 
 // Create Invoice
 exports.createInvoice = catchAsyncErrors(async (req, res, next) => {

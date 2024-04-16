@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone';
-
+import { MdDelete } from "react-icons/md";
+import { Reorder } from 'framer-motion'
 const AddProduct = () => {
 
   const [previewFiles, setPreviewFiles] = useState([]);
@@ -13,9 +14,27 @@ const AddProduct = () => {
     const previews = acceptedFiles.map(file => Object.assign(file, {
       preview: URL.createObjectURL(file)
     }));
+    console.log(previews)
     setPreviewFiles(previews);
 
   }, []);
+
+  const formatFileSize = (size) => {
+    const kilobytes = size / 1024;
+    if (kilobytes < 1024) {
+      return kilobytes.toFixed(2) + ' KB';
+    } else {
+      const megabytes = kilobytes / 1024;
+      return megabytes.toFixed(2) + ' MB';
+    }
+  };
+
+  function removeImage(name) {
+    let newarray = previewFiles.filter((ele, index) => {
+      return ele.name !== name
+    })
+    setPreviewFiles(newarray)
+  }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept: { 'image/*': [] }, multiple: true });
 
@@ -71,21 +90,77 @@ const AddProduct = () => {
                 </div>
 
                 {/*  Image Previewing */}
+               {
+                previewFiles.length!==0 ?
                 <div className="col-span-full mt-6">
-                  <p className="block text-sm font-medium leading-6 text-gray-900">Preview Images</p>
-                  <div className="flex flex-wrap gap-4 mt-2">
-                    {previewFiles.map((file, index) => (
-                      <div key={index}>
-                        <img src={file.preview} alt={`Preview ${index + 1}`} className="h-24 w-24 object-cover rounded-md" />
-                      </div>
-                    ))}
-                  </div>
+                <p className="block text-sm font-medium leading-6 text-gray-900">Preview Images</p>
+
+
+                <div className="relative overflow-x-auto">
+                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                      <tr>
+                        <th scope="col" className="px-6 py-3">
+                          Order
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Image name
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Size
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Image
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+
+                    <tbody className='w-[100%]'>
+                      <Reorder.Group values={previewFiles} onReorder={setPreviewFiles} style={{ "width": "100%" }}>
+                        {previewFiles.map((file, index) => {
+
+                          return <Reorder.Item value={file} key={file.name} className='w-[100%]'>
+                            <div className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 w-[100%]" key={index} >
+                              <td className="px-6 py-4">
+                                {index + 1}
+                              </td>
+                              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {file?.name}
+                              </th>
+                              <td className="px-6 py-4">
+                                {formatFileSize(file?.size)}
+                              </td>
+                              <td className="px-6 py-4">
+                                <img src={file.preview} alt={`Preview ${index + 1}`} className="h-10 w-10 object-cover rounded-md" />
+                              </td>
+                              <td className="px-6 py-4">
+                                <MdDelete className='text-2xl text-red-500 hover:text-red-400 hover:cursor-pointer hover:shadow-lg rounded-lg ' onClick={() => {
+                                  removeImage(file?.name)
+                                }} />
+                              </td>
+                            </div>
+                          </Reorder.Item>
+                        }
+
+                        )}
+                      </Reorder.Group>
+
+
+                    </tbody>
+                  </table>
                 </div>
+
+
+              </div>: null
+               }
 
               </div>
 
             </div>
-            
+
             {/* Brand, Category and Price */}
             <div className="border-b border-gray-900/10 pb-12">
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -130,9 +205,9 @@ const AddProduct = () => {
           </div>
 
           {/* </htmlForm> */}
-        </div>
+        </div >
 
-      </div>
+      </div >
     </>
   )
 }
