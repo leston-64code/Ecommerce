@@ -1,7 +1,21 @@
 import React from 'react'
 import AddNewButton from '../components/AddNewButton'
+import useGetData from '../../hooks/useGetData'
+import ContentLoader from '../contentLoader/ContentLoader'
+import Error from '../components/Error'
 
 const BrandList = () => {
+
+  const { data, isLoading, error } = useGetData("brands", "/brand/getallbrands")
+
+  if (isLoading) {
+    return <ContentLoader />
+  }
+
+  if (error) {
+    return <Error />
+  }
+
   return (
     <>
       <div className='w-full h-full px-8 pt-8'>

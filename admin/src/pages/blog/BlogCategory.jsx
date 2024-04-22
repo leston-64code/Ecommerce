@@ -1,8 +1,20 @@
+import useGetData from "../../hooks/useGetData"
+import Error from "../components/Error"
+import ContentLoader from "../contentLoader/ContentLoader"
 
 
 const BlogCategory = () => {
 
+  const { data, isLoading, error } = useGetData("blogCategories", "/blogcategory/getallblogcategories")
+  // let isLoading=true
 
+  if (isLoading) {
+    return <ContentLoader />
+  }
+
+  if (error) {
+    return <Error />
+  }
 
   return (
     <>

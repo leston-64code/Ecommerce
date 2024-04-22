@@ -1,6 +1,20 @@
 import React from 'react'
+import useGetData from '../../hooks/useGetData'
+import ContentLoader from '../contentLoader/ContentLoader'
+import Error from '../components/Error'
 
 const CategoryList = () => {
+
+  const { data, isLoading, error } = useGetData("productCategories", "/productcategory/getallprocategories")
+
+  if (isLoading) {
+    return <ContentLoader />
+  }
+
+  if (error) {
+    return <Error />
+  }
+
   return (
     <>
       <div className='w-full h-full px-8 pt-8'>
