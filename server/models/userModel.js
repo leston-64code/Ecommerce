@@ -57,6 +57,10 @@ let userSchema=new mongoose.Schema({
     refreshToken:{
         type:String
     },
+    isEmailVerified:{
+        type:Boolean,
+        default:false
+    },
     passwordChangedAt:Date,
     passwordResetToken:String,
     passwordResetExpires:Date
