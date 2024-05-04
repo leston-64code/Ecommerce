@@ -3,6 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom"
 import { GoSidebarCollapse } from "react-icons/go";
 import { data } from './sidebar/data';
 import Sidebar from './sidebar/Sidebar';
+import { Toaster } from 'react-hot-toast';
 
 const MainLayout = () => {
 
@@ -42,6 +43,7 @@ const MainLayout = () => {
           <Outlet />
         </div>
       </div>
+      <Toaster />
     </>
   )
 }

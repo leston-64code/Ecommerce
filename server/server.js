@@ -6,11 +6,17 @@ const morgan=require("morgan")
 const helmet = require("helmet")
 const session = require('express-session');
 const MongoStore = require('connect-mongo')
+const cors = require("cors")
 
 const app=express()
 require("dotenv").config()
 
 connectDB()
+
+app.use(cors({
+  origin: `${process.env.CLIENT_ADDRESS}`,
+  credentials: true,
+}))
 
 app.use(session({
     secret: process.env.SESSION_ENCRYPTION_SECRET,
