@@ -13,6 +13,15 @@ const errorMiddleware=(err,req,res,next)=>{
         err.statusCode=400
     }
 
+    if(err.type){
+        return res.status(err.statusCode).json({
+            success:false,
+            name:err.name,
+            message:err.message,
+            type:err.type
+        })
+    }
+
     return res.status(err.statusCode).json({
         success:false,
         name:err.name,

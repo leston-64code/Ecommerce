@@ -157,10 +157,11 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
             const refreshToken = await generateRefreshToken(findUser._id)
             const updateUser = await User.findByIdAndUpdate(findUser._id, { refreshToken }, { new: true })
 
-            res.cookie("refreshToken", refreshToken, {
-                httpOnly: true,
-                maxAge: 72 * 60 * 60 * 1000
-            })
+            // res.cookie("refreshToken", refreshToken, {
+            //     httpOnly: true,
+            //     maxAge: 72 * 60 * 60 * 1000
+            // })
+
             req.session.userId = findUser._id;
 
             return res.status(200).json({
@@ -169,10 +170,10 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
             })
 
         } else {
-            return next(new ErrorHandler("Please enter valid credentials", 400))
+            return next(new ErrorHandler("Please enter valid credentials", 400,"manual"))
         }
     } else {
-        return next(new ErrorHandler("User not found", 404))
+        return next(new ErrorHandler("User not found", 404,"manual"))
     }
 })
 
