@@ -1,10 +1,26 @@
 import React, { useState } from 'react'
+import useAxiosPost from '../../hooks/useAxiosPost'
+import DottedLoader from '../components/dotted loader/DottedLoader'
+import toast from 'react-hot-toast'
 
 const AddCategory = () => {
 
   const [categoryName, setCategoryName] = useState("")
-  async function handleSubmit(){
-    
+  const { loading, postData } = useAxiosPost();
+
+  async function handleSubmit() {
+    if (!categoryName.trim()) {
+      return toast.error("Category name field is required")
+    }
+    let response = await postData("/api/productcategory/newcategory", { title: categoryName.trim() });
+    if (response?.success === true) {
+      setCategoryName("")
+      toast.success(response?.message)
+    }
+  }
+
+  if (loading) {
+    return <DottedLoader />
   }
 
   return (

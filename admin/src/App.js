@@ -15,12 +15,13 @@ import ProductList from './pages/product/ProductList'
 import BrandList from './pages/product/BrandList'
 import CategoryList from './pages/product/CategoryList'
 import ColorList from './pages/product/ColorList'
-import Login from './auth/Login'
+// import Login from './auth/Login'
 import CustomerDashboard from './pages/customer/CustomerDashboard'
 import Customers from './pages/customer/Customers'
 import OrdersDashboard from './pages/orders/OrdersDashboard'
 import OrdersList from './pages/orders/OrdersList'
 import Loader from './loader/Loader'
+import LoginPage from './auth/LoginPage'
 
 const InvoiceList = lazy(() => import('./pages/invoice/InvoiceList'));
 const Coupons = lazy(() => import('./pages/coupons/Coupons'));
@@ -33,7 +34,7 @@ const App = () => {
       <Router>
         <Routes>
 
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<LoginPage />} />
 
           <Route path='/admin' element={<MainLayout />} >
             <Route index element={<Dashboard />} />

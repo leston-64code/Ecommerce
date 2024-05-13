@@ -3,14 +3,16 @@ import { Outlet, useNavigate } from "react-router-dom"
 import { GoSidebarCollapse } from "react-icons/go";
 import { data } from './sidebar/data';
 import Sidebar from './sidebar/Sidebar';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
+import { getConfiguredBaseUrl } from '../helpers/helper';
+import axios from 'axios';
 
 const MainLayout = () => {
 
   const navigate = useNavigate()
 
   const [openSideBar, setOpenSideBar] = useState(false)
-  const [slideSideBar,setSlideSideBar]=useState(false)
+  const [slideSideBar, setSlideSideBar] = useState(false)
 
   const sidebarRef = useRef(null);
 
@@ -28,16 +30,32 @@ const MainLayout = () => {
     };
   }, []);
 
+
+  async function checkSessionStatus() {
+    await axios.post(`${getConfiguredBaseUrl()}/api/user/checksession`, {}, { withCredentials: true }).then((res) => {
+      return
+    }).catch((error) => {
+      if (error?.response?.data?.name === "SessionExpired") {
+        toast.error("Your session has expired. Please login again")
+        navigate("/")
+      }
+    })
+  }
+
+  useEffect(() => {
+    checkSessionStatus()
+  }, [])
+
   return (
     <>
 
       <div className='w-screen h-screen flex flex-row'>
         {
-          slideSideBar===true ? null 
-          : <Sidebar />
+          slideSideBar === true ? null
+            : <Sidebar />
         }
         <div className='flex-1 h-full bg-mainBg'>
-          <GoSidebarCollapse className=' ml-8 mt-2 text-xl hover:cursor-pointer hover:shadow-md text-black absolute' title={slideSideBar?"Show Sidebar":"Collapse Sidebar"} onClick={() => {
+          <GoSidebarCollapse className=' ml-8 mt-2 text-xl hover:cursor-pointer hover:shadow-md text-black absolute' title={slideSideBar ? "Show Sidebar" : "Collapse Sidebar"} onClick={() => {
             setSlideSideBar(!slideSideBar)
           }} />
           <Outlet />

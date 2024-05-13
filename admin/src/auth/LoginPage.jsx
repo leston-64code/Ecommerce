@@ -37,7 +37,7 @@ const Login = () => {
       return toast.error("Password must contain at least one alphabet and one number, and be at least 6 characters long");
     }
     setLoading(true)
-    await axios.post(`${getConfiguredBaseUrl()}/api/user/login`, { email, password }, { withCredentials: true }).then((res) => {
+    await axios.post(`${getConfiguredBaseUrl()}/api/user/adminlogin`, { email, password }, { withCredentials: true }).then((res) => {
       if (res?.data?.success === true) {
         setLoading(false)
         toast.success("Logged in successfully")
@@ -45,7 +45,7 @@ const Login = () => {
       }
     }).catch((error) => {
       setLoading(false)
-      if (error.message === "Network Error" || !error?.response?.data?.type) {
+      if (error?.code === "ERR_NETWORK" || !error?.response?.data?.type) {
         return toast.error("Not able to login at the moment")
       }
       if (error?.response?.data?.type === "manual") {
@@ -54,10 +54,9 @@ const Login = () => {
     })
   };
 
-
   return (
     <>
-      <ParticleContainer />
+
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 relative">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm bg-white">
           <img className="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
@@ -90,7 +89,7 @@ const Login = () => {
             <div>
               <button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 {
-                  loading ? <RiLoader2Line className='text-2xl font-bold animate-spin'/> : "Sign in"
+                  loading ? <RiLoader2Line className='text-2xl font-bold animate-spin' /> : "Sign in"
                 }
               </button>
             </div>
@@ -99,8 +98,17 @@ const Login = () => {
         </div>
       </div>
       <Toaster />
+
     </>
   )
 }
 
-export default Login
+const LoginPage = () => {
+  return (
+    <>
+      <ParticleContainer />
+      <Login />
+    </>
+  );
+}
+export default LoginPage

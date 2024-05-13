@@ -21,7 +21,14 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
         const newUser = await User.create(req.body)
         if (newUser) {
 
-            req.session.userId = newUser._id;
+            let user = {
+                id: newUser._id,
+                email: newUser.email,
+                isEmailVerified: newUser.isEmailVerified,
+                role: newUser.role,
+                isBlocked: newUser.isBlocked
+            }
+            req.session.userData = user;
 
             let randomCode = generateVerificationCode()
 
@@ -46,11 +53,13 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
         } else {
             return next(new ErrorHandler("User could not be created", 400))
         }
-    } else {
+    }
+    else {
         // User already exists
         return next(new ErrorHandler("User already exists", 400))
     }
-})
+}
+)
 
 exports.requestVerificationCode = catchAsyncErrors(async (req, res, next) => {
     let randomCode = generateVerificationCode()
@@ -120,29 +129,30 @@ exports.verifyUserVerificationCode = catchAsyncErrors(async (req, res, next) => 
 exports.adminLogin = catchAsyncErrors(async (req, res, next) => {
     const { email, password } = req.body
     const findUser = await User.findOne({ email }).select("+password")
-    if (findUser.role === "admin") {
+    if (findUser &&findUser.role === "admin") {
         const isMatched = await findUser.isPasswordMatched(password)
 
         if (isMatched) {
 
-            const refreshToken = await generateRefreshToken(findUser._id)
-            const updateUser = await User.findByIdAndUpdate(findUser._id, { refreshToken }, { new: true })
-
-            res.cookie("refreshToken", refreshToken, {
-                httpOnly: true,
-                maxAge: 72 * 60 * 60 * 1000
-            })
-
-            req.session.userId = findUser._id;
+           
+            let user = {
+                id: findUser._id,
+                email: findUser.email,
+                isEmailVerified: findUser.isEmailVerified,
+                role: findUser.role,
+                isBlocked: findUser.isBlocked
+            }
+            req.session.userData = user;
+            
             return res.status(200).json({
                 success: true,
-                token: generateToken(findUser._id)
+                // token: generateToken(findUser._id)
             })
         } else {
-            return next(new ErrorHandler("Please enter valid credentials", 400))
+            return next(new ErrorHandler("Please enter valid credentials", 400,"manual"))
         }
     } else {
-        return next(new ErrorHandler("User not found or not an admin", 404))
+        return next(new ErrorHandler("User not found or not an admin", 404,"manual"))
     }
 })
 
@@ -154,15 +164,21 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 
         if (isMatched) {
 
-            const refreshToken = await generateRefreshToken(findUser._id)
-            const updateUser = await User.findByIdAndUpdate(findUser._id, { refreshToken }, { new: true })
+            // const refreshToken = await generateRefreshToken(findUser._id)
+            // const updateUser = await User.findByIdAndUpdate(findUser._id, { refreshToken }, { new: true })
 
             // res.cookie("refreshToken", refreshToken, {
             //     httpOnly: true,
             //     maxAge: 72 * 60 * 60 * 1000
             // })
-
-            req.session.userId = findUser._id;
+            let user = {
+                id: findUser._id,
+                email: findUser.email,
+                isEmailVerified: findUser.isEmailVerified,
+                role: findUser.role,
+                isBlocked: findUser.isBlocked
+            }
+            req.session.userData = user;
 
             return res.status(200).json({
                 success: true,
@@ -170,10 +186,10 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
             })
 
         } else {
-            return next(new ErrorHandler("Please enter valid credentials", 400,"manual"))
+            return next(new ErrorHandler("Please enter valid credentials", 400, "manual"))
         }
     } else {
-        return next(new ErrorHandler("User not found", 404,"manual"))
+        return next(new ErrorHandler("User not found", 404, "manual"))
     }
 })
 

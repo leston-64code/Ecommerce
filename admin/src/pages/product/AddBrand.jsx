@@ -1,6 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
+import DottedLoader from '../components/dotted loader/DottedLoader';
+import useAxiosPost from '../../hooks/useAxiosPost';
+import toast from 'react-hot-toast';
 
 const AddBrand = () => {
+
+  const [brandName, setBrandName] = useState("")
+  const { loading, postData } = useAxiosPost();
+
+  async function handleSubmit() {
+    if (!brandName.trim()) {
+      return toast.error("Brand name field is required")
+    }
+    if (brandName.trim().length === 1) {
+      return toast.error("Brand name should be minimum of 2 characters")
+    }
+    let response = await postData("/api/brand/createbrand", { title: brandName.trim() });
+    if (response?.success === true) {
+      setBrandName("")
+      toast.success(response?.message)
+    }
+  }
+
+  if (loading) {
+    return <DottedLoader />
+  }
   return (
     <>
       <div className='w-full h-full px-8 pt-8 flex flex-col'>
@@ -13,10 +37,14 @@ const AddBrand = () => {
             </div>
             <div className="mb-5">
               <label htmlFor="title" className="block mb-2 text-sm font-medium ">Enter brand name</label>
-              <input type="text" id="title" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5" required />
+              <input type="text" id="title" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5" required value={brandName} onChange={(e) => {
+                setBrandName(e.target.value)
+              }} />
             </div>
             <div className="mb-5">
-              <button className=" py-2 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white shadow-md hover:shadow-lg">
+              <button className=" py-2 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white shadow-md hover:shadow-lg" onClick={() => {
+                handleSubmit()
+              }}>
                 Submit
               </button>
             </div>

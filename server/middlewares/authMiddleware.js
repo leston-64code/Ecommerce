@@ -32,12 +32,11 @@ const authMiddleware=catchAsyncErrors(async(req,res,next)=>{
 })
 
 const isAdmin=catchAsyncErrors(async(req,res,next)=>{
-    const {email}=req.user
-    const adminUser=await User.findOne({email})
-    if(adminUser.role==="admin"){
+ 
+    if(req.session.userData.role==="admin"){
         next()
     }else{
-        return next(new ErrorHandler("Unauthorized",401))
+        return next(new ErrorHandler("Unauthorized,not an admin",401,"manual"))
     }
 })
 
