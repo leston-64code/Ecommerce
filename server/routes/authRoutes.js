@@ -9,9 +9,9 @@ router.route("/register").post(createUser)
 router.route("/verifyaccount").post(isLoggedIn, verifyUserVerificationCode)
 router.route("/requestverificationcode").post(isLoggedIn, requestVerificationCode)
 router.route("/login").post(loginUser)
-router.route("/checksession").post(isLoggedIn,async(req,res,next)=>{
+router.route("/checksession").post(isLoggedIn, async (req, res, next) => {
     return res.status(200).json({
-        success:true
+        success: true
     })
 })
 router.route("/forgotpasswordtoken").post(forgotPasswordToken)

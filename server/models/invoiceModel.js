@@ -11,15 +11,15 @@ const CustomerDetailsSchema = new mongoose.Schema({
 });
 
 const invoiceItemsSchema = new mongoose.Schema({
-    itemName:{ type: String, required: true},
-    itemQuantity:{ type: Number, required: true},
-    itemPrice:{ type: Number, required: true}
+    itemName: { type: String, required: true },
+    itemQuantity: { type: Number, required: true },
+    itemPrice: { type: Number, required: true }
 });
 
 const invoiceSchema = new mongoose.Schema({
-    customer:{
-        type:CustomerDetailsSchema,
-        required:true
+    customer: {
+        type: CustomerDetailsSchema,
+        required: true
     },
     products: [
         {

@@ -129,12 +129,12 @@ exports.verifyUserVerificationCode = catchAsyncErrors(async (req, res, next) => 
 exports.adminLogin = catchAsyncErrors(async (req, res, next) => {
     const { email, password } = req.body
     const findUser = await User.findOne({ email }).select("+password")
-    if (findUser &&findUser.role === "admin") {
+    if (findUser && findUser.role === "admin") {
         const isMatched = await findUser.isPasswordMatched(password)
 
         if (isMatched) {
 
-           
+
             let user = {
                 id: findUser._id,
                 email: findUser.email,
@@ -143,16 +143,16 @@ exports.adminLogin = catchAsyncErrors(async (req, res, next) => {
                 isBlocked: findUser.isBlocked
             }
             req.session.userData = user;
-            
+
             return res.status(200).json({
                 success: true,
                 // token: generateToken(findUser._id)
             })
         } else {
-            return next(new ErrorHandler("Please enter valid credentials", 400,"manual"))
+            return next(new ErrorHandler("Please enter valid credentials", 400, "manual"))
         }
     } else {
-        return next(new ErrorHandler("User not found or not an admin", 404,"manual"))
+        return next(new ErrorHandler("User not found or not an admin", 404, "manual"))
     }
 })
 

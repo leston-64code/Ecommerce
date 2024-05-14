@@ -6,7 +6,8 @@ const proCategorySchema = new mongoose.Schema({
         required: true,
         unique: true,
         lowercase: true,
-        trim: true
+        trim: true,
+        minLength: 2
     }
 },
     {

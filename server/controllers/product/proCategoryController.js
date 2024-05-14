@@ -3,12 +3,12 @@ const proCategory = require("../../models/proCategoryModel");
 const ErrorHandler = require("../../utils/ErrorHandler");
 
 exports.createCategory = catchAsyncErrors(async (req, res, next) => {
-     
+
      const category = await proCategory.create(req.body)
      if (category != null) {
           return res.status(200).json({
                success: true,
-               message:"Category created"
+               message: "Category created"
           })
      }
 })

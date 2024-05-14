@@ -1,6 +1,33 @@
-import AddNewButton from '../components/AddNewButton'
+import { useState } from 'react';
+import useAxiosPost from '../../hooks/useAxiosPost';
+import toast from 'react-hot-toast';
+import DottedLoader from '../components/dotted loader/DottedLoader';
 
 const AddBlogCategory = () => {
+
+  const [categoryName, setCategoryName] = useState("")
+  const { loading, postData } = useAxiosPost();
+
+  async function handleSubmit() {
+
+    if (!categoryName.trim()) {
+      return toast.error("Category name field is required")
+    }
+
+    if (categoryName.trim().length < 2) {
+      return toast.error("Category name should include atleast 2 characters")
+    }
+
+    let response = await postData("/api/blogcategory/newblogcategory", { title: categoryName.trim() });
+    if (response?.success === true) {
+      setCategoryName("")
+      toast.success(response?.message)
+    }
+  }
+
+  if (loading) {
+    return <DottedLoader />
+  }
   return (
     <>
       <div className='w-full h-full px-8 pt-8 flex flex-col'>
@@ -13,10 +40,10 @@ const AddBlogCategory = () => {
             </div>
             <div className="mb-5">
               <label htmlFor="title" className="block mb-2 text-sm font-medium ">Enter category </label>
-              <input type="text" id="title" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5" required />
+              <input type="text" id="title" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5" required value={categoryName} onChange={(e) => { setCategoryName(e.target.value) }} />
             </div>
             <div className="mb-5">
-              <button className=" py-2 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white shadow-md hover:shadow-lg">
+              <button className=" py-2 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white shadow-md hover:shadow-lg" onClick={() => { handleSubmit() }}>
                 Submit
               </button>
             </div>

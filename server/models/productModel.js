@@ -1,80 +1,80 @@
-const mongoose=require("mongoose")
+const mongoose = require("mongoose")
 
 // New Product Schema
-let productSchema=new mongoose.Schema({
-    title:{
-        type:String,
-        required:[true,"title requeired"],
-        unique:true,
-        trim:true,
+let productSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: [true, "title requeired"],
+        unique: true,
+        trim: true,
     },
-    slug:{
-        type:String,
-        unique:true,
-        required:true,
-        lowercase:true
+    slug: {
+        type: String,
+        unique: true,
+        required: true,
+        lowercase: true
     },
-    description:{
-        type:String,
-        required:true
+    description: {
+        type: String,
+        required: true
     },
-    price:{
-        type:Number,
-        required:true
+    price: {
+        type: Number,
+        required: true
     },
-    category:{
+    category: {
 
-        type:String,
-        required:true
+        type: String,
+        required: true
     },
-    brand:{
-        type:String,
-        required:true
+    brand: {
+        type: String,
+        required: true
     },
-    quantity:{
-        type:Number,
-        required:true
+    quantity: {
+        type: Number,
+        required: true
     },
-    images:[
+    images: [
         {
-            public_id:{
-                type:String
+            public_id: {
+                type: String
             },
-            url:{
-                type:String
+            url: {
+                type: String
             }
         }
     ],
-    color:{
-        type:String,
-        required:true
+    color: {
+        type: String,
+        required: true
     },
-    sold:{
-        type:Number,
-        default:0,
-        select:false
+    sold: {
+        type: Number,
+        default: 0,
+        select: false
     },
-    ratings:[
+    ratings: [
         {
-            star:Number,
-            comment:{
-                type:String
+            star: Number,
+            comment: {
+                type: String
             },
-            postedBy:{
-                type:mongoose.SchemaTypes.ObjectId,
-                ref:"User"
+            postedBy: {
+                type: mongoose.SchemaTypes.ObjectId,
+                ref: "User"
             }
         }
     ],
-    totalRatings:{
-        type:Number,
-        default:0
+    totalRatings: {
+        type: Number,
+        default: 0
     }
 },
     {
-        timestamps:true
+        timestamps: true
     }
 )
 
 
-module.exports=mongoose.model("Product",productSchema)
+module.exports = mongoose.model("Product", productSchema)

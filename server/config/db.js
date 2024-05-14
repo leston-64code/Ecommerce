@@ -1,10 +1,10 @@
-const mongoose=require("mongoose")
+const mongoose = require("mongoose")
 
-const connectDB=()=>{
+const connectDB = () => {
     try {
-        mongoose.connect(process.env.MONGO_URI).then(()=>{
+        mongoose.connect(process.env.MONGO_URI).then(() => {
             console.log("Connected to DB")
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(error)
         })
     } catch (error) {
@@ -12,4 +12,4 @@ const connectDB=()=>{
     }
 }
 
-module.exports=connectDB
+module.exports = connectDB

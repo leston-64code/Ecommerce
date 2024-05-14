@@ -1,47 +1,47 @@
 const catchAsyncErrors = require("../../middlewares/catchAsyncErrors")
-const Product=require("../../models/productModel")
+const Product = require("../../models/productModel")
 const ErrorHandler = require("../../utils/ErrorHandler")
-const slugify=require("slugify")
-const User=require("../../models/userModel")
-const path=require("path")
-const fs=require("fs")
+const slugify = require("slugify")
+const User = require("../../models/userModel")
+const path = require("path")
+const fs = require("fs")
 
 
-exports.createProduct=catchAsyncErrors(async(req,res,next)=>{
-    if(req.body.title){
-        req.body.slug=slugify(req.body.title)
+exports.createProduct = catchAsyncErrors(async (req, res, next) => {
+    if (req.body.title) {
+        req.body.slug = slugify(req.body.title)
     }
-    const newProduct=await Product.create(req.body)
-    if(newProduct){
+    const newProduct = await Product.create(req.body)
+    if (newProduct) {
         return res.status(200).json({
-            success:true,
+            success: true,
             newProduct
         })
-    }else{
-        return next(new ErrorHandler("Product could not be created",400))
+    } else {
+        return next(new ErrorHandler("Product could not be created", 400))
     }
 })
 
-exports.getProduct=catchAsyncErrors(async(req,res,next)=>{
-    const {id}=req.params
-    const findProduct=await Product.findById(id)
-    if(findProduct){
+exports.getProduct = catchAsyncErrors(async (req, res, next) => {
+    const { id } = req.params
+    const findProduct = await Product.findById(id)
+    if (findProduct) {
         return res.status(200).json({
-            success:true,
+            success: true,
             findProduct
         })
-    }else{
-        return next(new ErrorHandler("Could not find product",400))
+    } else {
+        return next(new ErrorHandler("Could not find product", 400))
     }
 })
 
-exports.getAllProducts=catchAsyncErrors(async(req,res,next)=>{
+exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
     // *************************            FILTERING              ***************************
 
     // The fist section what it does is it will remove the 4 fields from the req.query objects duplicate only that much work is done in first para
-    const queryObj={...req.query}
-    const excludeFields=["page","sort","fields","limit"]
-    excludeFields.forEach((ele,index)=>{
+    const queryObj = { ...req.query }
+    const excludeFields = ["page", "sort", "fields", "limit"]
+    excludeFields.forEach((ele, index) => {
         delete queryObj[ele]
     })
     // console.log(queryObj,req.query)
@@ -50,9 +50,9 @@ exports.getAllProducts=catchAsyncErrors(async(req,res,next)=>{
     // ***************************************************************
     // Here in this para we convert the queryOjb into a string so that we can replace the gte lt lte gt with a dollar sign because mongodb requries dollar sign before these type of queries 
     // and later while sending the req to get all products we convert the json string back to json object
-    let queryStr=JSON.stringify(queryObj)
+    let queryStr = JSON.stringify(queryObj)
     // console.log(queryStr)
-    queryStr=queryStr.replace(/\b(gte|gt|lte|lt)\b/g,(match)=>`$${match}`)
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`)
     // console.log(queryStr)
     // console.log(JSON.parse(queryStr))
 
@@ -61,10 +61,10 @@ exports.getAllProducts=catchAsyncErrors(async(req,res,next)=>{
     // **********************        SORTING      *************************
     // Sorting is working now we need to call that on the request that we send to mongodb
     let sortBy
-    if(req.query.sort){
-        sortBy=req.query.sort.split(",").join(" ")
+    if (req.query.sort) {
+        sortBy = req.query.sort.split(",").join(" ")
         // console.log(sortBy)
-    }else{
+    } else {
         // products=products.sort("-createdAt")
     }
 
@@ -72,166 +72,166 @@ exports.getAllProducts=catchAsyncErrors(async(req,res,next)=>{
 
     //***********************  LIMITING THE FIELDS    ********************
     let fields
-    if(req.query.fields){
+    if (req.query.fields) {
         // console.log(req.query.fields)
-        fields=req.query.fields.split(",").join(" ")
+        fields = req.query.fields.split(",").join(" ")
         // console.log(fields)
-    }else{
-        fields="-__v"
+    } else {
+        fields = "-__v"
     }
 
 
-// *************        PAGINATION *******************
-    const page=req.query.page
-    const limit=req.query.limit
-    const skip=(page-1)*limit
+    // *************        PAGINATION *******************
+    const page = req.query.page
+    const limit = req.query.limit
+    const skip = (page - 1) * limit
     // console.log(page,limit,skip)
 
 
 
-    let products=await Product.find(JSON.parse(queryStr)).select(fields).sort(sortBy).skip(skip).limit(limit)
-    const productsCount=products.length
+    let products = await Product.find(JSON.parse(queryStr)).select(fields).sort(sortBy).skip(skip).limit(limit)
+    const productsCount = products.length
 
-    if(products){
+    if (products) {
         return res.status(200).json({
-            success:true,
+            success: true,
             productsCount,
             products
         })
-    }else{
-        return next(new ErrorHandler("Could not find products",400))
+    } else {
+        return next(new ErrorHandler("Could not find products", 400))
     }
 })
 
-exports.updateProduct=catchAsyncErrors(async(req,res,next)=>{
-    const {id}=req.params
-    if(req.body.title){
-        req.body.slug=slugify(req.body.title)
+exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
+    const { id } = req.params
+    if (req.body.title) {
+        req.body.slug = slugify(req.body.title)
     }
-    const updateProduct=await Product.findOneAndUpdate({id},req.body,{new:true})
-    if(updateProduct){
+    const updateProduct = await Product.findOneAndUpdate({ id }, req.body, { new: true })
+    if (updateProduct) {
         return res.status(200).json({
-            success:true,
+            success: true,
             updateProduct
         })
-    }else{
-        return next(new ErrorHandler("Could not be updated",400))
+    } else {
+        return next(new ErrorHandler("Could not be updated", 400))
     }
-    
+
 })
 
-exports.deleteProduct=catchAsyncErrors(async(req,res,next)=>{
-    const {id}=req.params
-    const product=await Product.findById(id)
+exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
+    const { id } = req.params
+    const product = await Product.findById(id)
 
-    for(let i=0;i<product.images.length;i++){
-        let ele=product.images[i]
-        await cloudinary.uploader.destroy(ele.public_id,{resource_type:"image"}).then((res)=>{
+    for (let i = 0; i < product.images.length; i++) {
+        let ele = product.images[i]
+        await cloudinary.uploader.destroy(ele.public_id, { resource_type: "image" }).then((res) => {
             console.log(res)
-        }).catch((error)=>{
+        }).catch((error) => {
             return next(error)
         })
     }
 
-    const deletedProduct=await product.remove()
-    
-    if(deletedProduct){
+    const deletedProduct = await product.remove()
+
+    if (deletedProduct) {
         return res.status(200).json({
-            success:true,
+            success: true,
             deletedProduct
         })
-    }else{
-        return next(new ErrorHandler("Could not be deleted",400))
+    } else {
+        return next(new ErrorHandler("Could not be deleted", 400))
     }
-    
+
 })
 
-exports.deleteProductImage=catchAsyncErrors(async(req,res,next)=>{
-    const {public_id}=req.query
-    const productID=req.params.id
-    const product=await Product.findById(productID)
-    const newImgs=[]
-    for(let i=0;i<product.images.length;i++){
-        let ele=product.images[i]
-        if(ele.public_id!=public_id){
+exports.deleteProductImage = catchAsyncErrors(async (req, res, next) => {
+    const { public_id } = req.query
+    const productID = req.params.id
+    const product = await Product.findById(productID)
+    const newImgs = []
+    for (let i = 0; i < product.images.length; i++) {
+        let ele = product.images[i]
+        if (ele.public_id != public_id) {
             newImgs.push(ele)
-        }else{
-            await cloudinary.uploader.destroy(public_id,{resource_type:"image"}).then((res)=>{
+        } else {
+            await cloudinary.uploader.destroy(public_id, { resource_type: "image" }).then((res) => {
                 console.log(res)
-            }).catch((error)=>{
+            }).catch((error) => {
                 return next(error)
             })
         }
     }
 
-  try {
+    try {
 
-    product.images=newImgs
-    await product.save()
+        product.images = newImgs
+        await product.save()
 
-  } catch (error) {
-    return next(error)
-  }
+    } catch (error) {
+        return next(error)
+    }
 
-  return res.status(200).json({
-    success:true,
-    msg:"Image deleted successfully"
-  })
+    return res.status(200).json({
+        success: true,
+        msg: "Image deleted successfully"
+    })
 
 })
 
-exports.addToWishlist=catchAsyncErrors(async(req,res,next)=>{
-    const userID=req.user._id
-    const {productID}=req.body
+exports.addToWishlist = catchAsyncErrors(async (req, res, next) => {
+    const userID = req.user._id
+    const { productID } = req.body
 
-    const user=await User.findById(userID)
-    const alreadyAdded=user.wishList.find((id)=>{
-        return id.toString()===productID.toString()
+    const user = await User.findById(userID)
+    const alreadyAdded = user.wishList.find((id) => {
+        return id.toString() === productID.toString()
     })
-    
-    if(alreadyAdded){
+
+    if (alreadyAdded) {
         // if already added then we need to remove
 
-        const upUser=await User.findByIdAndUpdate(userID,{
-            $pull:{wishList:productID}
-        },{
-            new:true
+        const upUser = await User.findByIdAndUpdate(userID, {
+            $pull: { wishList: productID }
+        }, {
+            new: true
         })
 
-        if(upUser){
-            return res.status(200).json({success:true,msg:"Removed from wishlist"})
+        if (upUser) {
+            return res.status(200).json({ success: true, msg: "Removed from wishlist" })
         }
 
-    }else{
+    } else {
         // else we need to remove
-        const upUser=await User.findByIdAndUpdate(userID,{
-            $push:{wishList:productID}
-        },{
-            new:true
+        const upUser = await User.findByIdAndUpdate(userID, {
+            $push: { wishList: productID }
+        }, {
+            new: true
         })
 
-        if(upUser){
-            return res.status(200).json({success:true,msg:"Added to wishlist"})
+        if (upUser) {
+            return res.status(200).json({ success: true, msg: "Added to wishlist" })
         }
     }
 })
 
-exports.rating=catchAsyncErrors(async(req,res,next)=>{
-    const userID=req.user._id
-    const {star,productID,comment}=req.body
+exports.rating = catchAsyncErrors(async (req, res, next) => {
+    const userID = req.user._id
+    const { star, productID, comment } = req.body
 
-    const product=await Product.findById(productID)
-    let alreadyRated=product.ratings.find((ele)=>{
-        return ele.postedBy.toString()===userID.toString()
+    const product = await Product.findById(productID)
+    let alreadyRated = product.ratings.find((ele) => {
+        return ele.postedBy.toString() === userID.toString()
     })
     console.log(alreadyRated)
-    if(alreadyRated){
+    if (alreadyRated) {
 
-        const updateRating=await Product.updateOne({
-            ratings:{$elemMatch:alreadyRated}
-        },{
-            $set:{"ratings.$.star":star,"ratings.$.comment":comment}
-        },{new:true})
+        const updateRating = await Product.updateOne({
+            ratings: { $elemMatch: alreadyRated }
+        }, {
+            $set: { "ratings.$.star": star, "ratings.$.comment": comment }
+        }, { new: true })
 
         // Below my one is not working
         // const updateRating=await Product.updateOne({ratings:{$eq:{alreadyRated}}},{
@@ -242,16 +242,16 @@ exports.rating=catchAsyncErrors(async(req,res,next)=>{
         //     return res.status(200).json({success:true,updateRating})
         // }
 
-    }else{
-        const rateProduct=await Product.findByIdAndUpdate(productID,{
-            $push:{
-                ratings:{
-                    star:star,
+    } else {
+        const rateProduct = await Product.findByIdAndUpdate(productID, {
+            $push: {
+                ratings: {
+                    star: star,
                     comment,
-                    postedBy:userID
+                    postedBy: userID
                 }
             }
-        },{new:true})
+        }, { new: true })
 
         // if(rateProduct){
         //     return res.status(200).json({success:true,rateProduct})
@@ -259,65 +259,65 @@ exports.rating=catchAsyncErrors(async(req,res,next)=>{
 
     }
 
-    const getAllRating=await Product.findById(productID)
+    const getAllRating = await Product.findById(productID)
 
-    let totalRating=getAllRating.ratings.length
+    let totalRating = getAllRating.ratings.length
     // Storing all the stars in an array
-    let ratingArray=getAllRating.ratings.map((ele,index)=>{
+    let ratingArray = getAllRating.ratings.map((ele, index) => {
         return ele.star
     })
     // Adding all the stars
-    let totalSum=ratingArray.reduce((prev,current)=>{
-        return prev+current
+    let totalSum = ratingArray.reduce((prev, current) => {
+        return prev + current
     })
- 
+
     // Calculating the average by dividing the sum with total number of ratings
-    let actualRating=Math.round(totalSum/totalRating)
+    let actualRating = Math.round(totalSum / totalRating)
 
     // Updating the doucment
-    let updatedProduct=await Product.findByIdAndUpdate(productID,{
-        totalRatings:actualRating
-    },{new:true})
+    let updatedProduct = await Product.findByIdAndUpdate(productID, {
+        totalRatings: actualRating
+    }, { new: true })
 
-    if(updatedProduct!=null){
-        return res.status(200).json({success:true,updatedProduct})
+    if (updatedProduct != null) {
+        return res.status(200).json({ success: true, updatedProduct })
     }
 
 })
 
-exports.uploadImages=catchAsyncErrors(async(req,res,next)=>{
+exports.uploadImages = catchAsyncErrors(async (req, res, next) => {
     // console.log(req.files)
 
-    const id=req.params.id
-    const product=await Product.findById(id)
-    let imgUrlData=[]
-    
+    const id = req.params.id
+    const product = await Product.findById(id)
+    let imgUrlData = []
+
     try {
 
-        for(let i=0;i<req.files.length;i++){
-            let ele=req.files[i]
-            let name=ele.filename
-            let imagepath=path.join(req.files[0].destination,"products",name)
-            
-            let cloudRes=await cloudinary.uploader.upload(imagepath,{resource_type:"image"})
-            
+        for (let i = 0; i < req.files.length; i++) {
+            let ele = req.files[i]
+            let name = ele.filename
+            let imagepath = path.join(req.files[0].destination, "products", name)
+
+            let cloudRes = await cloudinary.uploader.upload(imagepath, { resource_type: "image" })
+
             imgUrlData.push({
-                public_id:cloudRes.public_id,
-                url:cloudRes.secure_url
+                public_id: cloudRes.public_id,
+                url: cloudRes.secure_url
             })
-    
+
             fs.unlinkSync(ele.path)
             fs.unlinkSync(imagepath)
         }
-        
-        product.images=imgUrlData
+
+        product.images = imgUrlData
         await product.save()
-    
+
     } catch (error) {
         return next(error)
     }
     return res.status(200).json({
-        success:true,
-        msg:"Images added successfully"
+        success: true,
+        msg: "Images added successfully"
     })
 })
