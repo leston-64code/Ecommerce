@@ -1,20 +1,10 @@
 import React from 'react'
-import AddNewButton from '../components/AddNewButton'
-import useGetData from '../../hooks/useGetData'
 import ContentLoader from '../contentLoader/ContentLoader'
-import Error from '../components/Error'
+
 
 const ColorList = () => {
 
-  const { data, isLoading, error } = useGetData("colors", "/color/getallcolors")
-
-  if (isLoading) {
-    return <ContentLoader />
-  }
-
-  if (error) {
-    return <Error />
-  }
+ 
 
   return (
     <>

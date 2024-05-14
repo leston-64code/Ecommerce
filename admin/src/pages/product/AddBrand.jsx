@@ -2,8 +2,12 @@ import React, { useState } from 'react'
 import DottedLoader from '../components/dotted loader/DottedLoader';
 import useAxiosPost from '../../hooks/useAxiosPost';
 import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { addBrand } from '../../redux/reducers/brand/brandSlice';
 
 const AddBrand = () => {
+
+  const dispatch = useDispatch()
 
   const [brandName, setBrandName] = useState("")
   const { loading, postData } = useAxiosPost();
@@ -19,6 +23,7 @@ const AddBrand = () => {
     if (response?.success === true) {
       setBrandName("")
       toast.success(response?.message)
+      dispatch(addBrand(response?.brand))
     }
   }
 

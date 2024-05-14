@@ -7,8 +7,8 @@ exports.createBrand = catchAsyncErrors(async (req, res, next) => {
      if (brand != null) {
           return res.status(200).json({
                success: true,
-               message: "Brand added successfully"
-               //   brand
+               message: "Brand added successfully",
+               brand
           })
      }
 })

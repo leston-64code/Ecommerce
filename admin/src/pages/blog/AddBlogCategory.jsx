@@ -2,11 +2,15 @@ import { useState } from 'react';
 import useAxiosPost from '../../hooks/useAxiosPost';
 import toast from 'react-hot-toast';
 import DottedLoader from '../components/dotted loader/DottedLoader';
+import { useDispatch } from 'react-redux';
+import { addBlogCategory } from '../../redux/reducers/blogCategorySlice';
 
 const AddBlogCategory = () => {
 
   const [categoryName, setCategoryName] = useState("")
   const { loading, postData } = useAxiosPost();
+
+  const dispatch=useDispatch()
 
   async function handleSubmit() {
 
@@ -20,6 +24,7 @@ const AddBlogCategory = () => {
 
     let response = await postData("/api/blogcategory/newblogcategory", { title: categoryName.trim() });
     if (response?.success === true) {
+      dispatch(addBlogCategory(response?.category))
       setCategoryName("")
       toast.success(response?.message)
     }

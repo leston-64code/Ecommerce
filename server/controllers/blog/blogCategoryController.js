@@ -7,8 +7,8 @@ exports.createCategory = catchAsyncErrors(async (req, res, next) => {
      if (category != null) {
           return res.status(200).json({
                success: true,
-               message: "Blog category created"
-               // category
+               message: "Blog category created",
+               category
           })
      }
 })

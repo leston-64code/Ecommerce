@@ -1,24 +1,14 @@
 import { useState } from "react"
 import AddCoupon from "./AddCoupon.jsx"
 import { IoMdAddCircle } from "react-icons/io"
-import useGetData from "../../hooks/useGetData.js"
 import ContentLoader from "../contentLoader/ContentLoader.jsx"
-import Error from "../components/Error.jsx"
+
 
 
 const Coupons = () => {
 
     const [openModal, setOpenModal] = useState(false)
 
-    const { data, isLoading, error } = useGetData("coupons", "/coupon/getallcoupons")
-
-    if (isLoading) {
-        return <ContentLoader />
-    }
-
-    if (error) {
-        return <Error />
-    }
 
     return (
         <>

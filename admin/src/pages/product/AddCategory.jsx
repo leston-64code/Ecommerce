@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import useAxiosPost from '../../hooks/useAxiosPost'
 import DottedLoader from '../components/dotted loader/DottedLoader'
 import toast from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
+import { addProductCategory } from '../../redux/reducers/product/productCategorySlice'
 
 const AddCategory = () => {
 
+  const dispatch = useDispatch()
   const [categoryName, setCategoryName] = useState("")
   const { loading, postData } = useAxiosPost();
 
@@ -14,6 +17,7 @@ const AddCategory = () => {
     }
     let response = await postData("/api/productcategory/newcategory", { title: categoryName.trim() });
     if (response?.success === true) {
+      dispatch(addProductCategory(response?.category))
       setCategoryName("")
       toast.success(response?.message)
     }

@@ -1,18 +1,32 @@
-import React from 'react'
-import useGetData from '../../hooks/useGetData'
+import React, { useEffect } from 'react'
 import ContentLoader from '../contentLoader/ContentLoader'
-import Error from '../components/Error'
+import { setCategories, setIsLoaded } from '../../redux/reducers/product/productCategorySlice';
+import useAxiosGet from '../../hooks/useAxiosGet';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const CategoryList = () => {
 
-  const { data, isLoading, error } = useGetData("productCategories", "/productcategory/getallprocategories")
+  const dispatch = useDispatch();
+  const { categories, isLoaded } = useSelector(state => state.productCategory);
+  const { loading, getData } = useAxiosGet();
 
-  if (isLoading) {
-    return <ContentLoader />
+  async function fetchProductCategories() {
+    const response = await getData('/api/productcategory/getallprocategories');
+    if (response?.success === true) {
+      dispatch(setCategories(response?.categories));
+      dispatch(setIsLoaded(true));
+    }
   }
 
-  if (error) {
-    return <Error />
+  useEffect(() => {
+    if (!isLoaded) {
+      fetchProductCategories()
+    }
+  }, [])
+
+  if (loading) {
+    return <ContentLoader />
   }
 
   return (
@@ -32,15 +46,21 @@ const CategoryList = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white border-b hover:bg-gray-50">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                  Apple MacBook Pro 17"
-                </th>
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  <a href="" className="font-medium text-blue-600 hover:underline">Edit</a>
-                </th>
-
-              </tr>
+              {
+                categories?.map((ele, index) => {
+                  return <tr className="bg-white border-b hover:bg-gray-50" key={index}>
+                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                      {index + 1}
+                    </th>
+                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                      {ele?.title?.toUpperCase()}
+                    </th>
+                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      <a href="" className="font-medium text-blue-600 hover:underline">Edit</a>
+                    </th>
+                  </tr>
+                })
+              }
 
             </tbody>
           </table>
