@@ -6,6 +6,7 @@ import Sidebar from './sidebar/Sidebar';
 import toast, { Toaster } from 'react-hot-toast';
 import { getConfiguredBaseUrl } from '../helpers/helper';
 import axios from 'axios';
+import MobileSideBar from './sidebar/MobileSideBar';
 
 const MainLayout = () => {
 
@@ -13,6 +14,7 @@ const MainLayout = () => {
 
   const [openSideBar, setOpenSideBar] = useState(false)
   const [slideSideBar, setSlideSideBar] = useState(false)
+  const [mobileSidebarVisible, setMobileSidebarVisible] = useState(true)
 
   const sidebarRef = useRef(null);
 
@@ -52,11 +54,18 @@ const MainLayout = () => {
       <div className='w-screen h-screen flex flex-row'>
         {
           slideSideBar === true ? null
-            : <Sidebar />
+            :
+            <Sidebar />
+        }
+        {
+          mobileSidebarVisible === true ? <MobileSideBar mobileSidebarVisible={mobileSidebarVisible} setMobileSidebarVisible={setMobileSidebarVisible} />
+            : null
+
         }
         <div className='flex-1 h-full bg-mainBg'>
-          <GoSidebarCollapse className=' ml-8 mt-2 text-xl hover:cursor-pointer hover:shadow-md text-black absolute' title={slideSideBar ? "Show Sidebar" : "Collapse Sidebar"} onClick={() => {
-            setSlideSideBar(!slideSideBar)
+          <GoSidebarCollapse className=' md:ml-8 ml-4 mt-2 text-xl hover:cursor-pointer hover:shadow-md text-black absolute' title={slideSideBar ? "Show Sidebar" : "Collapse Sidebar"} onClick={() => {
+            setSlideSideBar(!slideSideBar);
+            setMobileSidebarVisible(!mobileSidebarVisible);
           }} />
           <Outlet />
         </div>

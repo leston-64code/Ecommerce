@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { data } from './data'
 import { useNavigate } from 'react-router-dom'
 
-const Sidebar = () => {
+const MobileSideBar = ({ setMobileSidebarVisible, mobileSidebarVisible }) => {
 
     const navigate = useNavigate()
-
+    const sidebarRef = useRef(null);
 
     const [expandedIndex, setExpandedIndex] = useState(null);
 
@@ -14,15 +14,41 @@ const Sidebar = () => {
             setExpandedIndex(expandedIndex === index ? null : index);
             if (url) {
                 navigate(url);
+
             }
         } else {
+            setMobileSidebarVisible(false)
             navigate(url);
+
         }
     };
 
+    const handleClickOutside = (event) => {
+        if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+            setMobileSidebarVisible(false);
+        }
+    };
+
+    useEffect(() => {
+        if (mobileSidebarVisible) {
+            document.addEventListener('mousedown', handleClickOutside);
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+
+        // Cleanup the event listener on component unmount
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [mobileSidebarVisible]);
+
+    // if (!mobileSidebarVisible) {
+    //     return null
+    // }
+
     return (
         <>
-            <div className='w-[17%] hidden h-full bg-sideBgColor text-white md:flex flex-col overflow-auto '>
+            <div ref={sidebarRef} className='absolute md:relative z-10 w-[70%] md:hidden h-full bg-sideBgColor text-white flex flex-col overflow-auto '>
                 {
                     data?.map((ele, index) => {
                         return <React.Fragment key={index}>
@@ -37,7 +63,12 @@ const Sidebar = () => {
                                     <div
                                         key={subindex}
                                         className='py-4 pl-14 border-b-[1px] border-gray-500 flex flex-row justify-left items-center hover:cursor-pointer hover:bg-white hover:text-sideHoverTextColor bg-sideSubBgColor'
-                                        onClick={() => navigate(subele.url)}
+                                        onClick={() => {
+                                            setMobileSidebarVisible(false)
+                                            navigate(subele.url);
+
+                                        }
+                                        }
                                     >
                                         {subele.icon}
                                         <p className='ml-5'>{subele.name}</p>
@@ -51,4 +82,4 @@ const Sidebar = () => {
     )
 }
 
-export default Sidebar
+export default MobileSideBar

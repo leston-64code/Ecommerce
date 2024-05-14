@@ -14,7 +14,7 @@ const Coupons = () => {
         <>
             <div className='w-full h-full px-8 pt-8'>
                 <p className='uppercase font-semibold text-xl'>Coupons</p>
-                {/* <div className="relative"> */}
+
                 {
                     openModal === false ?
                         <>
@@ -53,9 +53,12 @@ const Coupons = () => {
                         </>
 
                         :
-                        <AddCoupon setOpenModal={setOpenModal} />
+                        <div className="relative overflow-x-auto w-full mt-3 flex justify-center items-center">
+                            <AddCoupon setOpenModal={setOpenModal} />
+                        </div >
+
                 }
-                {/* </div> */}
+
 
 
             </div>

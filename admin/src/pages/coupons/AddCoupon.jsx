@@ -16,7 +16,7 @@ const AddCoupon = ({ setOpenModal }) => {
 
     return (
         <>
-            <div className='w-[35%] shadow-lg px-6 py-4 border-gray-200 border-[1px] rounded-xl absolute left-1/3 top-1/5'>
+            <div className='md:w-[35%] w-[99%] shadow-lg px-6 py-4 border-gray-200 border-[1px] rounded-xl'>
                 <div className='flex flex-row items-center justify-between mb-5'>
                     <p className='text-2xl flex flex-row items-center'><MdLocalOffer className='inline-block text-sm' />Create Coupon</p>
                     <IoClose onClick={() => { setOpenModal(false) }} />

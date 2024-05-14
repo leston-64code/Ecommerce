@@ -32,11 +32,11 @@ const AddBrand = () => {
   }
   return (
     <>
-      <div className='w-full h-full px-8 pt-8 flex flex-col'>
+      <div className='w-full h-full md:px-8 px-4 py-8 flex flex-col'>
         <p className='uppercase font-semibold text-xl'>Add Brand</p>
 
-        <div className='w-full flex-1 relative overflow-auto'>
-          <div className='w-[35%] shadow-lg px-6 py-4 border-gray-200 border-[1px] rounded-xl absolute left-1/3 top-1/4'>
+        <div className='w-full flex-1 relative overflow-auto flex justify-center items-center'>
+          <div className='md:w-[35%] w-[98%] shadow-lg px-6 py-4 border-gray-200 border-[1px] rounded-xl'>
             <div className='flex flex-row items-center justify-between mb-5'>
               <p className='text-2xl flex flex-row items-center'>Add Brand</p>
             </div>
