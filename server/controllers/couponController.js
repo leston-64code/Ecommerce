@@ -6,7 +6,7 @@ const ErrorHandler = require("../utils/ErrorHandler")
 exports.createCoupon = catchAsyncErrors(async (req, res, next) => {
     const newCoupon = await Coupon.create(req.body)
     if (newCoupon != null) {
-        return res.status(200).json({ success: true, newCoupon })
+        return res.status(200).json({ success: true, message: "Coupon created successfully", newCoupon })
     }
 })
 

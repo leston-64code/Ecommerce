@@ -14,7 +14,7 @@ const MainLayout = () => {
 
   const [openSideBar, setOpenSideBar] = useState(false)
   const [slideSideBar, setSlideSideBar] = useState(false)
-  const [mobileSidebarVisible, setMobileSidebarVisible] = useState(true)
+  const [mobileSidebarVisible, setMobileSidebarVisible] = useState(false)
 
   const sidebarRef = useRef(null);
 
