@@ -9,27 +9,27 @@ const OrdersList = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: 'SL No',
+        header: 'SL No',
         accessorKey: 'sl_no',
       },
       {
-        Header: 'Ord Date',
+        header: 'Ord Date',
         accessorKey: 'ord_date',
       },
       {
-        Header: 'Status',
+        header: 'Status',
         accessorKey: 'status',
       },
       {
-        Header: 'Total Amount',
+        header: 'Total Amount',
         accessorKey: 'total_amount',
       },
       {
-        Header: 'Products Count',
+        header: 'Products Count',
         accessorKey: 'count',
       },
       {
-        Header: 'Action',
+        header: 'Action',
         accessorKey: 'action',
         Cell: () => (
           <div className="flex justify-end">

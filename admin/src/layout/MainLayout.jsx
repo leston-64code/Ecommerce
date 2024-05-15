@@ -38,7 +38,13 @@ const MainLayout = () => {
       return
     }).catch((error) => {
       if (error?.response?.data?.name === "SessionExpired") {
-        toast.error("Your session has expired. Please login again")
+        toast.error("Your session has expired. Please login again.")
+        navigate("/")
+      } else if (error?.code === "ERR_NETWORK") {
+        toast.error("Server not reachable at the moment.")
+        navigate("/")
+      } else {
+        toast.error(error?.message)
         navigate("/")
       }
     })

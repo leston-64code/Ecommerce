@@ -25,8 +25,9 @@ const useAxiosGet = () => {
             } else if (error?.response?.data?.name === 'SessionExpired') {
                 toast.error('Your session has expired. Please login again');
                 return;
+            } else {
+                toast.error(error?.response?.data?.message);
             }
-            toast.error(error?.response?.data?.message);
         }
     };
 
