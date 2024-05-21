@@ -8,6 +8,7 @@ import { getConfiguredBaseUrl } from '../helpers/helper';
 import axios from 'axios';
 import MobileSideBar from './sidebar/MobileSideBar';
 
+
 const MainLayout = () => {
 
   const navigate = useNavigate()
@@ -51,7 +52,7 @@ const MainLayout = () => {
   }
 
   useEffect(() => {
-    checkSessionStatus()
+    // checkSessionStatus()
   }, [])
 
   return (
@@ -68,7 +69,7 @@ const MainLayout = () => {
             : null
 
         }
-        <div className='flex-1 h-full bg-mainBg'>
+        <div className='flex-1 h-full bg-mainBg relative'>
           <GoSidebarCollapse className=' md:ml-8 ml-4 mt-2 text-xl hover:cursor-pointer hover:shadow-md text-black absolute' title={slideSideBar ? "Show Sidebar" : "Collapse Sidebar"} onClick={() => {
             setSlideSideBar(!slideSideBar);
             setMobileSidebarVisible(!mobileSidebarVisible);
