@@ -53,13 +53,77 @@ exports.getOneBrand = catchAsyncErrors(async (req, res, next) => {
 })
 
 exports.getAllBrands = catchAsyncErrors(async (req, res, next) => {
-     const brands = await Brand.find()
-     const brandsCount = await Brand.countDocuments()
+
+     console.log(req.query)
+
+     const { filter = {}, range = [0, 2], limit = 3, page = 1, sort = ["createdAt", "ASC"] } = req.query
+
+     // const parsedFilter = JSON.parse(filter);
+     // const parsedRange = JSON.parse(range);
+     // const parsedSort = JSON.parse(sort);
+     // console.log(parsedFilter, parsedRange, parsedSort)
+
+     let query = {}
+
+     // if (parsedFilter.title) {
+     //      query.title = { '$regex': parsedFilter.title, '$options': "i" }
+     // }
+     // console.log("hello")
+     // if (parsedFilter.createdAt_gte || parsedFilter.createdAt_lte) {
+     //      query.createdAt = {}
+     //      if (parsedFilter.createdAt_gte) {
+     //           query.createdAt.$gte = new Date(parsedFilter.createdAt_gte)
+     //      }
+     //      if (parsedFilter.createdAt_lte) {
+     //           query.createdAt.$lte = new Date(parsedFilter.createdAt_lte)
+     //      }
+     // }
+     if (filter.title) {
+          query.title = { '$regex': filter.title, '$options': "i" }
+     }
+
+     if (filter.createdAt_gte || filter.createdAt_lte) {
+          query.createdAt = {}
+          if (filter.createdAt_gte) {
+               query.createdAt.$gte = new Date(filter.createdAt_gte)
+          }
+          if (filter.createdAt_lte) {
+               query.createdAt.$lte = new Date(filter.createdAt_lte)
+          }
+     }
+
+     let startIndex = (parseInt(page) - 1) * limit
+     const brands = await Brand.find(query).skip(startIndex).limit(limit)
+     const brandsCount = await Brand.countDocuments(query)
+
+     let pageStats = {
+          totalRecords: null,
+          totalPages: null,
+          nextPage: null,
+          previousPage: null,
+          currentPage: parseInt(page)
+     }
+
+     pageStats.totalRecords = brandsCount
+
+     let totalPages = Math.ceil(brandsCount / limit)
+     pageStats.totalPages = totalPages
+
+     let currentPage = parseInt(page)
+     console.log(currentPage)
+     if (currentPage != totalPages) {
+          pageStats.nextPage = currentPage + 1;
+     }
+     if (currentPage != 1) {
+          pageStats.previousPage = currentPage - 1;
+     }
+
      if (brands != null) {
           return res.status(200).json({
                success: true,
                brandsCount,
-               brands
+               brands,
+               pageStats
           })
      } else {
           return next(new ErrorHandler("There was some issue", 400))

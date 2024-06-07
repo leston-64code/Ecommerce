@@ -14,6 +14,7 @@ import { IoIosSearch } from "react-icons/io";
 import { IoFilter } from "react-icons/io5";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import { FiMinusCircle } from "react-icons/fi";
+import Pagination from '../components/pagination component/Pagination';
 // import Menu, { SubMenu, MenuItem } from 'rc-menu';
 
 const BrandList = () => {
@@ -27,13 +28,52 @@ const BrandList = () => {
   const [showCreatedBefore, setShowCreatedBefore] = useState(false)
   const [showCreatedAfter, setShowCreatedAfter] = useState(false)
 
+  const [pageStats, setPageStats] = useState(null)
+  const [searchInput, setSearchInput] = useState("")
+  const [createdBefore, setCreatedBefore] = useState("")
+  const [createdAfter, setCreatedAfter] = useState("")
+  const [range, setRange] = useState("")
+  const [sort, setSort] = useState("")
+
+  let params = {
+    filter: {},
+    range: {},
+    sort: {},
+    page: 1
+  }
+
+  if (searchInput) {
+    params.filter["title"] = searchInput.trim().toLowerCase()
+  }
+  if (createdAfter) {
+    params.filter["createdAt_gte"] = createdAfter
+  }
+  if (createdBefore) {
+    params.filter["createdAt_lte"] = createdBefore
+  }
+
+  if (range) {
+    params.range = range
+  } else {
+    params.range = [0, 2]
+  }
+
+  if (sort) {
+    params.sort = sort
+  }
 
   const { brands, isLoaded } = useSelector(state => state.brands);
   const { loading, getData } = useAxiosGet();
 
+  function onPageChange(page) {
+    params.page = page
+    fetchBrands()
+  }
+
   async function fetchBrands() {
-    const response = await getData('/api/brand/getallbrands');
+    const response = await getData('/api/brand/getallbrands', params);
     if (response?.success === true) {
+      setPageStats(response?.pageStats)
       dispatch(setBrands(response?.brands));
       dispatch(setIsLoaded(true));
     }
@@ -49,6 +89,10 @@ const BrandList = () => {
       fetchBrands()
     }
   }, [])
+
+  useEffect(() => {
+    fetchBrands()
+  }, [createdAfter, createdBefore, sort, range])
 
   if (loading) {
     return <ContentLoader />
@@ -66,19 +110,22 @@ const BrandList = () => {
               placeholder='Search item'
             // onChange={onChange}
             /> */}
-            <div class="relative max-w-sm mx-auto inline-block">
-              <input class="w-full py-1 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" type="search" placeholder="Search" />
-              <button class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-r-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            <form className="relative max-w-sm mx-auto inline-block" onSubmit={(e) => {
+              e.preventDefault()
+              fetchBrands()
+            }}>
+              <input className="w-full py-1 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" type="search" placeholder="Search" value={searchInput} onChange={(e) => { setSearchInput(e.target.value) }} />
+              <button type='submit' className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-r-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                 <IoIosSearch />
               </button>
-            </div>
+            </form>
 
             {
               showCreatedBefore ?
                 <div className='inline-block' data-tooltip-id="created-before" >
                   <div className='flex flex-row items-center space-x-2'>
-                    <input type='date' />
-                    <FiMinusCircle className='text-red-500 hover:cursor-pointer text-xl' onClick={() => { setShowCreatedBefore(false) }} />
+                    <input type='date' value={createdBefore} onChange={(e) => { setCreatedBefore(e.target.value) }} />
+                    <FiMinusCircle className='text-red-500 hover:cursor-pointer text-xl' onClick={() => { setShowCreatedBefore(false); setCreatedBefore("") }} />
                   </div>
                   <ReactTooltip
                     id="created-before"
@@ -93,8 +140,8 @@ const BrandList = () => {
               showCreatedAfter ?
                 <div className='inline-block' data-tooltip-id="created-after" >
                   <div className='flex flex-row items-center space-x-2'>
-                    <input type='date' />
-                    <FiMinusCircle className='text-red-500 hover:cursor-pointer text-xl' onClick={() => { setShowCreatedAfter(false) }} />
+                    <input type='date' value={createdAfter} onChange={(e) => { setCreatedAfter(e.target.value) }} />
+                    <FiMinusCircle className='text-red-500 hover:cursor-pointer text-xl' onClick={() => { setShowCreatedAfter(false); setCreatedAfter("") }} />
                   </div>
                   <ReactTooltip
                     id="created-after"
@@ -181,6 +228,26 @@ const BrandList = () => {
 
             </tbody>
           </table>
+
+        </div>
+
+        <div className='flex flex-row items-center mt-5'>
+        <Pagination onPageChange={onPageChange} pageStats={pageStats} />
+        {/* <Menu menuButton={<MenuButton className="flex flex-row items-center space-x-1 text-blue-800 text-xl"><IoFilter className='text-xl inline-block' /><span className='uppercase text-sm font-semibold'>Results Per Page</span></MenuButton>} transition>
+          <MenuItem onClick={(e) => {
+            e.stopPropagation = true;
+            setShowCreatedBefore(!showCreatedBefore)
+          }}>Created Before</MenuItem>
+          <MenuItem onClick={(e) => {
+            e.stopPropagation = true;
+            setShowCreatedAfter(!showCreatedAfter)
+          }}>Created After</MenuItem>
+          <MenuDivider />
+          <MenuItem onClick={(e) => {
+            e.stopPropagation = true;
+            clearFilters()
+          }}>Default</MenuItem>
+        </Menu> */}
         </div>
       </div>
     </>

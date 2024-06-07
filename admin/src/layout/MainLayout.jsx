@@ -52,7 +52,7 @@ const MainLayout = () => {
   }
 
   useEffect(() => {
-    // checkSessionStatus()
+    checkSessionStatus()
   }, [])
 
   return (

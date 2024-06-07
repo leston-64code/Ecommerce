@@ -2,17 +2,21 @@ import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { getConfiguredBaseUrl } from '../helpers/helper';
+import qs from "qs"
 
 const useAxiosGet = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const getData = async (url) => {
+    const getData = async (url, params) => {
+
         setLoading(true);
         setError(null);
 
+        const queryString = qs.stringify(params, { encode: true });
+
         try {
-            const response = await axios.get(`${getConfiguredBaseUrl()}${url}`, { withCredentials: true });
+            const response = await axios.get(`${getConfiguredBaseUrl()}${url}?${queryString}`, { withCredentials: true });
             setLoading(false);
             return response.data;
         } catch (error) {
